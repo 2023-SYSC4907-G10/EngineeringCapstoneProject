@@ -1,0 +1,2 @@
+README.md filter=lfs diff=lfs merge=lfs -text
+TheEthicalHackerCup filter=lfs diff=lfs merge=lfs -text
