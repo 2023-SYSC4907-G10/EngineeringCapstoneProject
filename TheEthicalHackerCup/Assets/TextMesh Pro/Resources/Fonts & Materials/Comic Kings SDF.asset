@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-9125669662464014136
+--- !u!21 &-1554548072069687701
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2791027278731472170}
+        m_Texture: {fileID: 829674412654896672}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -70,9 +70,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.6770833
-    - _ScaleRatioC: 0.6770833
+    - _ScaleRatioA: 1
+    - _ScaleRatioB: 1
+    - _ScaleRatioC: 1
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -118,11 +118,11 @@ MonoBehaviour:
   m_Name: Comic Kings SDF
   m_EditorClassIdentifier: 
   hashCode: 752056450
-  material: {fileID: -9125669662464014136}
+  material: {fileID: -1554548072069687701}
   materialHashCode: -1788097566
   m_Version: 1.1.0
-  m_SourceFontFileGUID: 3da412fdc39337c42b4a6bfeabe19c33
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 3da412fdc39337c42b4a6bfeabe19c33, type: 3}
+  m_SourceFontFileGUID: 404e53a76c605ce4baa7761ea9b308ff
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 404e53a76c605ce4baa7761ea9b308ff, type: 3}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
@@ -1863,7 +1863,7 @@ MonoBehaviour:
     m_GlyphIndex: 104
     m_Scale: 1
   m_AtlasTextures:
-  - {fileID: 2791027278731472170}
+  - {fileID: 829674412654896672}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
   m_ClearDynamicDataOnBuild: 0
@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
-    sourceFontFileGUID: 3da412fdc39337c42b4a6bfeabe19c33
+    sourceFontFileGUID: 404e53a76c605ce4baa7761ea9b308ff
     pointSizeSamplingMode: 0
     pointSize: 55
     padding: 5
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
---- !u!28 &2791027278731472170
+--- !u!28 &829674412654896672
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
