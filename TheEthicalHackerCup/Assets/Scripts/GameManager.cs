@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         Instance._opponentKnowledge = 0;
         Instance._defenseUpgradeLevels = new Dictionary<SecurityConcepts, int>();
         Instance._attackSpecificHeat = new Dictionary<SecurityConcepts, int>();
-        Instance._passiveAttackLog = new List<>(); //TODO: Update with passive attack type Enum from HG
+        Instance._passiveAttackLog = new List<object>(); //TODO: Update with passive attack type Enum from HG
         Instance._incommingAttackLog = new List<SecurityConcepts>();
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         if (opponentKnowledge > 0 && opponentKnowledge < MaxOpponentKnowledge)
         {
             this._opponentKnowledge = opponentKnowledge;
-            OnReputationChange?.Invoke(opponentKnowledge);
+            OnOpponentKnowledgeChange?.Invoke(opponentKnowledge);
         }
     }
 
