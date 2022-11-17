@@ -4403,8 +4403,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_text
-      value: This menu is where you improve security defense to prevent active attacks
+      value: 'This menu is where you improve security defense to prevent active attacks
         by the other team
+
+        Click to continue'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
