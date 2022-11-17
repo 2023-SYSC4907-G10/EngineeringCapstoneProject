@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public static event Action<SecurityConcepts, int> OnDefenseUpgradeLevelsChange;
     public static event Action<SecurityConcepts, int> OnAttackSpecificHeatChange;
     public static event Action<object> OnPassiveAttackLogChange; //TODO: Update with passive attack type Enum from HG
-    public static event Action<SecurityConcepts> OnIncommingAttackLogChange;
+    public static event Action<SecurityConcepts> OnIncomingAttackLogChange;
     /*
         HOW TO SUBSCRIBE TO EVENTS
         
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     // Primitive Setters
     public void SetReputation(int reputation)
     {
-        if (reputation > 0 && reputation < MaxReputation)
+        if (reputation >= 0 && reputation < MaxReputation)
         {
             this._reputation = reputation;
             OnReputationChange?.Invoke(reputation);
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetOpponentKnowledge(int opponentKnowledge)
     {
-        if (opponentKnowledge > 0 && opponentKnowledge < MaxOpponentKnowledge)
+        if (opponentKnowledge >= 0 && opponentKnowledge < MaxOpponentKnowledge)
         {
             this._opponentKnowledge = opponentKnowledge;
             OnOpponentKnowledgeChange?.Invoke(opponentKnowledge);
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
     public void UpdateIncommingAttackLog(SecurityConcepts concept)
     {
         _incommingAttackLog.Add(concept);
-        OnIncommingAttackLogChange?.Invoke(concept);
+        OnIncomingAttackLogChange?.Invoke(concept);
     }
 }
 
