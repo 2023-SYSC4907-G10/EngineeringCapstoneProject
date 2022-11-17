@@ -35,11 +35,11 @@ public class GameManager : MonoBehaviour
         HOW TO SUBSCRIBE TO EVENTS
         
         // Consider this class the observable, to make a different area an observer, do this in an initializer method
-        GameManager.OnReputationChange += LocallyDefinedFunction_ParamMatchingAction
+        GameManager.Instance.OnReputationChange += LocallyDefinedFunction_ParamMatchingAction
         // In this case, LocallyDefinedFunction_ParamMatchingAction(int reputation) would be a defined function
 
         // Make sure to make an OnDestroy() method to unsubscribe from the event like this 
-        GameManager.OnReputationChange -= LocallyDefinedFunction_ParamMatchingAction
+        GameManager.Instance.OnReputationChange -= LocallyDefinedFunction_ParamMatchingAction
     */
 
 
