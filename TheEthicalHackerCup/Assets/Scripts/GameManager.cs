@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private Dictionary<SecurityConcepts, int> _defenseUpgradeLevels;
     private Dictionary<SecurityConcepts, int> _attackSpecificHeat;
     private List<object> _passiveAttackLog;//TODO: Update with passive attack type Enum from HG
-    private List<SecurityConcepts> _incommingAttackLog;
+    private List<SecurityConcepts> _incomingAttackLog;
 
 
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         Instance._defenseUpgradeLevels = new Dictionary<SecurityConcepts, int>();
         Instance._attackSpecificHeat = new Dictionary<SecurityConcepts, int>();
         Instance._passiveAttackLog = new List<object>(); //TODO: Update with passive attack type Enum from HG
-        Instance._incommingAttackLog = new List<SecurityConcepts>();
+        Instance._incomingAttackLog = new List<SecurityConcepts>();
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         //TODO: Update with passive attack type Enum from HG
         return _passiveAttackLog;
     }
-    public List<SecurityConcepts> GetIncommingAttackLog() { return _incommingAttackLog; }
+    public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }
 
 
     // Primitive Setters
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateIncommingAttackLog(SecurityConcepts concept)
     {
-        _incommingAttackLog.Add(concept);
+        _incomingAttackLog.Add(concept);
         OnIncomingAttackLogChange?.Invoke(concept);
     }
 }
