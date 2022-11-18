@@ -10,13 +10,13 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] private GameObject[] tutorialStates;
     private int tutorialStateIndex;
+    private bool isShowingExample;
     // Start is called before the first frame update
     void Start()
     {
         tutorialCanvas = GetComponent<Canvas> ();
         tutorialStateIndex = 0;
         hideTutorialScenes();
-        
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class Tutorial : MonoBehaviour
         tutorialCanvas.enabled = tutorialActive;
         if (tutorialActive) {
             initialTutorial();
-            switchTutorial();
+            StartCoroutine(switchTutorial());
             endTutorial();
         }
     }
@@ -39,23 +39,27 @@ public class Tutorial : MonoBehaviour
     void initialTutorial() {
         if (tutorialStateIndex == 0) {
             tutorialStates[0].SetActive(true);
-            tutorialStateIndex++;
         }
     }
 
-    void switchTutorial() {
-        if (Input.GetMouseButtonDown(0)) {
+    IEnumerator switchTutorial() {
+        if (Input.GetMouseButtonDown(0) && !isShowingExample) {
+            tutorialStateIndex++;
             tutorialStates[tutorialStateIndex-1].SetActive(false); // hide prior tutorial state
 
             if (tutorialStateIndex < tutorialStates.Length) {
                  tutorialStates[tutorialStateIndex].SetActive(true);
+                if (tutorialStates[tutorialStateIndex].name == "TutorialExample") {
+                    isShowingExample = true;
+                    yield return new WaitForSeconds(5);
+                    isShowingExample = false;
+                }
             }
-            tutorialStateIndex++;
         }
     }
 
     void endTutorial() {
-        if (tutorialStateIndex == tutorialStates.Length + 1) {
+        if (tutorialStateIndex == tutorialStates.Length) {
             tutorialActive = false;
         }
     }
