@@ -804,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_text
-      value: This concludes the defense menu tutorial
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -3131,11 +3131,19 @@ MonoBehaviour:
   tutorialActive: 1
   tutorialCanvas: {fileID: 1286758445}
   tutorialStates:
-  - {fileID: 958847745}
-  - {fileID: 2078091689}
-  - {fileID: 1372403675}
-  - {fileID: 693069977}
-  - {fileID: 1648178995}
+  - tutorialState: {fileID: 958847745}
+    tutorialText: This menu is where you improve security defense to prevent active
+      attacks by the other team<br>Click to continue
+  - tutorialState: {fileID: 2078091689}
+    tutorialText: To upgrade a defense you must have attempted the required amount
+      of corresponding attacks
+  - tutorialState: {fileID: 1372403675}
+    tutorialText: 'Once you have enough attacks attempted you can upgrade the defense
+      Try it out now '
+  - tutorialState: {fileID: 693069977}
+    tutorialText: 
+  - tutorialState: {fileID: 1648178995}
+    tutorialText: This concludes the defense menu tutorial
 --- !u!1001 &1304672981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3908,11 +3916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_text
-      value: 'Once you have enough attacks attempted you can upgrade the defense
-
-
-        Try
-        it out now'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752791, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3986,8 +3990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_text
-      value: To upgrade a defense you must have attempted the required amount of
-        corresponding attacks
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
@@ -5173,13 +5176,13 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8813482261285752791, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 333
+    - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+      propertyPath: m_margin.w
+      value: -17.11914
       objectReference: {fileID: 0}
-    - target: {fileID: 8813482261285752791, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 25.1
+    - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+      propertyPath: m_margin.y
+      value: -24.468517
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}

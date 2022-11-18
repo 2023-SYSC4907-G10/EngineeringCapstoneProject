@@ -4,14 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[Serializable]
+public class TutorialState {
+  public GameObject tutorialState;
+  public string tutorialText;
+}
+
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private Boolean tutorialActive;
     [SerializeField] private Canvas tutorialCanvas;
+    [SerializeField] private List<TutorialState> tutorialStates;
 
-    [SerializeField] private GameObject[] tutorialStates;
     private int tutorialStateIndex;
     private bool isShowingExample;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,39 +39,45 @@ public class Tutorial : MonoBehaviour
     }
 
     void hideTutorialScenes() {
-        foreach (GameObject i in tutorialStates) {
-            i.SetActive(false);
+        foreach (TutorialState i in tutorialStates) {
+            i.tutorialState.SetActive(false);
         }
+    }
+
+    void autoText() {
+        GameObject tutorialSpeechObj = tutorialStates[tutorialStateIndex].tutorialState.transform.Find("TutorialSpeech").gameObject;
+        TextMeshProUGUI tutorialTextObj = tutorialSpeechObj.transform.Find("TutorialTextBackground/TutorialText").GetComponent<TMPro.TextMeshProUGUI>();
+        AutoText.TypeText(tutorialTextObj, tutorialStates[tutorialStateIndex].tutorialText, 2.5f);
     }
 
     void initialTutorial() {
         if (tutorialStateIndex == 0 && !AutoText.autoTextTyping) {
-            tutorialStates[0].SetActive(true);
+            tutorialStates[0].tutorialState.SetActive(true);
            
-            GameObject tutorialSpeechObj = tutorialStates[tutorialStateIndex].transform.Find("TutorialSpeech").gameObject;
-            TextMeshProUGUI tutorialTextObj = tutorialSpeechObj.transform.Find("TutorialText").GetComponent<TMPro.TextMeshProUGUI>();
-            AutoText.TypeText(tutorialTextObj, "test", 0.1f);
+            autoText();
         }
     }
 
     IEnumerator switchTutorial() {
         if (Input.GetMouseButtonDown(0) && !isShowingExample) {
             tutorialStateIndex++;
-            tutorialStates[tutorialStateIndex-1].SetActive(false); // hide prior tutorial state
+            tutorialStates[tutorialStateIndex-1].tutorialState.SetActive(false); // hide prior tutorial state
 
-            if (tutorialStateIndex < tutorialStates.Length) {
-                 tutorialStates[tutorialStateIndex].SetActive(true);
-                if (tutorialStates[tutorialStateIndex].name == "TutorialExample") {
+            if (tutorialStateIndex < tutorialStates.Count) {
+                tutorialStates[tutorialStateIndex].tutorialState.SetActive(true);
+                if (tutorialStates[tutorialStateIndex].tutorialState.name == "TutorialExample") {
                     isShowingExample = true;
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(2);
                     isShowingExample = false;
+                } else {
+                    autoText();
                 }
             }
         }
     }
 
     void endTutorial() {
-        if (tutorialStateIndex == tutorialStates.Length) {
+        if (tutorialStateIndex == tutorialStates.Count) {
             tutorialActive = false;
         }
     }
