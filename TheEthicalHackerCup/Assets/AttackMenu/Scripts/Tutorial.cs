@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tutorial : MonoBehaviour
 {
@@ -37,8 +38,12 @@ public class Tutorial : MonoBehaviour
     }
 
     void initialTutorial() {
-        if (tutorialStateIndex == 0) {
+        if (tutorialStateIndex == 0 && !AutoText.autoTextTyping) {
             tutorialStates[0].SetActive(true);
+           
+            GameObject tutorialSpeechObj = tutorialStates[tutorialStateIndex].transform.Find("TutorialSpeech").gameObject;
+            TextMeshProUGUI tutorialTextObj = tutorialSpeechObj.transform.Find("TutorialText").GetComponent<TMPro.TextMeshProUGUI>();
+            AutoText.TypeText(tutorialTextObj, "test", 0.1f);
         }
     }
 

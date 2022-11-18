@@ -3135,6 +3135,7 @@ MonoBehaviour:
   - {fileID: 2078091689}
   - {fileID: 1372403675}
   - {fileID: 693069977}
+  - {fileID: 1648178995}
 --- !u!1001 &1304672981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5170,10 +5171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752790, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_text
-      value: 'This menu is where you improve security defense to prevent active attacks
-        by the other team
-
-        Click to continue'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8813482261285752791, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
       propertyPath: m_AnchoredPosition.x
