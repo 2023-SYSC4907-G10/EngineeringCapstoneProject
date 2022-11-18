@@ -6,8 +6,9 @@ using TMPro;
 
 [Serializable]
 public class TutorialState {
-  public GameObject tutorialState;
-  public string tutorialText;
+    public GameObject tutorialState;
+    public string tutorialText;
+    public bool isTutorialExample; 
 }
 
 public class Tutorial : MonoBehaviour
@@ -65,7 +66,7 @@ public class Tutorial : MonoBehaviour
 
             if (tutorialStateIndex < tutorialStates.Count) {
                 tutorialStates[tutorialStateIndex].tutorialState.SetActive(true);
-                if (tutorialStates[tutorialStateIndex].tutorialState.name == "TutorialExample") {
+                if (tutorialStates[tutorialStateIndex].isTutorialExample) {
                     isShowingExample = true;
                     yield return new WaitForSeconds(2);
                     isShowingExample = false;
