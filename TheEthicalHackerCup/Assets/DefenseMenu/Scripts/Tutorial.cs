@@ -8,7 +8,6 @@ using TMPro;
 public class TutorialState {
     public GameObject tutorialState;
     public string tutorialText;
-    public bool isTutorialExample; 
 }
 
 public class Tutorial : MonoBehaviour
@@ -18,7 +17,6 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private List<TutorialState> tutorialStates;
 
     private int tutorialStateIndex;
-    private bool isShowingExample;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +32,7 @@ public class Tutorial : MonoBehaviour
         tutorialCanvas.enabled = tutorialActive;
         if (tutorialActive) {
             initialTutorial();
-            StartCoroutine(switchTutorial());
+            switchTutorial();
             endTutorial();
         }
     }
@@ -54,25 +52,18 @@ public class Tutorial : MonoBehaviour
     void initialTutorial() {
         if (tutorialStateIndex == 0 && !AutoText.autoTextTyping) {
             tutorialStates[0].tutorialState.SetActive(true);
-           
             autoText();
         }
     }
 
-    IEnumerator switchTutorial() {
-        if (Input.GetMouseButtonDown(0) && !isShowingExample) {
+    void switchTutorial() {
+        if (Input.GetMouseButtonDown(0)) {
             tutorialStateIndex++;
             tutorialStates[tutorialStateIndex-1].tutorialState.SetActive(false); // hide prior tutorial state
 
             if (tutorialStateIndex < tutorialStates.Count) {
                 tutorialStates[tutorialStateIndex].tutorialState.SetActive(true);
-                if (tutorialStates[tutorialStateIndex].isTutorialExample) {
-                    isShowingExample = true;
-                    yield return new WaitForSeconds(2);
-                    isShowingExample = false;
-                } else {
-                    autoText();
-                }
+                autoText();
             }
         }
     }
