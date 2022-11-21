@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f381a6d1c659045bcb85427fa20e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialActive: 1
+  tutorialActive: 0
   tutorialCanvas: {fileID: 1286758445}
   tutorialStates:
   - tutorialState: {fileID: 958847745}
