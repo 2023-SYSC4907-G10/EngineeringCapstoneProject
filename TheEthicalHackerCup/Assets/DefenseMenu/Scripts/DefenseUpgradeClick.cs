@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DefenseUpgradeClick : MonoBehaviour
 {
     //Make sure to attach these Buttons in the Inspector
-    [SerializeField] private Button upgradeButton;
+    private Button upgradeButton;
     [SerializeField] private GameObject progressBar;
     [SerializeField] private AttackAttemptText attemptAttemptText;
 
@@ -13,6 +13,7 @@ public class DefenseUpgradeClick : MonoBehaviour
 
     void Start()
     {
+        upgradeButton = this.gameObject.GetComponent<Button>();
         upgradeButton.onClick.AddListener(Upgrade);
     }
 
