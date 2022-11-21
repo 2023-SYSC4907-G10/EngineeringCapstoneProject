@@ -13,15 +13,15 @@ public class TutorialState {
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] private Boolean tutorialActive;
-    [SerializeField] private Canvas tutorialCanvas;
     [SerializeField] private List<TutorialState> tutorialStates;
+    private Canvas tutorialCanvas;
 
     private int tutorialStateIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        tutorialCanvas = GetComponent<Canvas> ();
+        tutorialCanvas = this.gameObject.GetComponent<Canvas>();
         tutorialStateIndex = 0;
         hideTutorialScenes();
     }
