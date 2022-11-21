@@ -575,6 +575,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: FIREWALL
@@ -1326,7 +1330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialActive: 0
-  tutorialCanvas: {fileID: 1286758445}
   tutorialStates:
   - tutorialState: {fileID: 958847745}
     tutorialText: This menu is where you improve security defense to prevent active
@@ -1609,6 +1612,10 @@ PrefabInstance:
     - target: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
@@ -2031,16 +2038,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: txt
       value: 
       objectReference: {fileID: 1828081230}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
-      value: Antivirus
+      value: Ransomware
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_margin.z
+      value: -17.237488
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8629241714283531658, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_Name
-      value: Anti-virus
+      value: Ransomware
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74535f1503d62b04981615399066838d, type: 3}
@@ -2332,6 +2355,10 @@ PrefabInstance:
     - target: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text

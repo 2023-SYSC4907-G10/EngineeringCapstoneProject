@@ -7,8 +7,10 @@ public class AttackAttemptText : MonoBehaviour
 {
     private TextMeshProUGUI attemptText;
     private string attackAttemptText = "Attacks Attempted";
-    [SerializeField] private int attemptsTotal;
-    [SerializeField] private int attemptCompleted;
+    private int attemptsTotal;
+    private int attemptCompleted;
+
+    [SerializeField] SecurityConcepts sc;
 
     private Color red;
     private Color green;
@@ -17,6 +19,7 @@ public class AttackAttemptText : MonoBehaviour
     void Start()
     {
         setupColors();
+        GameManager.Instance = (GameManager)ScriptableObject.CreateInstance("GameManager");
         attemptText = this.gameObject.GetComponent<TextMeshProUGUI>();
     }
 
@@ -32,6 +35,8 @@ public class AttackAttemptText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attemptCompleted = GameManager.Instance.GetAttackMinigamesAttempted(sc);
+        attemptsTotal = GameManager.Instance.GetDefenseUpgradeLevels(sc) + 1;
         string attempts = attackAttemptText + "\n" + attemptCompleted + "/" + attemptsTotal;
         attemptText.text = attempts;
         attemptText.color = isAttemptComplete() ? green : red;

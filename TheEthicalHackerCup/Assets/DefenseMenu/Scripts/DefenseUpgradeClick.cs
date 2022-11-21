@@ -6,7 +6,7 @@ public class DefenseUpgradeClick : MonoBehaviour
     //Make sure to attach these Buttons in the Inspector
     private Button upgradeButton;
     [SerializeField] private GameObject progressBar;
-    [SerializeField] private AttackAttemptText attemptAttemptText;
+    [SerializeField] private AttackAttemptText attackAttemptText;
 
     [SerializeField] private Sprite enabledIcon;
     [SerializeField] private Sprite disabledIcon;
@@ -17,9 +17,8 @@ public class DefenseUpgradeClick : MonoBehaviour
         upgradeButton.onClick.AddListener(Upgrade);
     }
 
-    void Update()
-    {
-        upgradeButton.interactable = attemptAttemptText.isAttemptComplete();
+    void Update() {
+        upgradeButton.interactable = attackAttemptText.isAttemptComplete();
         updateImage(upgradeButton.interactable);
     }
 
