@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MiMButtonScript : MonoBehaviour
+public class ButtonClick : MonoBehaviour
 {
     public Button gameButton;
     public GameObject progressBar;
@@ -13,6 +13,6 @@ public class MiMButtonScript : MonoBehaviour
 
    void Increment(){
     Debug.Log("Button is Clicked");
-    progressBar.GetComponent<MiMBar>().updateBar();
+    progressBar.GetComponent<ProgressBarScript>().updateBar();
   }
 }

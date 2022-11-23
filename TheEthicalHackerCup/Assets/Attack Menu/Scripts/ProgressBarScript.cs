@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FirewallBar : MonoBehaviour {
+public class ProgressBarScript : MonoBehaviour {
 	[Header("Colors")]
     private Color mainColor = Color.white;
     private Color fillColor = Color.green;
