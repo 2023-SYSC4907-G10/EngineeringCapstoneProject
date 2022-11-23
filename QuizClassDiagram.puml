@@ -1,0 +1,77 @@
+@startuml
+
+class EventArgs{}
+
+EventArgs <|--NextQuestionEvent
+EventArgs <|--QuizSubmittedEvent
+EventArgs <|--QuizStartedEvent
+EventArgs <|--QuizClosedEvent
+
+class NextQuestionEvent  {
+    +question:QuestionModel
+    +NextQuestionEvent(question:QuestionModel)
+}
+
+class QuizSubmittedEvent  {
+    +percentScore:float 
+    +pass:bool 
+    +QuizSubmittedEvent(score:float, pass:bool) 
+}
+
+class QuizStartedEvent  {
+    +quizName:string 
+    +QuizStartedEvent(quizName:string)
+}
+
+class QuizClosedEvent  {
+        +pass:bool 
+        +QuizClosedEvent(pass:bool)
+    }
+class QuizModel
+{
+    -state:QuizState 
+    +QuizStarted:EventHandler<QuizStartedEvent> 
+    +QuestionChanged:EventHandler<NextQuestionEvent> 
+    +QuizClosed:EventHandler<QuizClosedEvent> 
+    +QuizSubmitted:EventHandler<QuizSubmittedEvent> 
+    +QuizModel(state:QuizState)
+    +start():void 
+    +next() :void 
+    -handleNextQuestion() :void 
+    -handleEndOfQuiz() :void 
+
+}
+
+
+enum Stage { 
+    INTRODUCTION,
+    QUESTIONS,
+    RESULT
+}
+
+
+
+class QuizState
+{
+    +Name :string 
+    +currentStage :Stage 
+    +questions:IList<QuestionState> 
+    +CurrentQuestion :int 
+    +Score :int 
+    +MaxScore :int 
+    +Percent :float 
+    +IsPassingScore :bool 
+    +IsNoMoreQuestions :bool 
+    +QuizState(name:string, questions:IList<QuestionState> )
+    +QuizState(name:string,  questions:IList<QuestionState>, startingStage:Stage, currentQuestion:int, score:int)
+    +updateScore() :void 
+    +toXml():XDocument 
+    +{static} QuizState fromXml(xmlData:string)
+    
+}
+
+QuizState --* "1" Stage
+QuizModel --* "1" QuizState
+QuizModel --"notifies subscribers with" EventArgs
+
+@enduml

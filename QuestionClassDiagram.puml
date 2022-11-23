@@ -1,0 +1,99 @@
+@startuml
+
+
+class EventArgs {}
+
+EventArgs <|-- QuestionStateUpdatedEvent 
+
+QuestionEvent <|-- SelectEvent
+QuestionEvent <|-- StartEvent
+
+
+class QuestionStateUpdatedEvent {
+    +QuestionState:QuestionState 
+    +QuestionStateUpdatedEvent(questionState:QuestionState)
+    
+}
+
+class SelectEvent
+{
+    +SelectEvent(selection:int)
+    +Selection :int 
+}
+
++abstract class QuestionModel
+{
+    +QuestionStateUpdated:EventHandler<QuestionStateUpdatedEvent> 
+    +QuestionModel(state:QuestionState)
+    -state :QuestionState 
+    #invokeStateUpdated() :void 
+    +invokeQuestionEvent(ev:QuestionEvent):void 
+    #abstract onReceiveQuestionEvent(ev:QuestionEvent):void 
+}
+
+class QuestionFactory
+{
+    +{static} generate(state:QuestionState):QuestionModel 
+}
+
+
+abstract class QuestionState{}
+
+
+class CheckboxState
+{
+    +CheckboxState()
+    +CheckboxState(selected:ISet<int>, options:IList<string>, correctOptions:ISet<int>)
+    +Selected:ISet<int> 
+    +Options:IList<string> 
+    +CorrectOptions:ISet<int> 
+    +isCorrect():bool 
+    #attrToXml(root:XElement):void 
+    +{static} fromXml(element:XElement):CheckboxState 
+    
+}
+
+class RadioState
+{
+    +{static} NONE_SELECTED
+    +RadioState()
+    +RadioState(name:string, selected:int, options:IList<string>, correctOption:int)
+    +Selected:int 
+    +Options:IList<string> 
+    +CorrectOption:int 
+    +isCorrect():bool 
+    #attrToXml(root:XElement):void 
+    +{static} fromXml(radioElement:XElement):RadioState
+}
+
+class CheckboxQuestionModel
+{
+    -state:CheckboxState 
+    +CheckboxQuestionModel(state:CheckboxState)
+    #onReceiveQuestionEvent(ev:QuestionEvent):void 
+    -selection(e:SelectEvent):void 
+}
+
+class RadioQuestionModel
+{
+    -state:RadioState 
+    +RadioQuestionModel(radioState:RadioState)
+    #onReceiveQuestionEvent(ev:QuestionEvent):void 
+    -selection(e:SelectEvent):void 
+}
+
+QuestionState <|-- CheckboxState
+QuestionState <|-- RadioState
+
+QuestionModel <|-- RadioQuestionModel
+QuestionModel <|-- CheckboxQuestionModel
+
+
+QuestionFactory -- "Creates" QuestionModel
+
+QuestionModel "1" *-- "1" QuestionState
+
+QuestionModel -- "Receives" QuestionEvent
+QuestionModel -- "Notifies Subscribers with" EventArgs
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+[*] --> In_Progress : Started_Event/Start_Action
+In_Progress --> In_Progress : SelectEvent/State_Update
+In_Progress --> [*] : KillEvent
+
+
+@enduml

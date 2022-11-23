@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> INTRODUCTION : start/QuizName
+INTRODUCTION --> QUESTIONS : nextStep/QuestionModel
+QUESTIONS --> QUESTIONS : nextStep [QuestionsRemaining] /QuestionModel
+QUESTIONS --> RESULT : nextStep [!QuestionsRemaining] /Score
+RESULT --> [*] : nextStep/IsPassing
+
+
+@enduml
