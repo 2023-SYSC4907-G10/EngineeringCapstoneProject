@@ -259,6 +259,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeMenuButton: {fileID: 20926499}
+--- !u!114 &106508443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 2117596739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &195233525
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +437,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: attackAttemptText
+      value: 
+      objectReference: {fileID: 381636284}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: DDOS Protection
@@ -445,6 +460,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
   m_PrefabInstance: {fileID: 244476758}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &381636284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 244476758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &504234772
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +605,10 @@ PrefabInstance:
       propertyPath: sc
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: attackAttemptText
+      value: 
+      objectReference: {fileID: 1008019736}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: FIREWALL
@@ -1076,6 +1106,17 @@ RectTransform:
   m_AnchoredPosition: {x: -21, y: -34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1008019736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 521274989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265819963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f381a6d1c659045bcb85427fa20e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialActive: 0
+  tutorialActive: 1
   tutorialStates:
   - tutorialState: {fileID: 958847745}
     tutorialText: This menu is where you improve security defense to prevent active
@@ -1617,6 +1658,10 @@ PrefabInstance:
       propertyPath: sc
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: attackAttemptText
+      value: 
+      objectReference: {fileID: 1686758127}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: INSIDER ATTACK
@@ -1739,6 +1784,17 @@ RectTransform:
   m_AnchoredPosition: {x: -20.99997, y: -34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1686758127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 1523125900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745457447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2101,10 @@ PrefabInstance:
       propertyPath: txt
       value: 
       objectReference: {fileID: 1828081230}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: attackAttemptText
+      value: 
+      objectReference: {fileID: 1828081232}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: Ransomware
@@ -2081,6 +2141,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1828081232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 1828081228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1987099460
@@ -2360,6 +2431,10 @@ PrefabInstance:
       propertyPath: sc
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: attackAttemptText
+      value: 
+      objectReference: {fileID: 106508443}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: Phising
