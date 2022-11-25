@@ -14,13 +14,20 @@ public class GameManagerTests
 
     private int _currentExpectedInteger;
     private SecurityConcepts _currentExpectedSecurityConcept;
+    private int _assertCalls;
 
+    // Assumes all secConcepts have 4 upgrades, except those in GameManager.With3Upgrades that have 3 upgrades
+    private static readonly int TotalPossibleUpgradesCount = Enum.GetNames(typeof(SecurityConcepts)).Length * 4 - GameManager.With3Upgrades.Length;
 
     private void BeforeEach()
     {
         //  Resetting the singleton instance to default values
-        GameManager.Instance = (GameManager)ScriptableObject.CreateInstance("GameManager");
-        // Never do this under normal circumstances. Simply referencing the GameManager.Instance as shown below should suffice
+        GameManager.GetInstance().InitializeGameState();
+        // Never do this under normal circumstances. 
+        // Simply referencing the GameManager.GetInstance() as shown below should suffice
+
+
+        this._assertCalls = 0;
     }
 
 
@@ -28,12 +35,14 @@ public class GameManagerTests
     /// Callback functions attached as observers to integer update events
     private void AssertIntegerEquals(int incommingInteger)
     {
-        Assert.True(this._currentExpectedInteger == incommingInteger);
+        Assert.AreEqual(this._currentExpectedInteger, incommingInteger);
+        this._assertCalls++;
     }
     private void AssertSecurityConceptAndIntegerEquals(SecurityConcepts incommingSecurityConcept, int incommingInteger)
     {
-        Assert.True(this._currentExpectedInteger == incommingInteger);
-        Assert.True(this._currentExpectedSecurityConcept == incommingSecurityConcept);
+        Assert.AreEqual(this._currentExpectedInteger, incommingInteger);
+        Assert.AreEqual(this._currentExpectedSecurityConcept, incommingSecurityConcept);
+        this._assertCalls++;
     }
 
 
@@ -42,10 +51,20 @@ public class GameManagerTests
     public void NextLearningMinigameFilenameTest()
     {
         BeforeEach();
-        Assert.True("" == GameManager.Instance.GetNextLearningMinigameFilename());
+        Assert.AreEqual("", GameManager.GetInstance().GetNextLearningMinigameFilename());
         var filename = "Nice.txt";
-        GameManager.Instance.SetNextLearningMinigameFilename(filename);
-        Assert.True(filename == GameManager.Instance.GetNextLearningMinigameFilename());
+        GameManager.GetInstance().SetNextLearningMinigameFilename(filename);
+        Assert.AreEqual(filename, GameManager.GetInstance().GetNextLearningMinigameFilename());
+    }
+    [Test]
+    public void NextLearningMinigameSecurityConceptTest()
+    {
+        BeforeEach();
+        // Firewall is the default
+        Assert.AreEqual(SecurityConcepts.Firewall, GameManager.GetInstance().GeNextLearningMinigameSecurityConcept());
+        SecurityConcepts secConcept = SecurityConcepts.DDoS;
+        GameManager.GetInstance().SetNextLearningMinigameSecurityConcept(secConcept);
+        Assert.AreEqual(secConcept, GameManager.GetInstance().GeNextLearningMinigameSecurityConcept());
     }
 
 
@@ -55,29 +74,30 @@ public class GameManagerTests
         BeforeEach();
 
         GameManager.OnReputationChange += AssertIntegerEquals;
-        Assert.True(0 == GameManager.Instance.GetReputation());
+        Assert.AreEqual(0, GameManager.GetInstance().GetReputation());
         // Increase by 20 from 0
         _currentExpectedInteger = 20;
-        GameManager.Instance.ChangeReputation(20);
+        GameManager.GetInstance().ChangeReputation(20);
 
         // Decrease by 10 from 20
         _currentExpectedInteger = 10;
-        GameManager.Instance.ChangeReputation(-10);
+        GameManager.GetInstance().ChangeReputation(-10);
 
         // Fail to decrease into the negatives. Stay at 10
-        GameManager.Instance.ChangeReputation(-100);
-        Assert.True(10 == GameManager.Instance.GetReputation());
+        GameManager.GetInstance().ChangeReputation(-100);
+        Assert.AreEqual(10, GameManager.GetInstance().GetReputation());
 
         // Fail to increase past limit. Stay at 10
-        GameManager.Instance.ChangeReputation(GameManager.MaxReputation + 100);
-        Assert.True(10 == GameManager.Instance.GetReputation());
+        GameManager.GetInstance().ChangeReputation(GameManager.MaxReputation + 100);
+        Assert.AreEqual(10, GameManager.GetInstance().GetReputation());
 
         // Set Directly
         _currentExpectedInteger = 88;
-        GameManager.Instance.SetReputation(88);
-        Assert.True(88 == GameManager.Instance.GetReputation());
+        GameManager.GetInstance().SetReputation(88);
+        Assert.AreEqual(88, GameManager.GetInstance().GetReputation());
 
         GameManager.OnReputationChange -= AssertIntegerEquals;
+        Assert.AreEqual(3, this._assertCalls);
     }
 
     [Test]
@@ -86,30 +106,31 @@ public class GameManagerTests
         BeforeEach();
 
         GameManager.OnOpponentKnowledgeChange += AssertIntegerEquals;
-        Assert.True(0 == GameManager.Instance.GetOpponentKnowledge());
+        Assert.AreEqual(0, GameManager.GetInstance().GetOpponentKnowledge());
 
         // Increase by 20 from 0
         _currentExpectedInteger = 20;
-        GameManager.Instance.ChangeOpponentKnowledge(20);
+        GameManager.GetInstance().ChangeOpponentKnowledge(20);
 
         // Decrease by 10 from 20
         _currentExpectedInteger = 10;
-        GameManager.Instance.ChangeOpponentKnowledge(-10);
+        GameManager.GetInstance().ChangeOpponentKnowledge(-10);
 
         // Fail to decrease into the negatives. Stay at 10
-        GameManager.Instance.ChangeOpponentKnowledge(-100);
-        Assert.True(10 == GameManager.Instance.GetOpponentKnowledge());
+        GameManager.GetInstance().ChangeOpponentKnowledge(-100);
+        Assert.AreEqual(10, GameManager.GetInstance().GetOpponentKnowledge());
 
         // Fail to increase past limit. Stay at 10
-        GameManager.Instance.ChangeOpponentKnowledge(GameManager.MaxOpponentKnowledge + 100);
-        Assert.True(10 == GameManager.Instance.GetOpponentKnowledge());
+        GameManager.GetInstance().ChangeOpponentKnowledge(GameManager.MaxOpponentKnowledge + 100);
+        Assert.AreEqual(10, GameManager.GetInstance().GetOpponentKnowledge());
 
         // Set Directly
         _currentExpectedInteger = 88;
-        GameManager.Instance.SetOpponentKnowledge(88);
-        Assert.True(88 == GameManager.Instance.GetOpponentKnowledge());
+        GameManager.GetInstance().SetOpponentKnowledge(88);
+        Assert.AreEqual(88, GameManager.GetInstance().GetOpponentKnowledge());
 
         GameManager.OnOpponentKnowledgeChange -= AssertIntegerEquals;
+        Assert.AreEqual(3, this._assertCalls);
     }
 
     [Test]
@@ -118,23 +139,25 @@ public class GameManagerTests
         BeforeEach();
         GameManager.OnDefenseUpgradeLevelsChange += AssertSecurityConceptAndIntegerEquals;
 
-        // Iterate thru security concepts. Boosting them 0 to 5 in series
+        // Iterate thru security concepts. Attempt to upgrade 5 times each, but they will stop at the max
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
             _currentExpectedSecurityConcept = concept;
             for (int i = 1; i <= 5; i++)
             {
                 _currentExpectedInteger = i;
-                GameManager.Instance.UpgradeDefenseUpgradeLevel(concept);
+                GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept);
             }
         }
 
-        // Verify everyone is at 5
-        var conceptDictionary = GameManager.Instance.GetDefenseUpgradeLevels();
+        Assert.AreEqual(TotalPossibleUpgradesCount, this._assertCalls);
+
+        // Verify everyone is max upgraded
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            Assert.True(5 == conceptDictionary[concept]);
+            Assert.AreEqual(true, GameManager.GetInstance().GetSecurityConceptProgressDictionary()[concept].IsFullyUpgraded());
         }
+        Assert.True(GameManager.GetInstance().IsEverythingFullyUpgraded());
 
         GameManager.OnDefenseUpgradeLevelsChange -= AssertSecurityConceptAndIntegerEquals;
     }
@@ -152,16 +175,18 @@ public class GameManagerTests
             foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
             {
                 _currentExpectedSecurityConcept = concept;
-                GameManager.Instance.UpgradeDefenseUpgradeLevel(concept);
+                GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept);
             }
         }
 
-        // Verify everyone is at 5
-        var conceptDictionary = GameManager.Instance.GetDefenseUpgradeLevels();
+        Assert.AreEqual(TotalPossibleUpgradesCount, this._assertCalls);
+
+        // Verify everyone is max upgraded
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            Assert.True(5 == conceptDictionary[concept]);
+            Assert.AreEqual(true, GameManager.GetInstance().GetSecurityConceptProgressDictionary()[concept].IsFullyUpgraded());
         }
+        Assert.True(GameManager.GetInstance().IsEverythingFullyUpgraded());
 
         GameManager.OnDefenseUpgradeLevelsChange -= AssertSecurityConceptAndIntegerEquals;
     }
@@ -178,15 +203,16 @@ public class GameManagerTests
             for (int i = 1; i <= 5; i++)
             {
                 _currentExpectedInteger = i;
-                GameManager.Instance.AttemptAttackMinigame(concept);
+                GameManager.GetInstance().AttemptAttackMinigame(concept);
             }
         }
 
-        // Verify everyone is at 5
-        var conceptDictionary = GameManager.Instance.GetAttackMinigamesAttempted();
+        Assert.AreEqual(25, this._assertCalls);
+
+        // Verify everyone is at 5 attempts
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            Assert.True(5 == conceptDictionary[concept]);
+            Assert.AreEqual(5, GameManager.GetInstance().GetAttackMinigamesAttempted(concept));
         }
 
 
@@ -205,17 +231,17 @@ public class GameManagerTests
             foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
             {
                 _currentExpectedSecurityConcept = concept;
-                GameManager.Instance.AttemptAttackMinigame(concept);
+                GameManager.GetInstance().AttemptAttackMinigame(concept);
             }
         }
 
-        // Verify everyone is at 5
-        var conceptDictionary = GameManager.Instance.GetAttackMinigamesAttempted();
+        Assert.AreEqual(25, this._assertCalls);
+
+        // Verify everyone is at 5 attempts
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            Assert.True(5 == conceptDictionary[concept]);
+            Assert.AreEqual(5, GameManager.GetInstance().GetAttackMinigamesAttempted(concept));
         }
-
 
         GameManager.OnAttackMinigameAttemptChange -= AssertSecurityConceptAndIntegerEquals;
 
@@ -231,16 +257,15 @@ public class GameManagerTests
             {
                 _currentExpectedSecurityConcept = concept;
                 _currentExpectedInteger = change;
-                GameManager.Instance.ChangeAttackSpecificHeat(concept, change);
+                GameManager.GetInstance().ChangeAttackSpecificHeat(concept, change);
             }
         }
         void AssertAllHeatEquals(int expectedHeat)
         {
-            //Verify everyone is at 99
-            var conceptDictionary = GameManager.Instance.GetAttackSpecificHeat();
+            //Verify everyone is at expected heat
             foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
             {
-                Assert.True(expectedHeat == conceptDictionary[concept]);
+                Assert.AreEqual(expectedHeat, GameManager.GetInstance().GetAttackSpecificHeat(concept));
             }
         }
 
@@ -261,5 +286,7 @@ public class GameManagerTests
         AssertAllHeatEquals(99);
 
         GameManager.OnAttackSpecificHeatChange -= AssertSecurityConceptAndIntegerEquals;
+
+        Assert.AreEqual(5, this._assertCalls);
     }
 }

@@ -29,7 +29,9 @@ public class KeyLoggerAttack : PassiveAttack
 
     public override void onSuccess()
     {
+        GameManager.GetInstance().ChangeOpponentKnowledge(SUCCESS_OPP_KNOWLEDGE_INCREASE);
         Debug.Log("Succesful KeyLogging Attack");
+        Debug.Log("Opp knowledge: " + GameManager.GetInstance().GetOpponentKnowledge());
     }
 
 }

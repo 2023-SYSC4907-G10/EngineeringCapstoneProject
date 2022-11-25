@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DumpsterDivingAttack : PassiveAttack
 {
+
     public Renderer garbage;
     public Material idle;
     public Material available;
@@ -26,6 +27,8 @@ public class DumpsterDivingAttack : PassiveAttack
 
     public override void onSuccess()
     {
+        GameManager.GetInstance().ChangeOpponentKnowledge(SUCCESS_OPP_KNOWLEDGE_INCREASE);
         Debug.Log("Succesful Dumpster Diving Attack");
+        Debug.Log("Opp knowledge: " + GameManager.GetInstance().GetOpponentKnowledge());
     }
 }
