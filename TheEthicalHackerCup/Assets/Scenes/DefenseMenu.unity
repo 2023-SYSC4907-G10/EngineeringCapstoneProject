@@ -259,17 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeMenuButton: {fileID: 20926499}
---- !u!114 &106508443 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-  m_PrefabInstance: {fileID: 2117596739}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &195233525
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
-      objectReference: {fileID: 381636284}
+      objectReference: {fileID: 2062829801}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: DDOS Protection
@@ -460,17 +449,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
   m_PrefabInstance: {fileID: 244476758}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &381636284 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-  m_PrefabInstance: {fileID: 244476758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &504234772
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,14 +579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: sc
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
-      objectReference: {fileID: 1008019736}
+      objectReference: {fileID: 868932089}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: FIREWALL
@@ -776,6 +750,7 @@ GameObject:
   - component: {fileID: 642218045}
   - component: {fileID: 642218047}
   - component: {fileID: 642218046}
+  - component: {fileID: 683877661}
   m_Layer: 5
   m_Name: TutorialPointer
   m_TagString: Untagged
@@ -850,8 +825,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683877660}
-  - component: {fileID: 683877662}
-  - component: {fileID: 683877661}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -870,7 +843,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.7144833, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1424689819}
   m_Father: {fileID: 1745457451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -909,14 +883,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &642218047
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642218044}
-  m_CullTransparentMesh: 1
 --- !u!1 &837561788
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +959,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837561788}
   m_CullTransparentMesh: 1
+--- !u!114 &868932089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 521274989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &888575301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,10 +1083,21 @@ RectTransform:
   m_AnchoredPosition: {x: -21, y: -34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1008019736 stripped
+--- !u!114 &1170111450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-  m_PrefabInstance: {fileID: 521274989}
+  m_PrefabInstance: {fileID: 2117596739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1197307539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 1523125900}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1496,6 +1484,82 @@ RectTransform:
   m_AnchoredPosition: {x: -20.99997, y: -34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1424689818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424689819}
+  - component: {fileID: 1424689821}
+  - component: {fileID: 1424689820}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1424689819
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424689818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683877660}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.0018005}
+  m_SizeDelta: {x: 1920, y: 1267.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1424689820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424689818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c4a284d74d3487d479a0abc3d587d587, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1424689821
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424689818}
+  m_CullTransparentMesh: 1
 --- !u!4 &1434810626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
@@ -1654,14 +1718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: sc
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
-      objectReference: {fileID: 1686758127}
+      objectReference: {fileID: 1197307539}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: INSIDER ATTACK
@@ -1784,17 +1844,6 @@ RectTransform:
   m_AnchoredPosition: {x: -20.99997, y: -34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1686758127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-  m_PrefabInstance: {fileID: 1523125900}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1745457447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,10 +2143,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: sc
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: txt
       value: 
       objectReference: {fileID: 1828081230}
@@ -2107,23 +2152,11 @@ PrefabInstance:
       objectReference: {fileID: 1828081232}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
-      value: Ransomware
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: m_margin.z
-      value: -17.237488
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -697
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4
+      value: Antivirus
       objectReference: {fileID: 0}
     - target: {fileID: 8629241714283531658, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_Name
-      value: Ransomware
+      value: Anti-virus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74535f1503d62b04981615399066838d, type: 3}
@@ -2230,6 +2263,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987099460}
   m_CullTransparentMesh: 1
+--- !u!114 &2062829801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+  m_PrefabInstance: {fileID: 244476758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2302d014be5776b4ea9db6cfc680f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2078091689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,14 +2471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
-      propertyPath: sc
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
-      objectReference: {fileID: 106508443}
+      objectReference: {fileID: 1170111450}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
       value: Phising
