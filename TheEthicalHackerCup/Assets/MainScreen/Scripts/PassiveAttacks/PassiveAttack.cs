@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class PassiveAttack : MonoBehaviour
 {
-    public enum State {
+    public const int SUCCESS_OPP_KNOWLEDGE_INCREASE = 10;
+    public enum State
+    {
         Idle,
         Available,
         Active
@@ -26,7 +28,8 @@ public abstract class PassiveAttack : MonoBehaviour
 
     public abstract void onSuccess();
 
-    void passiveAttackEvent(PassiveAttackEvent args) {
+    void passiveAttackEvent(PassiveAttackEvent args)
+    {
         lengthOfEvent = args.getLengthOfEvent();
         changeToAvailableDisplay();
         timeSinceAvailable = Time.time;
@@ -38,23 +41,27 @@ public abstract class PassiveAttack : MonoBehaviour
     void Start()
     {
         state = State.Idle;
-        changeToIdleDisplay();   
+        changeToIdleDisplay();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(state) {
+        switch (state)
+        {
             default:
             case State.Idle:
                 break;
 
             case State.Available:
-                if (Time.time - timeSinceAvailable > lengthOfEvent) {
+                if (Time.time - timeSinceAvailable > lengthOfEvent)
+                {
                     // Event has gone too long, return to idle state
                     changeToIdleDisplay();
                     state = State.Idle;
-                } else if (Physics.OverlapSphere(transform.position, 1, playerMask).Length > 0)  {
+                }
+                else if (Physics.OverlapSphere(transform.position, 1, playerMask).Length > 0)
+                {
                     // Player has begun capturing event
                     changeToAttackingDisplay();
                     timeSinceStartingAttack = Time.time;
@@ -63,18 +70,24 @@ public abstract class PassiveAttack : MonoBehaviour
                 break;
 
             case State.Active:
-                if (Time.time - timeSinceAvailable > lengthOfEvent) {
+                if (Time.time - timeSinceAvailable > lengthOfEvent)
+                {
                     // Event has gone too long, return to idle state
                     changeToIdleDisplay();
                     state = State.Idle;
-                } else if (Physics.OverlapSphere(transform.position, 1, playerMask).Length > 0) {
-                    if (Time.time - timeSinceStartingAttack > 5) {
+                }
+                else if (Physics.OverlapSphere(transform.position, 1, playerMask).Length > 0)
+                {
+                    if (Time.time - timeSinceStartingAttack > 5)
+                    {
                         // Passive Attack has been captured
                         changeToIdleDisplay();
                         onSuccess();
                         state = State.Idle;
                     }
-                } else {
+                }
+                else
+                {
                     // Player has stopped capturing
                     changeToAvailableDisplay();
                     state = State.Available;

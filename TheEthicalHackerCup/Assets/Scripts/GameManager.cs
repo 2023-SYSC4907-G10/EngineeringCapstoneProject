@@ -1,30 +1,47 @@
+using System.Diagnostics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GameManager : ScriptableObject
+public class GameManager
 {
     // Constants
+    public static readonly SecurityConcepts[] With3Upgrades =
+    { // Currently based on proposal. Those not in here have 4 upgrades
+        SecurityConcepts.DDoS,
+        SecurityConcepts.Ransomware,
+    };
+
     public const int MaxReputation = 100;
     public const int MaxOpponentKnowledge = 100;
     public const int MaxHeat = 100;
 
     // Static singleton
-    public static GameManager Instance;
+    private static GameManager _instance;
 
+    public static GameManager GetInstance()
+    {
+        if (_instance == null)
+        {
+            _instance = new GameManager();
+            _instance.InitializeGameState();
+        }
+        return _instance;
+    }
+
+    private GameManager() { } // Private constructor so new instances can't be made
 
 
     // Main game fields (Not subscribable)
     private string _nextLearningMinigameFilename;
+    private SecurityConcepts _nextLearningMinigameSecurityConcept;
 
     // Main game fields (subscribable)
     private int _reputation;
     private int _opponentKnowledge;
-    private Dictionary<SecurityConcepts, int> _defenseUpgradeLevels;
-    private Dictionary<SecurityConcepts, int> _attackMinigamesAttempted;
-    private Dictionary<SecurityConcepts, int> _attackSpecificHeat;
+    private Dictionary<SecurityConcepts, SecurityConceptProgress> _securityConceptProgressDictionary;
     private List<SecurityConcepts> _incomingAttackLog;// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
 
@@ -49,33 +66,22 @@ public class GameManager : ScriptableObject
         NOTE THAT OBSERVERS ARE ADDED TO THE BASE CLASS AND NOT TO THE INSTANCE
     */
 
-
-    // Called before application starts as the script loads
-    void Awake()
-    {
-        // Destroy instance if it somehow already exists and is not this
-        if (Instance != null && Instance != this) { Destroy(this); }
-        else { Instance = this; }
-
-        InitializeGameState();
-    }
-
     public void InitializeGameState()
     {
         _nextLearningMinigameFilename = "";
+        _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _reputation = 0;
         _opponentKnowledge = 0;
-        _defenseUpgradeLevels = new Dictionary<SecurityConcepts, int>();
-        _attackMinigamesAttempted = new Dictionary<SecurityConcepts, int>();
-        _attackSpecificHeat = new Dictionary<SecurityConcepts, int>();
+        _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
+
+
         _incomingAttackLog = new List<SecurityConcepts>();// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            _defenseUpgradeLevels.Add(concept, 0);
-            _attackMinigamesAttempted.Add(concept, 0);
-            _attackSpecificHeat.Add(concept, 0);
+            int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
+            _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
         }
     }
 
@@ -83,21 +89,48 @@ public class GameManager : ScriptableObject
 
     /*
         HOW TO CALL THESE METHODS
-        GameManager.Instance.SetReputation(20);
+        GameManager.GetInstance().SetReputation(20);
         MAKE SURE TO USE THE INSTANCE PROPERTY AS THAT IS THE SINGLE INSTANCE
     */
     // Getters
     public string GetNextLearningMinigameFilename() { return _nextLearningMinigameFilename; }
+    public SecurityConcepts GeNextLearningMinigameSecurityConcept() { return _nextLearningMinigameSecurityConcept; }
     public int GetReputation() { return _reputation; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
-    public Dictionary<SecurityConcepts, int> GetDefenseUpgradeLevels() { return _defenseUpgradeLevels; }
-    public Dictionary<SecurityConcepts, int> GetAttackMinigamesAttempted() { return _attackMinigamesAttempted; }
-    public Dictionary<SecurityConcepts, int> GetAttackSpecificHeat() { return _attackSpecificHeat; }
+    public Dictionary<SecurityConcepts, SecurityConceptProgress> GetSecurityConceptProgressDictionary() { return _securityConceptProgressDictionary; }
+    public int GetDefenseUpgradeLevel(SecurityConcepts concept)
+    {
+        return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel();
+    }
+    public int GetAttackMinigamesAttempted(SecurityConcepts concept)
+    {
+        return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted();
+    }
+    public int GetAttackSpecificHeat(SecurityConcepts concept)
+    {
+        return _securityConceptProgressDictionary[concept].GetHeat();
+    }
     public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+
+
+    // Boolean indicators
+    public bool IsEverythingFullyUpgraded()
+    {
+        foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
+        {
+            if (!_securityConceptProgressDictionary[concept].IsFullyUpgraded())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     // Primitive Setters
     public void SetNextLearningMinigameFilename(string filename) { this._nextLearningMinigameFilename = filename; }
+    public void SetNextLearningMinigameSecurityConcept(SecurityConcepts nextLearningMinigameSecurityConcept) { this._nextLearningMinigameSecurityConcept = nextLearningMinigameSecurityConcept; }
+
     public void SetReputation(int reputation)
     {
         if (reputation >= 0 && reputation < MaxReputation)
@@ -119,20 +152,22 @@ public class GameManager : ScriptableObject
     // Non primitive updates
     public void UpgradeDefenseUpgradeLevel(SecurityConcepts concept)
     {
-        this._defenseUpgradeLevels[concept] += 1;
-        OnDefenseUpgradeLevelsChange?.Invoke(concept, this._defenseUpgradeLevels[concept]);
+        if (this._securityConceptProgressDictionary[concept].UpgradeDefense())
+        {
+            // Upgraded successfully returns true and invokes the action event
+            OnDefenseUpgradeLevelsChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel());
+        }
     }
     public void AttemptAttackMinigame(SecurityConcepts concept)
     {
-        this._attackMinigamesAttempted[concept] += 1;
-        OnAttackMinigameAttemptChange?.Invoke(concept, this._attackMinigamesAttempted[concept]);
+        this._securityConceptProgressDictionary[concept].AttemptAttackMinigame();
+        OnAttackMinigameAttemptChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted());
     }
     public void ChangeAttackSpecificHeat(SecurityConcepts concept, int changeAmount)
     {
-        if (this._attackSpecificHeat[concept] + changeAmount >= 0 && this._attackSpecificHeat[concept] + changeAmount < MaxHeat)
+        if (this._securityConceptProgressDictionary[concept].ChangeHeat(changeAmount))
         {
-            this._attackSpecificHeat[concept] += changeAmount;
-            OnAttackSpecificHeatChange?.Invoke(concept, this._attackSpecificHeat[concept]);
+            OnAttackSpecificHeatChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetHeat());
         }
     }
     public void UpdateIncommingAttackLog(SecurityConcepts concept)
