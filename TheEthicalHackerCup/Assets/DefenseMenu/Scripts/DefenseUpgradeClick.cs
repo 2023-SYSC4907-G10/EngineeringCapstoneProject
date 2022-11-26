@@ -4,21 +4,21 @@ using UnityEngine.UI;
 public class DefenseUpgradeClick : MonoBehaviour
 {
     //Make sure to attach these Buttons in the Inspector
-    [SerializeField] private Button upgradeButton;
+    private Button upgradeButton;
     [SerializeField] private GameObject progressBar;
-    [SerializeField] private AttackAttemptText attemptAttemptText;
+    [SerializeField] private AttackAttemptText attackAttemptText;
 
     [SerializeField] private Sprite enabledIcon;
     [SerializeField] private Sprite disabledIcon;
 
     void Start()
     {
+        upgradeButton = this.gameObject.GetComponent<Button>();
         upgradeButton.onClick.AddListener(Upgrade);
     }
 
-    void Update()
-    {
-        upgradeButton.interactable = attemptAttemptText.isAttemptComplete();
+    void Update() {
+        upgradeButton.interactable = attackAttemptText.isAttemptComplete();
         updateImage(upgradeButton.interactable);
     }
 
