@@ -146,6 +146,7 @@ public class GameManagerTests
             for (int i = 1; i <= 5; i++)
             {
                 _currentExpectedInteger = i;
+                GameManager.GetInstance().AttemptAttackMinigame(concept); // Attack attempt required to upgrade
                 GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept);
             }
         }
@@ -175,6 +176,7 @@ public class GameManagerTests
             foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
             {
                 _currentExpectedSecurityConcept = concept;
+                GameManager.GetInstance().AttemptAttackMinigame(concept); // Attack attempt required to upgrade
                 GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept);
             }
         }
@@ -247,6 +249,39 @@ public class GameManagerTests
 
     }
 
+    [Test]
+    public void AttackMinigamesRequiredTest()
+    {
+        BeforeEach();
+        foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
+        {
+            // Everyone needs one attempt to upgrade initially
+            Assert.AreEqual(1, GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(concept));
+
+            // Attack minigame attempt everyone once
+            GameManager.GetInstance().AttemptAttackMinigame(concept);
+
+            // Before upgrading, everyone still needs one attempt to upgrade, even if they have an attempt
+            Assert.AreEqual(1, GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(concept));
+
+            // Then upgrade once successfully
+            Assert.AreEqual(true, GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept));
+
+            // Everyone now needs 2 attempts to get the next upgrade
+            Assert.AreEqual(2, GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(concept));
+
+            // Can't upgrade without another attack game attempt
+            Assert.AreEqual(false, GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept));
+            Assert.AreEqual(1, GameManager.GetInstance().GetDefenseUpgradeLevel(concept));
+
+            //Fully upgrade
+            do { GameManager.GetInstance().AttemptAttackMinigame(concept); }
+            while (GameManager.GetInstance().UpgradeDefenseUpgradeLevel(concept));
+
+            // Ensure max defense upgrade level matches requirements to upgrade once fully upgraded
+            Assert.AreEqual(GameManager.GetInstance().GetMaxDefenseUpgradeLevel(concept), GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(concept));
+        }
+    }
 
     [Test]
     public void AttackSpecificHeatTest()

@@ -102,9 +102,17 @@ public class GameManager
     {
         return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel();
     }
+    public int GetMaxDefenseUpgradeLevel(SecurityConcepts concept)
+    {
+        return _securityConceptProgressDictionary[concept].GetMaxDefenseUpgradeLevel();
+    }
     public int GetAttackMinigamesAttempted(SecurityConcepts concept)
     {
         return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted();
+    }
+    public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept)
+    {
+        return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade();
     }
     public int GetAttackSpecificHeat(SecurityConcepts concept)
     {
@@ -150,13 +158,15 @@ public class GameManager
 
 
     // Non primitive updates
-    public void UpgradeDefenseUpgradeLevel(SecurityConcepts concept)
+    public bool UpgradeDefenseUpgradeLevel(SecurityConcepts concept)
     {
         if (this._securityConceptProgressDictionary[concept].UpgradeDefense())
         {
             // Upgraded successfully returns true and invokes the action event
             OnDefenseUpgradeLevelsChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel());
+            return true;
         }
+        return false;
     }
     public void AttemptAttackMinigame(SecurityConcepts concept)
     {
