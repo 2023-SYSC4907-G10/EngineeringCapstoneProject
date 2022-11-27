@@ -34,7 +34,7 @@ public class SecurityConceptProgress
     // Boosters
     public bool UpgradeDefense()
     {
-        if (this._currentDefenseUpgradeLevel + 1 > this._maxDefenseUpgradeLevel || this._attackMinigamesAttempted < this.GetAttackMinigameAttemptsRequiredToUpgrade())
+        if (this._currentDefenseUpgradeLevel >= this._maxDefenseUpgradeLevel || this._attackMinigamesAttempted < this.GetAttackMinigameAttemptsRequiredToUpgrade())
         {
             return false;
         }
