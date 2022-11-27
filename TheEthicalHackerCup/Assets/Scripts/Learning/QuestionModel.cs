@@ -133,6 +133,7 @@ namespace Learning
     /// </summary>
     public abstract class QuestionState
     {
+        private const int MAX_NAME_SIZE = 340;
         /// <summary>
         /// Constructs a Question with Sample Text as its name
         /// </summary>
@@ -184,7 +185,7 @@ namespace Learning
                 throw new ArgumentException("Question type not added to factory yet");
             }
             state.Name = element.Attribute("Name").Value;
-            if (state.Name.Length > 400)
+            if (state.Name.Length > MAX_NAME_SIZE)
             {
                 throw new Exception("Question text too long" + state.Name);
             }
