@@ -69,6 +69,9 @@ public class RadioStateTest
     [Test]
     public void TestXml()
     {
+        state.Options.Add("Op1");
+        state.Options.Add("Op2");
+        state.CorrectOption = 1;
         var output = state.toXml().ToString();
         var element = XElement.Parse(output);
         var state2 = QuestionState.fromXml(element);
@@ -168,6 +171,9 @@ public class CheckboxStateTest
     [Test]
     public void TestXml()
     {
+        state.Options.Add("Op1");
+        state.Options.Add("Op2");
+        state.CorrectOptions.Add(1);
         var output = state.toXml().ToString();
         var element = XElement.Parse(output);
         var state2 = QuestionState.fromXml(element);
