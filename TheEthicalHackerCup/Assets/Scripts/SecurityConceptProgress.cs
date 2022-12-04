@@ -1,3 +1,4 @@
+using System;
 // using System;
 
 public class SecurityConceptProgress
@@ -25,13 +26,15 @@ public class SecurityConceptProgress
     public int GetAttackMinigamesAttempted() { return this._attackMinigamesAttempted; }
     public int GetHeat() { return this._heat; }
 
+    public int GetAttackMinigameAttemptsRequiredToUpgrade() { return Math.Min(this._maxDefenseUpgradeLevel, this._currentDefenseUpgradeLevel + 1); }
+
     // Boolean Indicators
     public bool IsFullyUpgraded() { return this._currentDefenseUpgradeLevel >= this._maxDefenseUpgradeLevel; }
 
     // Boosters
     public bool UpgradeDefense()
     {
-        if (this._currentDefenseUpgradeLevel + 1 > this._maxDefenseUpgradeLevel)
+        if (this._currentDefenseUpgradeLevel >= this._maxDefenseUpgradeLevel || this._attackMinigamesAttempted < this.GetAttackMinigameAttemptsRequiredToUpgrade())
         {
             return false;
         }

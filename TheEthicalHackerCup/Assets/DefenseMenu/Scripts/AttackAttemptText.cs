@@ -7,8 +7,8 @@ public class AttackAttemptText : MonoBehaviour
 {
     private TextMeshProUGUI attemptText;
     private string attackAttemptText = "Attacks Attempted";
-    private int attemptsTotal;
-    private int attemptCompleted;
+    private int attemptsRequiredToUpgrade;
+    private int attemptsCompleted;
 
     [SerializeField] SecurityConcepts sc;
 
@@ -21,9 +21,9 @@ public class AttackAttemptText : MonoBehaviour
         setupColors();
         GameManager.GetInstance().InitializeGameState();
         attemptText = this.gameObject.GetComponent<TextMeshProUGUI>();
-        attemptCompleted = GameManager.GetInstance().GetAttackMinigamesAttempted(sc);
-        attemptsTotal = GameManager.GetInstance().GetDefenseUpgradeLevel(sc) + 1;
-        string attempts = attackAttemptText + "\n" + attemptCompleted + "/" + attemptsTotal;
+        attemptsCompleted = GameManager.GetInstance().GetAttackMinigamesAttempted(sc);
+        attemptsRequiredToUpgrade = GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(sc);
+        string attempts = attackAttemptText + "\n" + attemptsCompleted + "/" + attemptsRequiredToUpgrade;
         attemptText.text = attempts;
         attemptText.color = isAttemptComplete() ? green : red;
     }
@@ -46,6 +46,6 @@ public class AttackAttemptText : MonoBehaviour
     public bool isAttemptComplete()
     {
         // checks if completed attack attempts equal to total attack attempts
-        return attemptCompleted == attemptsTotal;
+        return attemptsCompleted >= attemptsRequiredToUpgrade;
     }
 }
