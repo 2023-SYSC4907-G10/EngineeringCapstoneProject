@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DefenseUpgradeClick : MonoBehaviour
@@ -10,14 +11,15 @@ public class DefenseUpgradeClick : MonoBehaviour
 
     [SerializeField] private Sprite enabledIcon;
     [SerializeField] private Sprite disabledIcon;
-
+    [SerializeField] SecurityConcepts sc;
     void Start()
     {
         upgradeButton = this.gameObject.GetComponent<Button>();
         upgradeButton.onClick.AddListener(Upgrade);
     }
 
-    void Update() {
+    void Update()
+    {
         upgradeButton.interactable = attackAttemptText.isAttemptComplete();
         updateImage(upgradeButton.interactable);
     }
@@ -26,12 +28,12 @@ public class DefenseUpgradeClick : MonoBehaviour
     {
         if (upgradeButton.interactable)
         {
-            // GameManager.GetInstance().SetNextLearningMinigameSecurityConcept(...);Sec concept associated with this button
-            // GameManager.GetInstance().SetNextLearningMinigameFilename(...); Question set filename associated with the curernt concept and upgrade level
+            GameManager.GetInstance().SetNextLearningMinigameSecurityConcept(sc);
+            progressBar.GetComponent<ProgressBar>().updateProgressBar(); //This might not need to be dynamically boosted. Instead, set it when the scene loads
 
             // Launch learning minigame 
+            SceneManager.LoadScene("LearningScene");
 
-            progressBar.GetComponent<ProgressBar>().updateProgressBar();
         }
     }
 

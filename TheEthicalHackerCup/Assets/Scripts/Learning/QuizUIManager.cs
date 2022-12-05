@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 namespace Learning
 {
@@ -12,18 +13,17 @@ namespace Learning
     {
         private QuizModel quiz;
         private QuizState quizState;
-        public TextAsset quizFile;
         public TextMeshProUGUI title;
         public Button[] buttons = new Button[4];
         public Button nextButton;
         private QuestionModel current = null;
-        public string mainScene;
         // Start is called before the first frame update
         void Start()
         {
-            //declare variables
-            var filepath = quizFile.ToString();
-            quizState = QuizState.fromXml(filepath);
+            var filepath = "Assets/QuizFiles/" + GameManager.GetInstance().GetNextLearningMinigameFilename();
+            var fileContent = AssetDatabase.LoadAssetAtPath<TextAsset>(filepath).ToString();
+
+            quizState = QuizState.fromXml(fileContent);
             quiz = new QuizModel(quizState);
 
 
@@ -75,7 +75,13 @@ namespace Learning
         private void handleClosed(object sender, QuizClosedEvent evt)
         {
             Debug.Log(evt.pass ? "Quiz Passed" : "Quiz Failed");
-            SceneManager.LoadScene(mainScene);
+            if (evt.pass)
+            {
+                GameManager.GetInstance().UpgradeDefenseUpgradeLevel(
+                    GameManager.GetInstance().GeNextLearningMinigameSecurityConcept()
+                );
+            }
+            SceneManager.LoadScene("MainScene");
         }
 
         private void handleStart(object sender, QuizStartedEvent evt)
@@ -146,7 +152,7 @@ namespace Learning
             {
                 if (state.Options.Count > i)
                 {
-                    var optionText = (state.Selected == i ? "[x] " : "[ ] ")+ state.Options[i];
+                    var optionText = (state.Selected == i ? "[x] " : "[ ] ") + state.Options[i];
                     buttons[i].GetComponentInChildren<TMP_Text>().text = optionText;
 
                 }

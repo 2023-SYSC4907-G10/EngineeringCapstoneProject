@@ -19,11 +19,13 @@ public class AttackAttemptText : MonoBehaviour
     void Start()
     {
         setupColors();
-        GameManager.GetInstance().InitializeGameState();
+
+        // Building the string
         attemptText = this.gameObject.GetComponent<TextMeshProUGUI>();
         attemptsCompleted = GameManager.GetInstance().GetAttackMinigamesAttempted(sc);
         attemptsRequiredToUpgrade = GameManager.GetInstance().GetAttackMinigamesAttemptsRequiredToUpgrade(sc);
         string attempts = attackAttemptText + "\n" + attemptsCompleted + "/" + attemptsRequiredToUpgrade;
+
         attemptText.text = attempts;
         attemptText.color = isAttemptComplete() ? green : red;
     }

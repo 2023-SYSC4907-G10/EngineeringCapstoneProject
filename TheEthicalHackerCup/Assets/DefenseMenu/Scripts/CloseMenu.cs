@@ -16,10 +16,11 @@ public class CloseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void closeMenu() {
-        SceneManager.LoadScene("SampleScene 1");
+    void closeMenu()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

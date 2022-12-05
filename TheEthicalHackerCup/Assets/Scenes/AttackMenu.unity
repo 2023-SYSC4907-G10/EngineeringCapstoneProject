@@ -151,7 +151,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 146551280}
+  - {fileID: 182078528}
   m_Father: {fileID: 1243701246}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -188,7 +188,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 666603996}
+  - {fileID: 450079918}
   m_Father: {fileID: 1243701246}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -464,15 +464,10 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &146551280 stripped
+--- !u!4 &182078528 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7577637879408687983, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
   m_PrefabInstance: {fileID: 1737642615}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &230276083 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-  m_PrefabInstance: {fileID: 1544940965}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &270014846
 GameObject:
@@ -678,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameButton: {fileID: 320343549}
   heatBar: {fileID: 612365755}
+  sc: 3
 --- !u!1 &345554537
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,10 +937,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6541cd9c03260604c89436897f6547c4, type: 3}
---- !u!4 &451899324 stripped
+--- !u!4 &450079918 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-  m_PrefabInstance: {fileID: 464357004}
+  m_CorrespondingSourceObject: {fileID: 7577637879408687983, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+  m_PrefabInstance: {fileID: 1436162619}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &464357004
 PrefabInstance:
@@ -1185,6 +1181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameButton: {fileID: 489597388}
   heatBar: {fileID: 1995608803}
+  sc: 0
 --- !u!1 &568923468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,11 +1478,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5737696814365453489, guid: 6541cd9c03260604c89436897f6547c4, type: 3}
   m_PrefabInstance: {fileID: 780399974}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &666603996 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-  m_PrefabInstance: {fileID: 1436162619}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &723824653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2329328663335463321, guid: 6541cd9c03260604c89436897f6547c4, type: 3}
@@ -1750,10 +1742,10 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!4 &1023671750 stripped
+--- !u!4 &854972039 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 914061203414692282, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
-  m_PrefabInstance: {fileID: 638696936}
+  m_CorrespondingSourceObject: {fileID: 7577637879408687983, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+  m_PrefabInstance: {fileID: 464357004}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1095828410
 GameObject:
@@ -1821,7 +1813,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1023671750}
+  - {fileID: 1557318285}
   m_Father: {fileID: 1243701246}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1973,25 +1965,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialActive: 1
-  tutorialCanvas: {fileID: 1243701250}
   tutorialStates:
-  - tutorialState: {fileID: 1111123377}
-    tutorialText: 'This menu allows you to launch an attack minigame. Each button
-      represents a different attack. '
-    isTutorialExample: 0
-  - tutorialState: {fileID: 55543312}
-    tutorialText: There is a heat bar under each attack button. The heat bar increases
-      after each passive attack but will decrease after each active attack.
-    isTutorialExample: 0
-  - tutorialState: {fileID: 27202199}
-    tutorialText: Try pressing an attack to see how the heat bar works.
-    isTutorialExample: 0
-  - tutorialState: {fileID: 1752556128}
-    tutorialText: THIS IS TEMP TEXT
-    isTutorialExample: 0
-  - tutorialState: {fileID: 1837644645}
-    tutorialText: This concludes the attack menu tutorial.
-    isTutorialExample: 0
+  - {fileID: 1111123377}
+  - {fileID: 55543312}
+  - {fileID: 27202199}
+  - {fileID: 1752556128}
+  - {fileID: 1837644645}
 --- !u!114 &1243701248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,6 +2211,11 @@ PrefabInstance:
       objectReference: {fileID: -9125669662464014136, guid: 3f5cd0f991a440e4c958d1939cb29910, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+--- !u!4 &1557318285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7577637879408687983, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+  m_PrefabInstance: {fileID: 638696936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1593402118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,6 +2390,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameButton: {fileID: 1619254610}
   heatBar: {fileID: 656029913}
+  sc: 1
+--- !u!4 &1643241121 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7577637879408687983, guid: 67782a0a5b8eb7b4f9810af895a44bff, type: 3}
+  m_PrefabInstance: {fileID: 1544940965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1715797538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,7 +2565,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 451899324}
+  - {fileID: 854972039}
   m_Father: {fileID: 1243701246}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2612,7 +2602,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 230276083}
+  - {fileID: 1643241121}
   m_Father: {fileID: 1243701246}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3047,6 +3037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameButton: {fileID: 1985862126}
   heatBar: {fileID: 723824653}
+  sc: 2
 --- !u!1 &1995608803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2329328663335463321, guid: 6541cd9c03260604c89436897f6547c4, type: 3}
@@ -3193,6 +3184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameButton: {fileID: 2077505500}
   heatBar: {fileID: 1285791529}
+  sc: 4
 --- !u!1 &2104815724
 GameObject:
   m_ObjectHideFlags: 0
