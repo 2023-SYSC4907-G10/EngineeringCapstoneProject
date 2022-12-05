@@ -35,7 +35,6 @@ public class GameManager
 
 
     // Main game fields (Not subscribable)
-    private string _nextLearningMinigameFilename;
     private SecurityConcepts _nextLearningMinigameSecurityConcept;
 
     // Main game fields (subscribable)
@@ -68,7 +67,6 @@ public class GameManager
 
     public void InitializeGameState()
     {
-        _nextLearningMinigameFilename = "";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _reputation = 0;
         _opponentKnowledge = 0;
@@ -93,7 +91,10 @@ public class GameManager
         MAKE SURE TO USE THE INSTANCE PROPERTY AS THAT IS THE SINGLE INSTANCE
     */
     // Getters
-    public string GetNextLearningMinigameFilename() { return _nextLearningMinigameFilename; }
+    public string GetNextLearningMinigameFilename()
+    {
+        return _nextLearningMinigameSecurityConcept + GetAttackMinigamesAttemptsRequiredToUpgrade(_nextLearningMinigameSecurityConcept).ToString() + ".xml";
+    }
     public SecurityConcepts GeNextLearningMinigameSecurityConcept() { return _nextLearningMinigameSecurityConcept; }
     public int GetReputation() { return _reputation; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
@@ -136,7 +137,6 @@ public class GameManager
 
 
     // Primitive Setters
-    public void SetNextLearningMinigameFilename(string filename) { this._nextLearningMinigameFilename = filename; }
     public void SetNextLearningMinigameSecurityConcept(SecurityConcepts nextLearningMinigameSecurityConcept) { this._nextLearningMinigameSecurityConcept = nextLearningMinigameSecurityConcept; }
 
     public void SetReputation(int reputation)

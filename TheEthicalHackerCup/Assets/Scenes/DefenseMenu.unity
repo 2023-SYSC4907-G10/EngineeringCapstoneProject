@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -578,6 +578,14 @@ PrefabInstance:
     - target: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
@@ -1889,6 +1897,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
@@ -2318,20 +2334,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: txt
       value: 
       objectReference: {fileID: 1828081230}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
       value: 
       objectReference: {fileID: 1828081232}
     - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_text
-      value: Antivirus
+      value: Ransomware
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114785, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -660
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872790110153114790, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8629241714283531658, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_Name
-      value: Anti-virus
+      value: Ransomware
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74535f1503d62b04981615399066838d, type: 3}
@@ -2645,6 +2685,14 @@ PrefabInstance:
     - target: {fileID: 73892898020131509, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208397024883389485, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
+      propertyPath: sc
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1570993575516626835, guid: 74535f1503d62b04981615399066838d, type: 3}
       propertyPath: attackAttemptText
