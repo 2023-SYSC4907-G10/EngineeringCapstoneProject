@@ -1,8 +1,8 @@
-using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.UI;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
@@ -20,8 +20,8 @@ namespace Learning
         // Start is called before the first frame update
         void Start()
         {
-            var filepath = "Assets/QuizFiles/" + GameManager.GetInstance().GetNextLearningMinigameFilename();
-            var fileContent = AssetDatabase.LoadAssetAtPath<TextAsset>(filepath).ToString();
+            var filepath = GameManager.GetInstance().GetNextLearningMinigameFilename();
+            var fileContent = Resources.Load<TextAsset>(filepath).ToString();
 
             quizState = QuizState.fromXml(fileContent);
             quiz = new QuizModel(quizState);
