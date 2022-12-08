@@ -93,7 +93,7 @@ public class GameManager
     // Getters
     public string GetNextLearningMinigameFilename()
     {
-        return _nextLearningMinigameSecurityConcept + GetAttackMinigamesAttemptsRequiredToUpgrade(_nextLearningMinigameSecurityConcept).ToString() + ".xml";
+        return _nextLearningMinigameSecurityConcept + GetAttackMinigamesAttemptsRequiredToUpgrade(_nextLearningMinigameSecurityConcept).ToString();// + ".xml";
     }
     public SecurityConcepts GeNextLearningMinigameSecurityConcept() { return _nextLearningMinigameSecurityConcept; }
     public int GetReputation() { return _reputation; }

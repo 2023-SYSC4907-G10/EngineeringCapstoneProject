@@ -1,5 +1,3 @@
-using Codice.CM.Common.Serialization;
-using NSubstitute.Core;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -255,10 +253,11 @@ namespace Learning
             foreach (var correctElement in element.Elements("Correct"))
             {
                 var correct = int.Parse(correctElement.Value);
-                if (correct >= state.Options.Count || correct < 0) {
+                if (correct >= state.Options.Count || correct < 0)
+                {
                     throw new Exception("Question is impossible:" + correct);
                 }
-                    state.CorrectOptions.Add(correct);
+                state.CorrectOptions.Add(correct);
             }
 
             if (state.Options.Count > 4 || state.Options.Count == 0)
@@ -324,10 +323,12 @@ namespace Learning
                 state.CorrectOption = correct;
             }
 
-            if (state.Options.Count > 4 || state.Options.Count==0) {
+            if (state.Options.Count > 4 || state.Options.Count == 0)
+            {
                 throw new Exception("Invalid number of options:" + state.Options.Count);
             }
-            if (state.CorrectOption >= state.Options.Count || state.CorrectOption<0) {
+            if (state.CorrectOption >= state.Options.Count || state.CorrectOption < 0)
+            {
                 throw new Exception("Question is impossible:" + state.CorrectOption);
             }
 

@@ -51,7 +51,7 @@ public class GameManagerTests
     public void NextLearningMinigameFilenameTest()
     {
         BeforeEach();
-        Assert.AreEqual("Firewall1.xml", GameManager.GetInstance().GetNextLearningMinigameFilename());
+        Assert.AreEqual("Firewall1", GameManager.GetInstance().GetNextLearningMinigameFilename());
         GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Firewall);
         GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Firewall);
         GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Firewall);
@@ -59,7 +59,7 @@ public class GameManagerTests
         GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Firewall);
         Assert.AreEqual(5, GameManager.GetInstance().GetAttackMinigamesAttempted(SecurityConcepts.Firewall));
         GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.Firewall);
-        Assert.AreEqual("Firewall2.xml", GameManager.GetInstance().GetNextLearningMinigameFilename());
+        Assert.AreEqual("Firewall2", GameManager.GetInstance().GetNextLearningMinigameFilename());
     }
     [Test]
     public void NextLearningMinigameSecurityConceptTest()
