@@ -28,7 +28,7 @@ public class PassiveAttackControl : MonoBehaviour
         if (Time.time - timeSinceLastAttack > 30) {
             float lengthOfEvent = Random.Range(10f, 20f);
 
-            int randomEvent = Random.Range(1,3);
+            int randomEvent = Random.Range(1,4);
 
             switch(randomEvent){
                 default:
