@@ -1,7 +1,8 @@
+using Codice.Client.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Runtime.CompilerServices;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace Learning
@@ -9,8 +10,8 @@ namespace Learning
 
     public class QuestionStateUpdatedEvent : EventArgs
     {
-        public QuestionState QuestionState { get; private set; }
-        public QuestionStateUpdatedEvent(QuestionState questionState)
+        public IQuestionState QuestionState { get; private set; }
+        public QuestionStateUpdatedEvent(IQuestionState questionState)
         {
             QuestionState = questionState;
         }
@@ -53,12 +54,12 @@ namespace Learning
         /// Constructs a question with a given state
         /// </summary>
         /// <param name="state">the state to ve machined</param>
-        public QuestionModel(QuestionState state)
+        public QuestionModel(IQuestionState state)
         {
             this.state = state;
 
         }
-        private QuestionState state { get; }
+        private IQuestionState state { get; }
 
         protected void invokeStateUpdated()
         {
@@ -78,7 +79,7 @@ namespace Learning
             }
             else
             {
-                this.onReceiveQuestionEvent(ev);
+                onReceiveQuestionEvent(ev);
             }
 
         }
@@ -90,257 +91,281 @@ namespace Learning
         protected abstract void onReceiveQuestionEvent(QuestionEvent ev);
 
 
-
-    }
-
-    /// <summary>
-    /// A question factory is used to generate Question State Machines based on question states
-    /// </summary>
-    public class QuestionFactory
-    {
-
-        /// <summary>
-        /// Generates a question state machine when given a Plain Old C# Object
-        /// </summary>
-        /// <typeparam name="T">The type of state to monitor</typeparam>
-        /// <param name="state">The instance of the state to monitor</param>
-        /// <returns>Returns a new state machine for the state</returns>
-        /// <exception cref="ArgumentException">Thrown when the user tries to make a state machine for a state which is not implemented into this function yet</exception>
-        public static QuestionModel generate(QuestionState state)
+        public static QuestionModel GenerateModel(IQuestionState question) 
         {
-            if (state is CheckboxState)
-            {
-                CheckboxState arg = (CheckboxState)state;
-                return new CheckboxQuestionModel(arg);
+            if (question is ISelectQuestionState) {
+                return new SelectionModel((ISelectQuestionState)question);
             }
-            else if (state is RadioState)
-            {
-                RadioState arg = (RadioState)state;
-                return new RadioQuestionModel(arg);
-            }
-            else
-            {
-                throw new ArgumentException("Question type not implemented yet");
-            }
+            throw new Exception("Question not recognized");
         }
     }
 
+    /// <summary>
+    /// Content Interface which defines what can go on a slide
+    /// </summary>
+    public interface IContent {
+        public const string TAG_TYPE = "Type", TAG_CONTENT = "Content";
+        public abstract XElement toXml();
+
+        public static IContent fromXml(XElement element)
+        {
+            IContent state;
+            if (element.Attribute(TAG_TYPE).Value == typeof(CheckBox).ToString())
+            {
+                state = CheckBox.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(RadioBox).ToString())
+            {
+                state = RadioBox.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(InfoContent).ToString()) 
+            {
+                state = InfoContent.FromXml(element);
+            }
+            else
+            {
+                throw new ArgumentException("Content type not added to factory yet");
+            }
+            return state;
+        }
+    }
+
+    /// <summary>
+    /// Each page in the quiz is refered to as a slide. It contains slide content and a name
+    /// </summary>
+    public class Slide
+    {
+        private const int MAX_NAME_SIZE = 340;
+        public const string TAG_NAME = "Name", TAG_SLIDE = "Slide";
+
+        public string Name { get; }
+        public IContent Content { get; }
+
+        public Slide(string name, IContent content) {
+            Name = name;
+            Content = content;
+            if (Name.Length > MAX_NAME_SIZE) {
+                throw new Exception("Slide text too long: " + this.Name);
+            }
+        }
+        public virtual XElement toXml()
+        {
+            var root = new XElement(
+                TAG_SLIDE,
+                new XAttribute(TAG_NAME, this.Name)
+            );
+            root.Add(Content.toXml());
+            return root;
+        }
+
+        public static Slide FromXml(XElement element)
+        {
+            var name = element.Attribute(TAG_NAME).Value;
+            var content = IContent.fromXml(element.Element(IContent.TAG_CONTENT));
+            Slide state = new Slide(name, content);
+            return state;
+        }
+    }
 
     /// <summary>
     /// The Question State is the superclass of all Questions states
     /// </summary>
-    public abstract class QuestionState
+    public interface IQuestionState : IContent
     {
-        private const int MAX_NAME_SIZE = 340;
-        /// <summary>
-        /// Constructs a Question with Sample Text as its name
-        /// </summary>
-        public QuestionState()
-        {
-            this.Name = "Sample Text";
-        }
-        /// <summary>
-        /// Constructs a QuestionState where the name can be specified
-        /// </summary>
-        /// <param name="name"></param>
-        public QuestionState(string name)
-        {
-            Name = name;
-        }
+        public bool IsCorrect();
+    }
 
-        /// <summary>
-        /// The name/title of the Question being shown
-        /// </summary>
-        public string Name;
-        public abstract bool isCorrect();
+    /// <summary>
+    /// Added interface for easy reusability for questions where the user must select an option of many
+    /// </summary>
+    public interface ISelectQuestionState : IQuestionState
+    {
+        void Select(int choice);
+    }
 
-        public virtual XElement toXml()
+    /// <summary>
+    /// The checkbox state used for multiple select questions
+    /// </summary>
+    public class CheckBox : ISelectQuestionState
+    {
+        private const string TAG_SELECTION = "Selection", TAG_CORRECT="Correct", TAG_OPTION="Option";
+        public ISet<int> Selected { get; private set; }
+        public IList<string> Options { get; private set; }
+        public ISet<int> CorrectOptions { get; private set; }
+        public CheckBox(ISet<int> selected, IList<string> options, ISet<int> correctOptions)
         {
-            var root = new XElement(
-                "Question",
-                new XAttribute("Name", this.Name),
-                new XAttribute("Type", this.GetType())
-            );
-            attrToXml(ref root);
-            return root;
-        }
-
-        protected abstract void attrToXml(ref XElement root);
-
-        public static QuestionState fromXml(XElement element)
-        {
-            QuestionState state;
-            if (element.Attribute("Type").Value == typeof(CheckboxState).ToString())
+            Selected = selected;
+            Options = options;
+            CorrectOptions = correctOptions;
+            if (this.Options.Count > 4 || this.Options.Count == 0)
             {
-                state = CheckboxState.fromXml(element);
+                throw new Exception("Checkbox Invalid number of options" + this.Options.Count);
             }
-            else if (element.Attribute("Type").Value == typeof(RadioState).ToString())
+            foreach (var correct in CorrectOptions)
             {
-                state = RadioState.fromXml(element);
+                if (correct >= this.Options.Count || correct < 0 )
+                {
+                    throw new Exception("Checkbox Question is impossible:" + correct);
+                }
+            }
+            if (this.CorrectOptions.Count==0)
+            {
+                throw new Exception("Checkbox Invalid number of answers" + this.Options.Count);
+            }
+            foreach (var select in Selected)
+            {
+                if (select >= this.Options.Count || select < 0)
+                {
+                    throw new Exception("Checkbox Question is impossible:" + select);
+                }
+            }
+        }
+
+        public bool IsCorrect()
+        {
+            return Selected.SetEquals(CorrectOptions);
+        }
+
+        public void Select(int choice)
+        {
+            var alreadySelected = this.Selected.Contains(choice);
+            if (alreadySelected)
+            {
+                this.Selected.Remove(choice);
             }
             else
             {
-                throw new ArgumentException("Question type not added to factory yet");
+                this.Selected.Add(choice);
             }
-            state.Name = element.Attribute("Name").Value;
-            if (state.Name.Length > MAX_NAME_SIZE)
+        }
+
+        public XElement toXml()
+        {
+            var root = new XElement(IContent.TAG_CONTENT);
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            root.Add(attr);
+            foreach (var selection in Selected)
             {
-                throw new Exception("Question text too long" + state.Name);
+                root.Add(new XElement(TAG_SELECTION, selection));
             }
+            foreach (var correct in CorrectOptions)
+            {
+                root.Add(new XElement(TAG_CORRECT, correct));
+            }
+            foreach (var option in Options)
+            {
+                root.Add(new XElement(TAG_OPTION, option));
+            }
+
+            return root;
+        }
+        public static CheckBox FromXml(XElement element)
+        {
+            var selected = new HashSet<int>();
+            foreach (var selectElement in element.Elements(CheckBox.TAG_SELECTION))
+            {
+                var selection = int.Parse(selectElement.Value);
+                selected.Add(selection);
+            }
+            var options = new List<string>();
+            foreach (var optionElement in element.Elements(TAG_OPTION))
+            {
+                var option = optionElement.Value;
+                options.Add(option);
+            }
+            var correctOptions = new HashSet<int>();
+            foreach (var correctElement in element.Elements(TAG_CORRECT))
+            {
+                var correct = int.Parse(correctElement.Value);
+
+                correctOptions.Add(correct);
+            }
+
+            var state = new CheckBox(selected, options, correctOptions);
             return state;
         }
     }
 
     /// <summary>
-    /// The checkbox state used for checkbox questions
+    /// RadioBox is for a single selection question
     /// </summary>
-    public class CheckboxState : QuestionState
+    public class RadioBox : ISelectQuestionState
     {
-        public CheckboxState()
-        {
-            this.Selected = new HashSet<int>();
-            this.Options = new List<string>();
-            this.CorrectOptions = new HashSet<int>();
-        }
-        public CheckboxState(ISet<int> selected, IList<string> options, ISet<int> correctOptions)
-        {
-            Selected = selected;
-            Options = options;
-            CorrectOptions = correctOptions;
-        }
-
-        public ISet<int> Selected;
-        public IList<string> Options;
-        public ISet<int> CorrectOptions;
-
-        public override bool isCorrect()
-        {
-            return Selected.SetEquals(CorrectOptions);
-        }
-        protected override void attrToXml(ref XElement root)
-        {
-            foreach (var selection in Selected)
-            {
-                root.Add(new XElement("Selection", selection));
-            }
-            foreach (var correct in CorrectOptions)
-            {
-                root.Add(new XElement("Correct", correct));
-            }
-            foreach (var option in Options)
-            {
-                root.Add(new XElement("Option", option));
-            }
-
-
-
-        }
-
-        public static new CheckboxState fromXml(XElement element)
-        {
-            CheckboxState state = new CheckboxState();
-            foreach (var selectElement in element.Elements("Selection"))
-            {
-                var selection = int.Parse(selectElement.Value);
-                state.Selected.Add(selection);
-            }
-
-            foreach (var optionElement in element.Elements("Option"))
-            {
-                var option = optionElement.Value;
-                state.Options.Add(option);
-            }
-            foreach (var correctElement in element.Elements("Correct"))
-            {
-                var correct = int.Parse(correctElement.Value);
-                if (correct >= state.Options.Count || correct < 0)
-                {
-                    throw new Exception("Question is impossible:" + correct);
-                }
-                state.CorrectOptions.Add(correct);
-            }
-
-            if (state.Options.Count > 4 || state.Options.Count == 0)
-            {
-                throw new Exception("Invalid number of options" + state.Options.Count);
-            }
-            return state;
-        }
-    }
-
-    public class RadioState : QuestionState
-    {
-
+        private const string TAG_SELECTION = "Selection", TAG_CORRECT = "Correct", TAG_OPTION = "Option";
         public const int NONE_SELECTED = -1;
-        public RadioState()
+        public int Selected { get; private set; }
+        public IList<string> Options { get; set; }
+        public int CorrectOption { get; set; }
+
+        public RadioBox(int selected, IList<string> options, int correctOption)
         {
-            Selected = NONE_SELECTED;
-            Options = new List<string>();
-            CorrectOption = NONE_SELECTED;
-        }
-        public RadioState(string name, int selected, IList<string> options, int correctOption)
-        {
-            this.Name = name;
             this.Selected = selected;
             this.Options = options;
             this.CorrectOption = correctOption;
+            if (this.Options.Count > 4 || this.Options.Count == 0)
+            {
+                throw new Exception("Invalid number of options:" + this.Options.Count);
+            }
+            if (this.CorrectOption >= this.Options.Count || this.CorrectOption < 0)
+            {
+                throw new Exception("Question is impossible:" + this.CorrectOption);
+            }
         }
-
-        public int Selected;
-        public IList<string> Options;
-        public int CorrectOption;
-        public override bool isCorrect()
+        public bool IsCorrect()
         {
             return this.Selected == CorrectOption;
         }
-        protected override void attrToXml(ref XElement root)
-        {
-            root.Add(new XElement("Selected", this.Selected));
-            root.Add(new XElement("Correct", this.CorrectOption));
-            foreach (var option in Options)
-            {
-                root.Add(new XElement("Option", option));
-            }
 
+        public void Select(int choice)
+        {
+            this.Selected = choice;
         }
 
-        public static new RadioState fromXml(XElement radioElement)
+        public XElement toXml()
         {
-            var state = new RadioState();
-            foreach (XElement optionElement in radioElement.Elements("Option"))
+            var root = new XElement(IContent.TAG_CONTENT);
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            root.Add(attr);
+            root.Add(new XElement(TAG_SELECTION, this.Selected));
+            root.Add(new XElement(TAG_CORRECT, this.CorrectOption));
+            foreach (var option in Options)
+            {
+                root.Add(new XElement(TAG_OPTION, option));
+            }
+            return root;
+        }
+        public static RadioBox FromXml(XElement radioElement)
+        {
+            var options = new List<string>();
+            foreach (XElement optionElement in radioElement.Elements(TAG_OPTION))
             {
                 var option = optionElement.Value;
-                state.Options.Add(option);
+                options.Add(option);
             }
-            foreach (XElement selectedElement in radioElement.Elements("Selected"))
+            var selectedOption = 0;
+            foreach (XElement selectedElement in radioElement.Elements(TAG_SELECTION))
             {
                 var selected = int.Parse(selectedElement.Value);
-                state.Selected = selected;
+                selectedOption = selected;
             }
-            foreach (XElement correctElement in radioElement.Elements("Correct"))
+            var correctOption  = 0;
+            foreach (XElement correctElement in radioElement.Elements(TAG_CORRECT))
             {
                 var correct = int.Parse(correctElement.Value);
-                state.CorrectOption = correct;
+                correctOption = correct;
             }
-
-            if (state.Options.Count > 4 || state.Options.Count == 0)
-            {
-                throw new Exception("Invalid number of options:" + state.Options.Count);
-            }
-            if (state.CorrectOption >= state.Options.Count || state.CorrectOption < 0)
-            {
-                throw new Exception("Question is impossible:" + state.CorrectOption);
-            }
-
+            var state = new RadioBox(selectedOption, options, correctOption);
             return state;
         }
     }
 
-    public class CheckboxQuestionModel : QuestionModel
-    {
-        private CheckboxState state;
-        public CheckboxQuestionModel(CheckboxState state) :
-            base(state)
+    /// <summary>
+    /// Subsribeable selection question
+    /// </summary>
+    public class SelectionModel : QuestionModel {
+        private ISelectQuestionState state { set; get; }
+
+        public SelectionModel(ISelectQuestionState state) :base(state)
         {
             this.state = state;
         }
@@ -354,42 +379,32 @@ namespace Learning
 
         private void selection(SelectEvent e)
         {
-
-            if (this.state.Selected.Contains(e.Selection))
-            {
-                this.state.Selected.Remove(e.Selection);
-            }
-            else
-            {
-                this.state.Selected.Add(e.Selection);
-            }
+            this.state.Select(e.Selection);
             this.invokeStateUpdated();
         }
     }
 
-    public class RadioQuestionModel : QuestionModel
+    public class InfoContent : IContent
     {
-        private RadioState state;
-        public RadioQuestionModel(RadioState radioState) :
-            base(radioState)
-        {
-            this.state = radioState;
-
-        }
-        protected override void onReceiveQuestionEvent(QuestionEvent ev)
-        {
-            if (ev is SelectEvent)
-            {
-                this.selection((SelectEvent)ev);
-            }
+        public const int MAX_INFO_LENGTH = 500;
+        public string Info { get; private set; }
+        public InfoContent(string info) 
+        { 
+            this.Info = info;
+            if (this.Info.Length > MAX_INFO_LENGTH) { throw new Exception("Info content too long: " + this.Info); }
         }
 
-        private void selection(SelectEvent e)
+        public XElement toXml()
         {
-            this.state.Selected = e.Selection;
-            this.invokeStateUpdated();
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            var element = new XElement(IContent.TAG_CONTENT, attr, this.Info);
+            return element;
+        }
+
+        public static InfoContent FromXml(XElement element)
+        {
+            var info = element.Value;
+            return new InfoContent(info);
         }
     }
-
-
 }

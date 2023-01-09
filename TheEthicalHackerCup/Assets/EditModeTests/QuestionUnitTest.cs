@@ -7,269 +7,254 @@ using System;
 using Learning;
 using System.Xml;
 using System.Xml.Linq;
-public class RadioStateTest
+using System.Net.Http.Headers;
+using JetBrains.Annotations;
+
+public class RadioBoxTest
 {
-    RadioState state;
-    [SetUp]
-    public void setup()
-    {
-        state = new RadioState();
-        state.Name = "Test State Name";
-    }
-    [Test]
-    public void TestRadioStateNoSelection()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOption = 1;
-        Assert.False(state.isCorrect());
-    }
-
-    [Test]
-    public void TestRadioStateWrongSelection()
-    {
-
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOption = 1;
-        state.Selected = 2;
-        Assert.False(state.isCorrect());
-    }
-    [Test]
-    public void RadioNoSelectionNoAnswer()
-    {
-        Assert.True(state.isCorrect());
-    }
-    [Test]
-    public void RadioRightToWrong()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOption = 1;
-        state.Selected = 1;
-        state.Selected = 2;
-        Assert.False(state.isCorrect());
-    }
-    [Test]
-    public void RadioWrongToRight()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOption = 1;
-        state.Selected = 2;
-        state.Selected = 1;
-        Assert.True(state.isCorrect());
-
-    }
-    [Test]
-    public void RadioWrongToWrong()
-    {
-        state.Options = new List<string> { "Hello", "World", "!" };
-        state.CorrectOption = 1;
-        state.Selected = 2;
-        state.Selected = 3;
-        Assert.False(state.isCorrect());
-    }
-    [Test]
-    public void TestXml()
-    {
-        state.Options.Add("Op1");
-        state.Options.Add("Op2");
-        state.CorrectOption = 1;
-        var output = state.toXml().ToString();
-        var element = XElement.Parse(output);
-        var state2 = QuestionState.fromXml(element);
-
-        Assert.AreEqual(output, state2.toXml().ToString());
-    }
-}
-public class CheckboxStateTest
-{
-    CheckboxState state;
-    [SetUp]
-    public void setup()
-    {
-        state = new CheckboxState();
-        state.Name = "Test State Name";
-    }
-    [Test]
-    public void TestCheckboxStateNoSelection()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-
-        state.CorrectOptions = new HashSet<int> { 1 };
-        Assert.False(state.isCorrect());
-    }
-
-    [Test]
-    public void TestCheckboxStateWrongSelection()
-    {
-
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOptions = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 2 };
-        Assert.False(state.isCorrect());
-    }
-    [Test]
-    public void CheckboxNoSelectionNoAnswer()
-    {
-        Assert.True(state.isCorrect());
-    }
-    [Test]
-    public void CheckboxRightToWrong()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOptions = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 2 };
-        Assert.False(state.isCorrect());
-    }
-    [Test]
-    public void CheckboxWrongToRight()
-    {
-        state.Options = new List<string> { "Hello", "World" };
-        state.CorrectOptions = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 2 };
-        state.Selected = new HashSet<int> { 1 };
-        Assert.True(state.isCorrect());
-
-    }
-    [Test]
-    public void CheckboxWrongToWrong()
-    {
-        state.Options = new List<string> { "Hello", "World", "!" };
-        state.CorrectOptions = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 2 };
-        state.Selected = new HashSet<int> { 3 };
-        Assert.False(state.isCorrect());
-    }
-
-    [Test]
-    public void CheckboxSubsetOfRightAnswer()
-    {
-        state.Options = new List<string> { "Hello", "World", "!" };
-        state.CorrectOptions = new HashSet<int> { 1, 2 };
-        state.Selected = new HashSet<int> { 2 };
-        Assert.False(state.isCorrect());
-    }
-
-    [Test]
-    public void CheckboxSupersetOfRightAnswer()
-    {
-        state.Options = new List<string> { "Hello", "World", "!" };
-        state.CorrectOptions = new HashSet<int> { 1 };
-        state.Selected = new HashSet<int> { 1, 2 };
-        Assert.False(state.isCorrect());
-
-    }
-
-    [Test]
-    public void CheckboxOverlapOfRightAnswer()
-    {
-        state.Options = new List<string> { "Hello", "World", "!" };
-        state.CorrectOptions = new HashSet<int> { 1, 2 };
-        state.Selected = new HashSet<int> { 0, 1 };
-        Assert.False(state.isCorrect());
-
-    }
-    [Test]
-    public void TestXml()
-    {
-        state.Options.Add("Op1");
-        state.Options.Add("Op2");
-        state.CorrectOptions.Add(1);
-        var output = state.toXml().ToString();
-        var element = XElement.Parse(output);
-        var state2 = QuestionState.fromXml(element);
-
-        Assert.AreEqual(output, state2.toXml().ToString());
-    }
-
-
-}
-class TestCheckboxQuestion
-{
-    CheckboxState state;
-    CheckboxQuestionModel question;
-    int stateChangedCount = 0;
+    RadioBox radiobox;
+    int selected;
+    int correct;
+    IList<string> options;
 
     [SetUp]
     public void setup()
     {
-        state = new CheckboxState();
-        state.Name = "Mock Question";
-        state.Options = new List<string> { "Mock 1", "Mock 2", "Mock 3" };
-        state.CorrectOptions = new HashSet<int> { 0, 1 };
-        question = new CheckboxQuestionModel(state);
-        question.QuestionStateUpdated += delegate (object sender, QuestionStateUpdatedEvent args) {
-            if (state == args.QuestionState)
-            {
-                stateChangedCount++;
-            }
-        };
-    }
 
+        selected = -1;
+        correct = 1;
+        options = new List<string>();
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        radiobox = new RadioBox(selected, options, correct);
+    }
+    //selection
 
     [Test]
-    public void TestLifeCycle()
+    public void AddSelection()
     {
-        var select = new SelectEvent(1);
-        question.invokeQuestionEvent(select);
-        Assert.AreEqual(1, stateChangedCount);
 
-        var select2 = new SelectEvent(0);
-        question.invokeQuestionEvent(select2);
-        Assert.AreEqual(2, stateChangedCount);
-        Assert.AreEqual(new HashSet<int>() { 1, 0 }, state.Selected);
+        radiobox.Select(1);
+        Assert.AreEqual(1, radiobox.Selected);
+    }
+    [Test]
+    public void changeSelection()
+    {
+        radiobox.Select(1);
+        radiobox.Select(2);
+        Assert.AreNotEqual(1, radiobox.Selected);
+    }
+    //exceptions when creating it
+    [Test]
+    public void noOptions()
+    {
+        selected = 0;
+        correct = 0;
+        options = new List<string>();
+        Assert.Catch(() => { radiobox = new RadioBox(selected, options, correct); });
 
-        var select3 = new SelectEvent(1);
-        question.invokeQuestionEvent(select3);
-        Assert.AreEqual(3, stateChangedCount);
+    }
+    [Test]
+    public void correctOutOfRange()
+    {
+        selected = 0;
+        correct = 5;
+        options = new List<string>();
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        Assert.Catch(() => { radiobox = new RadioBox(selected, options, correct); });
+    }
+
+    // is correct
+    [Test]
+    public void isCorrect()
+    {
+        radiobox.Select(1);
+        Assert.True(radiobox.IsCorrect());
+    }
+    [Test]
+    public void isInCorrect()
+    {
+        radiobox.Select(2);
+        Assert.False(radiobox.IsCorrect());
+    }
+
+    //xml   
+    [Test]
+    public void xml()
+    {
+        var xml = radiobox.toXml();
+        var r2 = RadioBox.FromXml(xml);
+        Assert.AreEqual(radiobox.toXml().ToString(), r2.toXml().ToString());
+
     }
 
 }
 
-class TestRadioQuestion
+public class CheckBoxTest
 {
-    RadioState state;
-    RadioQuestionModel question;
-    int changedCount = 0;
+
+    CheckBox checkbox;
+    ISet<int> selected;
+    ISet<int> correct;
+    IList<string> options;
+
+    [SetUp]
+    public void setup() {
+
+        selected = new HashSet<int>();
+        correct = new HashSet<int>();
+        options = new List<string>(); 
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        correct.Add(1);
+        checkbox = new CheckBox(selected, options, correct);
+    }
+    //selection
+
+    [Test]
+    public void AddSelection() {
+
+        checkbox.Select(1);
+        Assert.True(checkbox.Selected.Contains(1));
+    }
+    [Test]
+    public void removeSelection() {
+        checkbox.Select(1); 
+        checkbox.Select(1);
+        Assert.False(checkbox.Selected.Contains(1));
+    }
+    [Test]
+    public void multiSelect() {
+        checkbox.Select(1);
+        checkbox.Select(2);
+        Assert.True(checkbox.Selected.Contains(1));
+        Assert.True(checkbox.Selected.Contains(2));
+    }
+    //exceptions when creating it
+    [Test]
+    public void noOptions() {
+        selected = new HashSet<int>();
+        correct = new HashSet<int>();
+        options = new List<string>();
+        correct.Add(1);
+        Assert.Catch(() => { checkbox = new CheckBox(selected, options, correct); });
+        
+    }
+    [Test]
+    public void noCorrect() {
+
+        selected = new HashSet<int>();
+        correct = new HashSet<int>();
+        options = new List<string>();
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        Assert.Catch(() => { checkbox = new CheckBox(selected, options, correct); });
+    }
+    [Test]
+    public void correctOutOfRange() {
+        selected = new HashSet<int>();
+        correct = new HashSet<int>();
+        options = new List<string>();
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        correct.Add(5);
+        Assert.Catch(() => { checkbox = new CheckBox(selected, options, correct); });
+    }
+    [Test]
+    public void selectionOutOfRange() {
+        selected = new HashSet<int>();
+        correct = new HashSet<int>();
+        options = new List<string>();
+        options.Add("A");
+        options.Add("B");
+        options.Add("C");
+        options.Add("D");
+        correct.Add(1);
+        selected.Add(-1);
+        Assert.Catch(() => { checkbox = new CheckBox(selected, options, correct); });
+    }
+
+    // is correct
+    [Test]
+    public void isCorrect() {
+        checkbox.Select(1);
+        Assert.True(checkbox.IsCorrect());
+    }
+    [Test]
+    public void isInCorrect() {
+        checkbox.Select(2);
+        Assert.False(checkbox.IsCorrect());
+    }
+
+    //xml   
+    [Test]
+    public void xml() {
+        var xml = checkbox.toXml();
+        var c2 = CheckBox.FromXml(xml); 
+        Assert.AreEqual(checkbox.toXml().ToString(),c2.toXml().ToString());
+        
+    }
+}
+
+public class InfoTest{
+    InfoContent info;
+    string s;
+
     [SetUp]
     public void setup()
     {
-        state = new RadioState();
-        state.Name = "Mock Question";
-        state.Options = new List<string> { "Mock 1", "Mock 2", "Mock 3" };
-        state.CorrectOption = 0;
-        question = new RadioQuestionModel(state);
-        question.QuestionStateUpdated += delegate (object sender, QuestionStateUpdatedEvent args) {
-            if (state == args.QuestionState)
-            {
-                changedCount++;
-            }
-        };
+        s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        info = new InfoContent(s);
     }
-
-
     [Test]
-    public void TestLifeCycle()
+    public void alright()
     {
-        //Start the life cycle
-        var start = new StartEvent();
-        question.invokeQuestionEvent(new SelectEvent(2));
-        Assert.AreEqual(1, changedCount);
-        Assert.AreEqual(2, state.Selected);
-
-        //Check box 1
-        var box1 = new SelectEvent(1);
-        question.invokeQuestionEvent(box1);
-        Assert.AreEqual(2, changedCount);
-        Assert.AreEqual(1, state.Selected);
-
-        //Check box 2
-        var box2 = new SelectEvent(0);
-        question.invokeQuestionEvent(box2);
-        Assert.AreEqual(3, changedCount);
-        Assert.AreEqual(0, state.Selected);
+        var okay = InfoContent.MAX_INFO_LENGTH;
+        var water = new string('a', okay);
+        Assert.DoesNotThrow(() => { InfoContent info = new InfoContent(water); });
+    }
+    [Test]
+    public void tooLong()
+    {
+        var overflow = InfoContent.MAX_INFO_LENGTH + 1;
+        var poison = new string('a', overflow);
+        Assert.Catch(()=> { InfoContent info = new InfoContent(poison); });
+    }
+    [Test]
+    public void xml()
+    {
+        var xml = info.toXml();
+        var c2 = InfoContent.FromXml(xml);
+        Assert.AreEqual(info.toXml().ToString(), c2.toXml().ToString());
 
     }
+}
 
+class SlideTest {
+    [Test]
+    public void xml() {
+        InfoContent info;
+        string s;
+        s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        info = new InfoContent(s);
 
+        Slide slide = new Slide("name", info);
+
+        var xml = slide.toXml();
+        var c2 = Slide.FromXml(xml);
+        Debug.Log(xml.ToString());
+        Assert.AreEqual(slide.toXml().ToString(), c2.toXml().ToString());
+    }
 
 }
