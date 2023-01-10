@@ -28,10 +28,7 @@ public class InsiderMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
         }
-
-        int xOffset = horizontalInput < 0 ? -1 : 0;
         renderer.flipX = horizontalInput < 0;
-        this.GetComponent<BoxCollider2D>().offset = new Vector3(xOffset, this.GetComponent<BoxCollider2D>().offset.y);
     }
 
     void OnCollisionEnter2D(Collision2D theCollision){
