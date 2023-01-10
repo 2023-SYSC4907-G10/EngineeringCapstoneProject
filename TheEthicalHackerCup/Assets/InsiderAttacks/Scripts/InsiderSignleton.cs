@@ -13,6 +13,7 @@ public class InsiderSingleton
     private int collectedServers;
     private int totalComputers;
     private int collectedComputers;
+    private double suspicionLevel;
     // Static singleton
     private static InsiderSingleton _instance;
 
@@ -36,6 +37,7 @@ public class InsiderSingleton
         this.collectedComputers = 0;
         this.collectedDocuments = 0;
         this.collectedServers = 0;
+        this.suspicionLevel = 0;
     }
 
     // Getters
@@ -69,6 +71,11 @@ public class InsiderSingleton
         return this.totalServers;
     }
 
+    public double GetSuspicionLevel()
+    {
+        return Math.Truncate(this.suspicionLevel * 100) / 100;;
+    }
+
     // Primitive Setters
     private void SetCollectedDocuments(int collectedDocument)
     {
@@ -100,10 +107,15 @@ public class InsiderSingleton
         this.totalServers = totalServers;
     }
 
+    private void SetSuspicionLevel(double suspicionLevel)
+    {
+        this.suspicionLevel = suspicionLevel;
+    }
+
     // Changers
     public void ChangeCollectedDocuments(int change) { this.SetCollectedDocuments(this.collectedDocuments + change); }
     public void ChangeCollectedComputers(int change) { this.SetCollectedComputers(this.collectedComputers + change); }
     public void ChangeCollectedServers(int change) { this.SetCollectedServers(this.collectedServers + change); }
-
+    public void ChangeSuspicionLevel(double change) { this.SetSuspicionLevel(this.suspicionLevel + change); }
 }
 
