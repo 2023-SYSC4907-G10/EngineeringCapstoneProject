@@ -17,6 +17,7 @@ obj/
 *.pidb
 *.booproj
 *.svd
+*.vsconfig
 # OS Generated
 desktop.ini
 .DS_Store
