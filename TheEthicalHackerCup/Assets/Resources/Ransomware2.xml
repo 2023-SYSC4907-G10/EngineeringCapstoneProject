@@ -1,17 +1,20 @@
-<Quiz Name="Ransomware 2 Stub Quiz stand-in until the concept specific minigames are made">
-  <Question Name="A sample radio type of question that checks one box. Radio radio radio" Type="Learning.RadioState">
-    <Selected>-1</Selected>
-    <Correct>1</Correct>
-    <Option>No</Option>
-    <Option>Yes</Option>
-    <Option>Nope</Option>
-  </Question>
-  <Question Name="A sample checkbox type of queestion that checks some of the boxes" Type="Learning.CheckboxState">
-    <Correct>0</Correct>
-    <Correct>2</Correct>
-    <Option>yes</Option>
-    <Option>No</Option>
-    <Option>yes again</Option>
-    <Option>No agains</Option>
-  </Question>
+<Quiz>
+	<Slide Name="SLIDE 1">
+		<Content Type="Learning.InfoContent">Welcome</Content>
+	</Slide>
+	<Slide Name="SLIDE 2">
+		<Content Type="Learning.CheckBox">
+			<Correct>1</Correct>
+			<Option>Hello</Option>
+			<Option>Bruh</Option>
+		</Content>
+	</Slide>
+	<Slide Name="SLIDE 3">
+		<Content Type="Learning.RadioBox">
+			<Selection>1</Selection>
+			<Correct>0</Correct>
+			<Option>Hello</Option>
+			<Option>Bruh</Option>
+		</Content>
+	</Slide>
 </Quiz>

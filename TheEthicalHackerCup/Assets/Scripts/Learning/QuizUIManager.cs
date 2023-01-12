@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using System.Collections.Generic;
+using System;
 
 namespace Learning
 {
@@ -12,24 +14,24 @@ namespace Learning
     public class QuizUIManager : MonoBehaviour
     {
         private QuizModel quiz;
-        private QuizState quizState;
+        private Quiz quizState;
         public TextMeshProUGUI title;
         public Button[] buttons = new Button[4];
         public Button nextButton;
-        private QuestionModel current = null;
+        private Slide slide = null;
+        private QuestionModel questionModel;
         // Start is called before the first frame update
         void Start()
         {
             var filepath = GameManager.GetInstance().GetNextLearningMinigameFilename();
             var fileContent = Resources.Load<TextAsset>(filepath).ToString();
 
-            quizState = QuizState.fromXml(fileContent);
+            quizState = Quiz.FromXml(fileContent);
             quiz = new QuizModel(quizState);
-
+            Debug.Log(quizState.ToXml().ToString());
 
             // setup handlers
-            quiz.QuizStarted += handleStart;
-            quiz.QuestionChanged += handleNextQuestion;
+            quiz.SlideChanged += handleNextSlide;
             quiz.QuizSubmitted += handleSubmitted;
             quiz.QuizClosed += handleClosed;
 
@@ -84,18 +86,31 @@ namespace Learning
             SceneManager.LoadScene("MainScene");
         }
 
-        private void handleStart(object sender, QuizStartedEvent evt)
+        private void handleNextSlide(object sender, NextSlideEvent evt)
         {
-            title.text = evt.quizName;
+            this.slide = evt.slide;
+            this.title.text = this.slide.Name;
+            var content = slide.Content;
+            if (content is IQuestionState)
+            {
+                var questionState = (IQuestionState)content;
+                questionModel = QuestionModel.GenerateModel(questionState);
+                questionModel.QuestionStateUpdated += handleQuestionStateChanged;
+                questionModel.invokeQuestionEvent(new StartEvent());
+            }
+            else if (content is InfoContent) {
+                handleInfo();
+            }
+
+
+        }
+        private void handleInfo()
+        {
+
             showButtons(false);
-            buttons[0].GetComponentInChildren<TMP_Text>().text = "Welcome to the Learning game for " + evt.quizName + ". Press next (>) to start.";
+            buttons[0].GetComponentInChildren<TMP_Text>().text = ((InfoContent)this.slide.Content).Info;
         }
-        private void handleNextQuestion(object sender, NextQuestionEvent evt)
-        {
-            this.current = evt.question;
-            this.current.QuestionStateUpdated += handleQuestionStateChanged;
-            this.current.invokeQuestionEvent(new StartEvent());
-        }
+
         private void handleSubmitted(object sender, QuizSubmittedEvent evt)
         {
             showButtons(false);
@@ -108,11 +123,11 @@ namespace Learning
         private void handleQuestionStateChanged(object sender, QuestionStateUpdatedEvent evt)
         {
             showButtons(true);
-            if (evt.QuestionState.GetType() == typeof(CheckboxState))
+            if (evt.QuestionState.GetType() == typeof(CheckBox))
             {
                 this.handleCheckboxQuestion(sender, evt);
             }
-            else if (evt.QuestionState.GetType() == typeof(RadioState))
+            else if (evt.QuestionState.GetType() == typeof(RadioBox))
             {
                 this.handleRadioQuestion(sender, evt);
             }
@@ -125,8 +140,7 @@ namespace Learning
 
         private void handleCheckboxQuestion(object sender, QuestionStateUpdatedEvent evt)
         {
-            var state = (CheckboxState)evt.QuestionState;
-            title.text = state.Name;
+            var state = (CheckBox)evt.QuestionState;
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (state.Options.Count > i)
@@ -146,8 +160,7 @@ namespace Learning
 
         private void handleRadioQuestion(object sender, QuestionStateUpdatedEvent evt)
         {
-            var state = (RadioState)evt.QuestionState;
-            title.text = state.Name;
+            var state = (RadioBox)evt.QuestionState;
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (state.Options.Count > i)
@@ -166,7 +179,7 @@ namespace Learning
 
         private void handleOptionSelected(int number)
         {
-            this.current.invokeQuestionEvent(new SelectEvent(number));
+            this.questionModel.invokeQuestionEvent(new SelectEvent(number));
         }
 
         private void handleNextSelected()
