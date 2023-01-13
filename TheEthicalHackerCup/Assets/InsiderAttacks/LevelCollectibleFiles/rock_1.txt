@@ -1,0 +1,3 @@
+document=3
+computer=2
+server=2
