@@ -14,6 +14,9 @@ public class InsiderSingleton
     private int totalComputers;
     private int collectedComputers;
     private double suspicionLevel;
+    
+    private readonly String[] VISIBLE_LEVEL_NAMES = new String[] { "GrassLevel_1", "RockLevel_1" };
+    private String currentLevelName;
     // Static singleton
     private static InsiderSingleton _instance;
 
@@ -38,6 +41,7 @@ public class InsiderSingleton
         this.collectedDocuments = 0;
         this.collectedServers = 0;
         this.suspicionLevel = 0;
+        this.currentLevelName = "";
     }
 
     // Getters
@@ -74,6 +78,11 @@ public class InsiderSingleton
     public double GetSuspicionLevel()
     {
         return Math.Truncate(this.suspicionLevel * 100) / 100;;
+    }
+
+    public String GetCurrentLevelName()
+    {
+        return this.currentLevelName;
     }
 
     // Primitive Setters
@@ -117,5 +126,10 @@ public class InsiderSingleton
     public void ChangeCollectedComputers(int change) { this.SetCollectedComputers(this.collectedComputers + change); }
     public void ChangeCollectedServers(int change) { this.SetCollectedServers(this.collectedServers + change); }
     public void ChangeSuspicionLevel(double change) { this.SetSuspicionLevel(this.suspicionLevel + change); }
+
+    public void PickLevel() {
+        int levelIndex = UnityEngine.Random.Range(0, VISIBLE_LEVEL_NAMES.Length);
+        this.currentLevelName = VISIBLE_LEVEL_NAMES[levelIndex];
+    }
 }
 

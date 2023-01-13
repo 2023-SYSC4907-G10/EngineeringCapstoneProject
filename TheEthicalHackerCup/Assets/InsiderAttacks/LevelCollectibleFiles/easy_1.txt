@@ -1,3 +1,0 @@
-document=2
-computer=1
-server=1
