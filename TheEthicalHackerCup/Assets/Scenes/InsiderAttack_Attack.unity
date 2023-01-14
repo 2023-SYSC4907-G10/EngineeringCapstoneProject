@@ -196,11 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 409.6
+      value: 379
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 254.3
+      value: 238.5
       objectReference: {fileID: 0}
     - target: {fileID: 4888131628417656870, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_SizeDelta.x
@@ -528,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 410.1
+      value: 379.5
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -704,7 +704,7 @@ Camera:
   m_GameObject: {fileID: 258561829}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -7625,7 +7625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 375.2
+      value: 352.3
       objectReference: {fileID: 0}
     - target: {fileID: 4888131627637294199, guid: dd26cf3bd87fa2243a9b9129a9440528, type: 3}
       propertyPath: m_AnchoredPosition.y

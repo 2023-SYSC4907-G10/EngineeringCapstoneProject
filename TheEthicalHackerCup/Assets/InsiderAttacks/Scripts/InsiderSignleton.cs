@@ -130,5 +130,11 @@ public class InsiderSingleton
         int levelIndex = UnityEngine.Random.Range(0, VISIBLE_LEVEL_NAMES.Length);
         this.currentLevelName = VISIBLE_LEVEL_NAMES[levelIndex];
     }
+
+    public bool LevelOver() {
+        return (this.collectedComputers == this.totalComputers && 
+                this.collectedServers == this.totalServers && 
+                this.collectedDocuments == this.totalDocuments) || (this.suspicionLevel == 100);
+    }
 }
 
