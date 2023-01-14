@@ -17,10 +17,10 @@ TagManager:
   - UI
   - PlayerLayer
   - EnemyLayer
-  - 
-  - 
-  - 
-  - 
+  - InsiderDocument
+  - InsiderServer
+  - InsiderComputer
+  - MinigameTilemap
   - 
   - 
   - 
