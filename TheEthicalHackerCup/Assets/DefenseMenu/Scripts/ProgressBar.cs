@@ -62,6 +62,19 @@ public class ProgressBar : MonoBehaviour {
 		}
 	}
 
+	public IEnumerator delayedProgressBar(int delay) {
+		while (fillAmount <= 1.0f) {
+			yield return new WaitForSeconds(delay);
+			fillAmount += 0.09f;
+			this.redrawProgressBar();
+			
+		}
+	}
+
+	public bool isComplete() {
+		return fillAmount >= 1.0f;
+	}
+
 	private float NormalizeAngle(float angle) {
 		return Mathf.Clamp01(angle / 360f);
 	}

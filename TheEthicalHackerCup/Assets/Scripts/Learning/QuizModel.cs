@@ -1,17 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using System.Xml.Linq;
 using System;
+
 namespace Learning
 {
 
-    public class NextQuestionEvent : EventArgs
+    public class NextSlideEvent : EventArgs
     {
-        public QuestionModel question;
-        public NextQuestionEvent(QuestionModel question)
+        public Slide slide;
+        public NextSlideEvent(Slide slide)
         {
-            this.question = question;
+            this.slide = slide;
         }
     }
 
@@ -27,15 +26,6 @@ namespace Learning
 
     }
 
-    public class QuizStartedEvent : EventArgs
-    {
-        public readonly string quizName;
-        public QuizStartedEvent(string quizName)
-        {
-            this.quizName = quizName;
-        }
-    }
-
     public class QuizClosedEvent : EventArgs
     {
         public readonly bool pass;
@@ -49,48 +39,45 @@ namespace Learning
 
     public class QuizModel
     {
-        private QuizState state;
-        public event EventHandler<QuizStartedEvent> QuizStarted;
-        public event EventHandler<NextQuestionEvent> QuestionChanged;
+        private Quiz state;
+        public event EventHandler<NextSlideEvent> SlideChanged;
         public event EventHandler<QuizClosedEvent> QuizClosed;
         public event EventHandler<QuizSubmittedEvent> QuizSubmitted;
 
-        public QuizModel(QuizState state)
+        public QuizModel(Quiz state)
         {
             this.state = state;
         }
 
         public void start()
         {
-            this.QuizStarted.Invoke(this, new QuizStartedEvent(this.state.Name));
+            var slide = this.state.Slides[this.state.CurrentSlideIndex];
+            var nextQuestionEvent = new NextSlideEvent(slide);
+            this.SlideChanged.Invoke(this, nextQuestionEvent);
         }
 
         public void next()
         {
-            var prevState = this.state.currentStage;
+            var prevState = this.state.CurrentStage;
             switch (prevState)
             {
-                case QuizState.Stage.INTRODUCTION:
-                    this.handleNextQuestion();
+                case Quiz.Stage.SLIDES:
+                    this.handleNextSlide();
                     break;
-                case QuizState.Stage.QUESTIONS:
-                    this.handleNextQuestion();
-                    break;
-                case QuizState.Stage.RESULT:
+                case Quiz.Stage.RESULT:
                     handleEndOfQuiz();
                     break;
             }
 
         }
 
-        private void handleNextQuestion()
+        private void handleNextSlide()
         {
-            this.state.CurrentQuestion++;
+            this.state.CurrentSlideIndex++;
             if (this.state.IsNoMoreQuestions)
             {
                 //update state
-                this.state.currentStage = QuizState.Stage.RESULT;
-                this.state.updateScore();
+                this.state.CurrentStage = Quiz.Stage.RESULT;
                 //send event to all views
                 var submittedEvent = new QuizSubmittedEvent(this.state.Percent, this.state.IsPassingScore);
                 this.QuizSubmitted.Invoke(this, submittedEvent);
@@ -98,13 +85,12 @@ namespace Learning
             else
             {
                 //goto the next question
-                this.state.currentStage = QuizState.Stage.QUESTIONS;
+                this.state.CurrentStage = Quiz.Stage.SLIDES;
 
                 //tell views about new Question Model
-                var questionState = this.state.questions[this.state.CurrentQuestion];
-                var questionModel = QuestionFactory.generate(questionState);
-                var nextQuestionEvent = new NextQuestionEvent(questionModel);
-                this.QuestionChanged.Invoke(this, nextQuestionEvent);
+                var slide = this.state.Slides[this.state.CurrentSlideIndex];
+                var nextQuestionEvent = new NextSlideEvent(slide);
+                this.SlideChanged.Invoke(this, nextQuestionEvent);
             }
 
         }
@@ -120,83 +106,87 @@ namespace Learning
 
 
 
-    public class QuizState
+    public class Quiz
     {
-
+        private const float PASSING_PERCENT = 50;
+        private const int STARTING_SLIDE = 0;
+        public const string TAG_QUIZ = "Quiz";
         public enum Stage
         {
-            INTRODUCTION,
-            QUESTIONS,
+            SLIDES,
             RESULT
         };
 
-        public string Name { get; set; }
-        public Stage currentStage { get; set; }
-        public IList<QuestionState> questions;
-        public int CurrentQuestion { get; set; }
-        public int Score { get; private set; }
-        public int MaxScore { get { return questions.Count; } }
+        public Stage CurrentStage { get; set; }
+        public IList<Slide> Slides { get; set; }
+        public int CurrentSlideIndex { get; set; }
+        public int Score { get { return calculateScore(); } }
+        public int MaxScore { get; private set; }
 
         public float Percent { get { return MaxScore == 0 ? 100 : (float)Score * 100 / (float)MaxScore; } }
-        public bool IsPassingScore { get { return Percent >= 50; } }
+        public bool IsPassingScore { get { return Percent >= PASSING_PERCENT; } }
 
-        public bool IsNoMoreQuestions { get { return CurrentQuestion == questions.Count; } }
+        public bool IsNoMoreQuestions { get { return CurrentSlideIndex == Slides.Count; } }
 
-        public QuizState(string name, IList<QuestionState> questions)
+        public Quiz(IList<Slide> slides)
         {
-            this.currentStage = Stage.INTRODUCTION;
-            this.Name = name;
-            this.questions = questions;
-            this.Score = 0;
-            this.CurrentQuestion = -1;
+            if (slides.Count == 0) { throw new Exception("Empty Quizzes are useless"); }
+            this.CurrentStage = Stage.SLIDES;
+            this.Slides = slides;
+            this.CurrentSlideIndex = STARTING_SLIDE;
+            this.MaxScore = calculateMaxScore();
+
+            
         }
 
-        public QuizState(string name, IList<QuestionState> questions, Stage startingStage, int currentQuestion, int score)
+        private int calculateMaxScore() 
         {
-            this.currentStage = startingStage;
-            this.currentStage = Stage.INTRODUCTION;
-            this.Name = name;
-            this.questions = questions;
-            this.CurrentQuestion = currentQuestion;
-            this.Score = score;
-        }
-
-        public void updateScore()
-        {
-            this.Score = 0;
-            foreach (var question in this.questions)
+            var count = 0;
+            foreach (var slide in this.Slides)
             {
-                if (question.isCorrect())
+                if (slide.Content is IQuestionState) { count++; }
+            }
+            return count;
+        }
+        private int calculateScore() {
+            var score = 0;
+            foreach (var slide in this.Slides)
+            {
+                if (slide.Content is IQuestionState)
                 {
-                    this.Score++;
+                    var question = slide.Content as IQuestionState;
+                    if (question.IsCorrect())
+                    {
+                        score++;
+                    }
                 }
             }
+            return score;
         }
 
-        public XDocument toXml()
+        public XDocument ToXml()
         {
-            var root = new XElement("Quiz", new XAttribute("Name", this.Name));
-            foreach (var question in questions)
+            var root = new XElement(TAG_QUIZ);
+            foreach (var slide in this.Slides)
             {
-                root.Add(question.toXml());
+                root.Add(slide.toXml());
             }
             var document = new XDocument();
             document.Add(root);
             return document;
         }
 
-        public static QuizState fromXml(string xmlData)
+        public static Quiz FromXml(string xmlData)
         {
             var document = XDocument.Parse(xmlData);
             var root = document.Root;
-            var name = root.Attribute("Name");
-            var questions = new List<QuestionState>();
-            foreach (var element in root.Elements("Question"))
+            var slides = new List<Slide>();
+            foreach (var element in root.Elements(Slide.TAG_SLIDE))
             {
-                questions.Add(QuestionState.fromXml(element));
+                slides.Add(Slide.FromXml(element));
             }
 
-            return new QuizState(name.Value, questions);
+            return new Quiz(slides);
 
         }
     }
