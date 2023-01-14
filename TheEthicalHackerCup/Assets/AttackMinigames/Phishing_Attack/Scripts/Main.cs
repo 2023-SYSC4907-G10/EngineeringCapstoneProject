@@ -23,25 +23,27 @@ public class Main : MonoBehaviour
 
         fish = Instantiate(whalePrefab, new Vector3(0, 0, 0), Quaternion.identity);
         fish.GetComponent<FishMovement>().control = gameObject;
-        
+
     }
 
-    void fishDied() {
-        count --;
-        if (count == 0) {
-            Debug.Log("game win");
+    void fishDied()
+    {
+        count--;
+        if (count == 0)
+        {
+            proceedToAfterActionReport("Phishing WIN :)");
         }
     }
 
-    void outOfTime() {
-        Debug.Log("game loss");
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
+    void outOfTime()
     {
-        
+        Debug.Log("game loss");
+        proceedToAfterActionReport("Phishing loss :(");
     }
+
+    private void proceedToAfterActionReport(string afterActionReportMessage)
+    {
+        GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+    }
+
 }

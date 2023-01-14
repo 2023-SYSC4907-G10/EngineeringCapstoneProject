@@ -17,7 +17,7 @@ public class ContinueButtonHandler : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainScene"); // TODO: Replace this with the after action report once ready
+            GameManager.GetInstance().AfterActionReportText = "Firewall attack completed dude";
         }
     }
 }
