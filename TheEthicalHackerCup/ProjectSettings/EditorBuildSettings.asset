@@ -17,4 +17,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LearningScene.unity
     guid: 4b4d8337c26aa7342994cda1f93bbd18
+  - enabled: 1
+    path: Assets/Scenes/AttackMinigameScenes/DDoS_Attack.unity
+    guid: ee84913fdb417524085fd5eaea5349e8
+  - enabled: 1
+    path: Assets/Scenes/AttackMinigameScenes/Firewall_Attack.unity
+    guid: a803aa5cff29be64d934a9d9fd6ca005
+  - enabled: 1
+    path: Assets/Scenes/AttackMinigameScenes/InsiderAttack_Attack.unity
+    guid: 06c6a4d1a614cee40afbdad6e6cfa303
+  - enabled: 1
+    path: Assets/Scenes/AttackMinigameScenes/Phishing_Attack.unity
+    guid: 16a164ad13726554d836a5473f3403b6
+  - enabled: 1
+    path: Assets/Scenes/AttackMinigameScenes/Ransomware_Attack.unity
+    guid: 62d519bac612c1e439f702ef714ea4ed
+  - enabled: 1
+    path: Assets/Scenes/AfterActionReport.unity
+    guid: dd0b9e7aac1658c4b8b7dd044a58673d
   m_configObjects: {}
