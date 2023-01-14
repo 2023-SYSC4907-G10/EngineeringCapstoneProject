@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonHeatBar : MonoBehaviour
@@ -34,13 +35,7 @@ public class ButtonHeatBar : MonoBehaviour
 
         GameManager.GetInstance().ChangeAttackSpecificHeat(sc, 10);
         GameManager.GetInstance().AttemptAttackMinigame(sc);
-        /*
-          TODO: 
-            Switch to the corresponding attack minigame scene
-          Proposal: 
-            Title atk minigame scenes like DDoS_Attack, Firewall_Attack, InsiderAttack_Attack, Phishing_Attack, Ransomware_Attack
-            That way the enum can be used directly with the "_Attack" string appended afterwareds
-        */
+        SceneManager.LoadScene( sc + "_Attack");
 
     }
 }
