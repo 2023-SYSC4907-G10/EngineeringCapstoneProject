@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ContinueButtonHandler : MonoBehaviour
@@ -16,7 +17,7 @@ public class ContinueButtonHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("GO TO AFTER ACTION REPORT SCENE");
+            SceneManager.LoadScene("MainScene"); // TODO: Replace this with the after action report once ready
         }
     }
 }

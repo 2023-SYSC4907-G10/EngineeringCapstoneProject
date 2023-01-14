@@ -5,18 +5,20 @@ using UnityEngine;
 public class IceCubePlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float shrinkFactorPerFrame = -0.0005f;
-    public float minimumShrinkSize = 0.01f;
-    private readonly static float MAX_VELOCITY = 7;
-    private float horizontalInput;
+    private readonly static float SHRINK_FACTOR_PER_FRAME = -0.0005f;
+    private readonly static float MAX_VELOCITY = 8;
+    private float _horizontalInput;
     private bool _isEnabled;
+    private int _shrinkSlowdownFactor;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         disable();
+        _shrinkSlowdownFactor = 4;
         FirewallAttackGameManager.OnCurrentGameStateChange += handleGameStateChange;
+        FirewallAttackGameManager.OnFlameTrapCollision += shrinkPlayer;
     }
 
     void FixedUpdate()
@@ -24,24 +26,24 @@ public class IceCubePlayerMovement : MonoBehaviour
         if (_isEnabled)
         {
             handleInputMovement();
-            handleShrinking();
+            if (Time.frameCount % _shrinkSlowdownFactor == 0) shrinkPlayer(SHRINK_FACTOR_PER_FRAME); // Shrink every x frames
         }
     }
 
     private void handleInputMovement()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        rb.velocity = Vector2.ClampMagnitude(new Vector2(rb.velocity.x + horizontalInput, rb.velocity.y), MAX_VELOCITY);
+        _horizontalInput = Input.GetAxis("Horizontal");
+        rb.velocity = Vector2.ClampMagnitude(new Vector2(rb.velocity.x + _horizontalInput, rb.velocity.y), MAX_VELOCITY);
     }
 
-    private void handleShrinking()
+    private void shrinkPlayer(float shrinkFactor)
     {
-        Vector3 scaleChange = new Vector3(shrinkFactorPerFrame, shrinkFactorPerFrame, shrinkFactorPerFrame);
+        Vector3 scaleChange = new Vector3(shrinkFactor, shrinkFactor, shrinkFactor);
         transform.localScale += scaleChange;
-
-        if (transform.localScale.sqrMagnitude < minimumShrinkSize)
+        if (transform.localScale.sqrMagnitude < 0.27) // Super strange bug. No idea why this doesn't work when not hard coded
         {
-            Debug.Log("Done Shrinking");
+            FirewallAttackGameManager.GetInstance().PercentMelted = 1 - transform.localScale.sqrMagnitude / 0.75f; // FIGURE OUT THE ORDER OF THIS
+            FirewallAttackGameManager.GetInstance().CurrentGameState = FirewallAttackStates.Lose;
         }
     }
 
@@ -54,9 +56,11 @@ public class IceCubePlayerMovement : MonoBehaviour
         else
         {
             disable();
-            if (state == FirewallAttackStates.End)
+            if (state == FirewallAttackStates.Win || state == FirewallAttackStates.Lose)
             {
+                
                 FirewallAttackGameManager.OnCurrentGameStateChange -= handleGameStateChange;
+                FirewallAttackGameManager.OnFlameTrapCollision -= shrinkPlayer;
             }
         }
     }
@@ -71,5 +75,6 @@ public class IceCubePlayerMovement : MonoBehaviour
     {
         _isEnabled = false;
         rb.gravityScale = 0;
+        rb.velocity = new Vector2(0, 0);
     }
 }

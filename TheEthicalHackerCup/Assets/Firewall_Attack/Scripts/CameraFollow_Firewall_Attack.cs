@@ -11,8 +11,8 @@ public class CameraFollow_Firewall_Attack : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 desiredPosition = cameraOffset + new Vector3(0, iceCube.position.y, 0);
+        Vector3 desiredPosition = cameraOffset + new Vector3(iceCube.position.x, iceCube.position.y, 0);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = cameraOffset + new Vector3(0, iceCube.position.y, 0);
+        transform.position = cameraOffset + new Vector3(iceCube.position.x, iceCube.position.y, 0);
     }
 }

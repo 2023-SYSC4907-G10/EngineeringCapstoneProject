@@ -6,5 +6,6 @@ public enum FirewallAttackStates
 {
     Intro,
     Playing,
-    End
+    Win,
+    Lose
 }
