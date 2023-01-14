@@ -4,6 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Fish
+  - SpearFish
+  - Whale
   - Border
   layers:
   - Default
