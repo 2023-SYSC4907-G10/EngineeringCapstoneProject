@@ -71,7 +71,7 @@ public class Shooter : MonoBehaviour
                 break;
 
             case State.Shooting:
-                transform.Translate(Vector3.right * Time.deltaTime * 15f);
+                transform.Translate(Vector3.right * Time.deltaTime * 25f);
                 // We have missed target
                 if (!positionInBounds(transform.position)) {
                     transform.localRotation = Quaternion.Euler(0f, 0f, 270f);

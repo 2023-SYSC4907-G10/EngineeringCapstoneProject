@@ -6,20 +6,28 @@ public class Harpooning : MonoBehaviour
 {
     public GameObject shooter; 
 
+    public Sprite notSelected;
+    public Sprite selected;
+
+    public GameObject spearFishing;
+    public GameObject phishing;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<SpriteRenderer>().sprite = notSelected; 
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void unSelect() {
+        gameObject.GetComponent<SpriteRenderer>().sprite = notSelected;
     }
 
     void OnMouseDown() {
         Debug.Log("Harpooning Selected");
         shooter.SendMessage("selectHarpooning");
+        gameObject.GetComponent<SpriteRenderer>().sprite = selected;
+        spearFishing.SendMessage("unSelect");
+        phishing.SendMessage("unSelect");
     }
 }

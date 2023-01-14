@@ -29,9 +29,15 @@ public class Main : MonoBehaviour
     void fishDied() {
         count --;
         if (count == 0) {
-            Debug.Log("game over");
+            Debug.Log("game win");
         }
     }
+
+    void outOfTime() {
+        Debug.Log("game loss");
+    }
+
+
 
     // Update is called once per frame
     void Update()
