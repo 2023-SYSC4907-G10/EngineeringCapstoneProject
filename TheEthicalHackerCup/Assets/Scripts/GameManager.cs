@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -37,6 +37,15 @@ public class GameManager
     // Main game fields (Not subscribable)
     private SecurityConcepts _nextLearningMinigameSecurityConcept;
 
+    private string _afterActionReportText;
+    public string AfterActionReportText { 
+        get { return _afterActionReportText;}
+        set {
+            _afterActionReportText = value;
+            SceneManager.LoadScene("AfterActionReport");
+        }
+    }
+
     // Main game fields (subscribable)
     private int _reputation;
     private int _opponentKnowledge;
@@ -67,6 +76,7 @@ public class GameManager
 
     public void InitializeGameState()
     {
+        _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _reputation = 0;
         _opponentKnowledge = 0;
