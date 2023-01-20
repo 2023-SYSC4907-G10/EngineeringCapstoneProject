@@ -16,11 +16,6 @@ public class GameWin : MonoBehaviour
         }
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     public void Continue()
     {
         GameManager.GetInstance().AfterActionReportText = "DDoS Attack Completed Dude";
