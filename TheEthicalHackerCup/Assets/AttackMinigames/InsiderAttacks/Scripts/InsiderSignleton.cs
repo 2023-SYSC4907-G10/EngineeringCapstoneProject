@@ -152,9 +152,9 @@ public class InsiderSingleton
     }
 
     private bool LevelOver() {
-        return (this.collectedComputers == this.totalComputers && 
-                this.collectedServers == this.totalServers && 
-                this.collectedDocuments == this.totalDocuments) || (this.suspicionLevel == 100);
+        return (this.collectedComputers >= this.totalComputers && 
+                this.collectedServers >= this.totalServers && 
+                this.collectedDocuments >= this.totalDocuments) || (this.suspicionLevel >= 100);
     }
 }
 
