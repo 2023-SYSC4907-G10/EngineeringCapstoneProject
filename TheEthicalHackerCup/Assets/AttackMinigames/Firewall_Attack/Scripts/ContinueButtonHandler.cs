@@ -17,6 +17,7 @@ public class ContinueButtonHandler : MonoBehaviour
         }
         else
         {
+            FirewallAttackGameManager.GetInstance().InitializeGameState();
             GameManager.GetInstance().AfterActionReportText = "Firewall attack completed dude";
         }
     }

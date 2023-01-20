@@ -8,7 +8,7 @@ public class FlameTrap : MonoBehaviour
     {
         if (theCollision.gameObject.layer == LayerMask.NameToLayer("PlayerLayer"))
         {
-            FirewallAttackGameManager.GetInstance().FlameTrapCollision();//CurrentGameState = FirewallAttackStates.Lose;
+            FirewallAttackGameManager.GetInstance().FlameTrapCollision();
         }
     }
 }

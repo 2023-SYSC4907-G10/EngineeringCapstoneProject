@@ -6,13 +6,20 @@ using UnityEngine;
 
 public class FirewallAttackGameManager
 {
-    private float _percentMelted;
-    public float PercentMelted
+    public int StartingHealth { get; private set; }
+    private int _currentHealth;
+    public int CurrentHealth
     {
-        get { return _percentMelted;}
-        set { _percentMelted = value;}
+        get { return _currentHealth; }
+        set
+        {
+            _currentHealth = value;
+            if (_currentHealth <= 0)
+            {
+                CurrentGameState = FirewallAttackStates.Lose;
+            }
+        }
     }
-    private float _flameTrapShrinkAmount;
     private float _playStateStartTime;
     private float _playStateEndTime;
     private FirewallAttackStates _currentGameState;
@@ -28,7 +35,7 @@ public class FirewallAttackGameManager
         }
     }
     public static event Action<FirewallAttackStates> OnCurrentGameStateChange;
-    public static event Action<float> OnFlameTrapCollision;
+    public static event Action OnFlameTrapCollision;
 
     // Static singleton
     private static FirewallAttackGameManager _instance;
@@ -46,8 +53,9 @@ public class FirewallAttackGameManager
     public void InitializeGameState()
     {
         CurrentGameState = FirewallAttackStates.Intro;
-        _percentMelted = 0;
-        _flameTrapShrinkAmount = -0.01f; //Based on difficulty
+
+        StartingHealth = 3; // TODO: Make this a difficulty control and get this dynamically
+        _currentHealth = StartingHealth;
     }
 
     public float GetPlayTime()
@@ -61,6 +69,6 @@ public class FirewallAttackGameManager
 
     public void FlameTrapCollision()
     {
-        OnFlameTrapCollision?.Invoke(_flameTrapShrinkAmount);
+        OnFlameTrapCollision?.Invoke();
     }
 }
