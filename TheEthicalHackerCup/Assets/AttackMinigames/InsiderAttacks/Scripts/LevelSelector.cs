@@ -9,6 +9,7 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InsiderSingleton.GetInstance().InitializeGameState();
         InsiderSingleton.GetInstance().PickLevel();
         string levelName = InsiderSingleton.GetInstance().GetCurrentLevelName();
         GameObject level = null;
