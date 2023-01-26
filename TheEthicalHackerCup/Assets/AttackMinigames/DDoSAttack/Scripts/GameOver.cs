@@ -16,8 +16,8 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public void Restart()
+    public void Continue()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.GetInstance().AfterActionReportText = "DDoS Attack Failed Dude";
     }
 }
