@@ -11,12 +11,6 @@ public class InfoDialog : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnMouseDown() {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;

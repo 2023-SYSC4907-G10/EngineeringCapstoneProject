@@ -25,11 +25,10 @@ public class PassiveAttackControl : MonoBehaviour
     void Update()
     {
         // Every 30 seconds a random passive attack will become available for a random amount of time
-        if (Time.time - timeSinceLastAttack > 20) {
+        if (Time.time - timeSinceLastAttack > 25) {
             float lengthOfEvent = Random.Range(10f, 20f);
 
-            //int randomEvent = Random.Range(1,4);
-            int randomEvent = 3;
+            int randomEvent = Random.Range(1,4);
 
             switch(randomEvent){
                 default:
