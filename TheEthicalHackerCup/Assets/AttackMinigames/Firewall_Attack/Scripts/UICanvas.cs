@@ -6,13 +6,14 @@ using TMPro;
 public class UICanvas : MonoBehaviour
 {
     public static readonly string WINNER_MESSAGE =
-@"Winner! 
+@"Winner!
+Your packet made it past the firewall!
 Time: ";
     public readonly static string MELTED_FAILURE_MESSAGE =
 @"MISSION FAILED!
-Your packet was melted!
+Your packet was blocked by the firewall!
 Time: ";
-    public readonly static string PERCENT_MELTED_PREFIX = "\nPercent melted: ";
+    public readonly static string PERCENT_MELTED_PREFIX = "\n Remaining health: ";
 
     public GameObject CanvasUI;
     public TextMeshProUGUI Tmp;
@@ -32,7 +33,8 @@ Time: ";
 
             if (state == FirewallAttackStates.Win)
             {
-                Tmp.text += PERCENT_MELTED_PREFIX + FirewallAttackGameManager.GetInstance().PercentMelted + "%";
+                float healthPercent = 100 * FirewallAttackGameManager.GetInstance().CurrentHealth / FirewallAttackGameManager.GetInstance().StartingHealth;
+                Tmp.text += PERCENT_MELTED_PREFIX + healthPercent + "%";
             }
             CanvasUI.SetActive(true);
             FirewallAttackGameManager.OnCurrentGameStateChange -= handleGameStateChange; // Unsubscribe to event
