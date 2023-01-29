@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CountdownTimer : MonoBehaviour
 {
     private float currentTime;
-    private float startingTime = 20f;
+    private float startingTime = 35f;
 
     public Text countdownText;
 
