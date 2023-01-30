@@ -8,12 +8,15 @@ public class TutorialTextTyper : MonoBehaviour
     [SerializeField] private TextTyper tt;
     [SerializeField] private TextAsset textFile;
     private Queue<string> textQueue;
+
+    private static bool tutorialOver; 
     // Start is called before the first frame update
     void Start()
     {
         textQueue = new Queue<string>();
         initQueue();
         showText();
+        tutorialOver = false;
     }
 
     void initQueue()
@@ -30,6 +33,9 @@ public class TutorialTextTyper : MonoBehaviour
         if (textQueue.Count > 0)
         {
             this.tt.TypeText(textQueue.Dequeue());
+        } else {
+            Destroy(gameObject);
+            tutorialOver = true;
         }
     }
 
@@ -48,10 +54,11 @@ public class TutorialTextTyper : MonoBehaviour
             {
                 this.tt.Skip();
             }
-            else
-            {
-                showText();
-            }
+            showText();
         }
+    }
+
+    public static bool isTutorialOver() {
+        return tutorialOver;
     }
 }
