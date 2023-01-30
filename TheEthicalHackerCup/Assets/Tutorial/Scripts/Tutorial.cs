@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private Boolean tutorialActive;
     private Canvas tutorialCanvas;
 
     [SerializeField] private GameObject tutorialSpeech;
