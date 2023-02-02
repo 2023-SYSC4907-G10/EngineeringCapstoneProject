@@ -11,3 +11,5 @@ ie. Tutorial with 4 states but 2 arrows one in the second state and one in the t
 -45,-123,0, 0,0,23
 
 `
+
+To find the positions and rotations you will need to play around with the arrows during runtime of the game scene
