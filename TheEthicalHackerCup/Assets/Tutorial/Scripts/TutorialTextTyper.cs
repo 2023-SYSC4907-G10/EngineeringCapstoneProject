@@ -14,9 +14,14 @@ public class TutorialTextTyper : MonoBehaviour
     void Start()
     {
         textQueue = new Queue<string>();
-        initQueue();
-        showText();
         tutorialOver = false;
+
+        if (!tutorialOver) {
+            initQueue();
+            showText();
+        }
+       
+       
     }
 
     void initQueue()
@@ -30,7 +35,7 @@ public class TutorialTextTyper : MonoBehaviour
 
     void showText()
     {
-        if (textQueue.Count > 0)
+        if (textQueue.Count > 0 && !tutorialOver)
         {
             this.tt.TypeText(textQueue.Dequeue());
         } else {
@@ -56,6 +61,14 @@ public class TutorialTextTyper : MonoBehaviour
             }
             showText();
         }
+    }
+
+    public static void startTutorial() {
+        tutorialOver = false;
+    }
+
+    public static void endTutorial() {
+        tutorialOver = true;
     }
 
     public static bool isTutorialOver() {

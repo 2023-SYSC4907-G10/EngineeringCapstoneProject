@@ -24,14 +24,8 @@ public class Tutorial : MonoBehaviour
 
         pointerLines = pointerConfig.text.Split('\n');
         pointerIndex = 0;
-        
-        pointer = pointerLines[pointerIndex];
-        if (pointer.Trim() != "") {
-            tutorialPointerCopy = Instantiate(tutorialPointer, transform);
-            tutorialPointerCopy.transform.localPosition = getPointerPosition(pointer);
-            tutorialPointerCopy.transform.localRotation = getPointerRotation(pointer);
-        }
-        pointerIndex += 1;
+
+        createPointer();
     }
 
     // Update is called once per frame
@@ -40,14 +34,18 @@ public class Tutorial : MonoBehaviour
         tutorialCanvas.enabled = !TutorialTextTyper.isTutorialOver();
         if (Input.GetMouseButtonDown(0) && pointerIndex != pointerLines.Length) {
             Destroy(tutorialPointerCopy);
-            pointer = pointerLines[pointerIndex];
+            createPointer();
+        }
+    }
+
+    private void createPointer() {
+        pointer = pointerLines[pointerIndex];
             if (pointer.Trim() != "") {
                 tutorialPointerCopy = Instantiate(tutorialPointer, transform);
                 tutorialPointerCopy.transform.localPosition = getPointerPosition(pointer);
                 tutorialPointerCopy.transform.localRotation = getPointerRotation(pointer);
             }
-            pointerIndex += 1;
-        }
+        pointerIndex += 1;
     }
 
     Vector3 getPointerPosition(string pointer) {
