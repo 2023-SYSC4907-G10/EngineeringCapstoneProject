@@ -1,8 +1,5 @@
-using Codice.Client.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace Learning
@@ -118,9 +115,17 @@ namespace Learning
             {
                 state = RadioBox.FromXml(element);
             }
-            else if (element.Attribute(TAG_TYPE).Value == typeof(InfoContent).ToString()) 
+            else if (element.Attribute(TAG_TYPE).Value == typeof(InfoContent).ToString())
             {
                 state = InfoContent.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(ImageContent).ToString()) 
+            {
+                state = ImageContent.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(VideoContent).ToString())
+            {
+                state = VideoContent.FromXml(element);
             }
             else
             {
@@ -439,6 +444,50 @@ namespace Learning
         {
             var info = element.Value;
             return new InfoContent(info);
+        }
+    }
+
+    public class ImageContent : IContent 
+    {
+        public string ImageLocation { get; private set; }
+        public ImageContent(string imageLocation)
+        {
+            this.ImageLocation = imageLocation;
+        }
+
+        public XElement toXml()
+        {
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            var element = new XElement(IContent.TAG_CONTENT, attr, this.ImageLocation);
+            return element;
+        }
+
+        public static ImageContent FromXml(XElement element)
+        {
+            var imageLocation = element.Value;
+            return new ImageContent(imageLocation);
+        }
+    }
+
+    public class VideoContent : IContent
+    {
+        public string VideoLocation { get; private set; }
+        public VideoContent(string videoLoc)
+        {
+            this.VideoLocation = videoLoc;
+        }
+
+        public XElement toXml()
+        {
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            var element = new XElement(IContent.TAG_CONTENT, attr, this.VideoLocation);
+            return element;
+        }
+
+        public static VideoContent FromXml(XElement element)
+        {
+            var videoLoc = element.Value;
+            return new VideoContent(videoLoc);
         }
     }
 }

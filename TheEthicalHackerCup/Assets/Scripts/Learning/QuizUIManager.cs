@@ -16,6 +16,10 @@ namespace Learning
         private GameObject infoPanel;
         [SerializeField]
         private GameObject optionPanel;
+        [SerializeField]
+        private GameObject imagePanel;
+        [SerializeField]
+        private GameObject videoPanel;
 
         private ContentUI current = null;
 
@@ -25,21 +29,23 @@ namespace Learning
 
         private InfoUI infoUi;
         private SelectUI selectUi;
+        private ImageUI imageUi;
+        private VideoUI videoUi;
 
         //[SerializeField]
         //private TextAsset file;
         // Start is called before the first frame update
         void Start()
         {
-            //todo make reference to the content wrappers
             infoUi = new InfoUI(infoPanel);
             selectUi = new SelectUI(optionPanel);
+            imageUi = new ImageUI(imagePanel);
+            videoUi = new VideoUI(videoPanel);
 
-
+            
             nextText = nextButton.GetComponentInChildren<TextMeshProUGUI>();
             nextText.text = "Next";
             title.text = "Bruh";
-
 
             var filepath = GameManager.GetInstance().GetNextLearningMinigameFilename();
             var fileContent = Resources.Load<TextAsset>(filepath).ToString();
@@ -79,12 +85,20 @@ namespace Learning
 
             if (content is ISelectQuestionState)
             {
-                current = selectUi; 
+                current = selectUi;
 
             }
             else if (content is InfoContent)
             {
                 current = infoUi;
+            }
+            else if (content is ImageContent)
+            {
+                current = imageUi;
+            }
+            else if (content is VideoContent)
+            {
+                current = videoUi;
             }
             current.Start(content);
         }

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 abstract class ContentUI
 {
@@ -22,7 +23,7 @@ abstract class ContentUI
 
     protected abstract void processModel(IContent content);
 
-    public void End() 
+    public virtual void End() 
     {
         panel.SetActive(false);
     }
@@ -60,4 +61,48 @@ class SelectUI : ContentUI
         var model = (SelectionModel)QuestionModel.GenerateModel(state);
         questionUI.Init(model);
     }
+}
+
+class ImageUI : ContentUI
+{
+    private Image image;
+    private ImageContent content;
+    public ImageUI(GameObject panel) : base(panel)
+    {
+        image = panel.GetComponent<Image>();
+    }
+
+    protected override void processModel(IContent content)
+    {
+        this.content = (ImageContent)content;
+        var sprite = Resources.Load<Sprite>(this.content.ImageLocation);
+        Debug.Log(sprite);
+        image.sprite = sprite;
+        image.overrideSprite = sprite;
+    }
+}
+
+
+class VideoUI : ContentUI
+{
+    private VideoPlayer videoPlayer;
+    public VideoUI(GameObject panel) : base(panel)
+    {
+        videoPlayer = panel.transform.GetComponent<VideoPlayer>();
+    }
+
+    protected override void processModel(IContent content)
+    {
+        var vid = (VideoContent)content;
+        this.videoPlayer.url = vid.VideoLocation;
+        videoPlayer.Play();
+    }
+
+    public override void End()
+    {
+        videoPlayer.Stop();
+        base.End();
+    }
+
+
 }

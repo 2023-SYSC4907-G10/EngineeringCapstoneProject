@@ -11,14 +11,6 @@ public class SelectableQuestionUI : MonoBehaviour
     private IList<GameObject> buttons = new List<GameObject>();
     private SelectionModel model;
     bool start = true;
-    //private SelectionModel model;
-    // Start is called before the first frame update
-    public void Start()
-    {
-        //RadioBox box = new RadioBox(1, new List<string> { "Opt 1", "Opt 2", "Opt 3"}, 1);
-        //Init(QuestionModel.GenerateModel(box) as SelectionModel);
-    }
-
     public void Init(SelectionModel model)
     {
         
