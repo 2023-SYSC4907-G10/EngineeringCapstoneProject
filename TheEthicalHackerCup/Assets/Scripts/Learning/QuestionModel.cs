@@ -180,7 +180,10 @@ namespace Learning
     /// </summary>
     public interface ISelectQuestionState : IQuestionState
     {
+        IList<string> GetOptions();
         void Select(int choice);
+        bool isSelected(int choice);
+        bool isCorrect(int choice);
     }
 
     /// <summary>
@@ -189,11 +192,12 @@ namespace Learning
     public class CheckBox : ISelectQuestionState
     {
         private const string TAG_SELECTION = "Selection", TAG_CORRECT="Correct", TAG_OPTION="Option";
-        public ISet<int> Selected { get; private set; }
-        public IList<string> Options { get; private set; }
-        public ISet<int> CorrectOptions { get; private set; }
+        private ISet<int> Selected { get; set; }
+        private IList<string> Options { get; set; }
+        private ISet<int> CorrectOptions { get; set; }
         public CheckBox(ISet<int> selected, IList<string> options, ISet<int> correctOptions)
         {
+            
             Selected = selected;
             Options = options;
             CorrectOptions = correctOptions;
@@ -284,6 +288,21 @@ namespace Learning
             var state = new CheckBox(selected, options, correctOptions);
             return state;
         }
+
+        public bool isSelected(int choice)
+        {
+            return this.Selected.Contains(choice);
+        }
+
+        public IList<string> GetOptions()
+        {
+            return this.Options;
+        }
+
+        public bool isCorrect(int choice)
+        {
+            return CorrectOptions.Contains(choice);
+        }
     }
 
     /// <summary>
@@ -293,9 +312,9 @@ namespace Learning
     {
         private const string TAG_SELECTION = "Selection", TAG_CORRECT = "Correct", TAG_OPTION = "Option";
         public const int NONE_SELECTED = -1;
-        public int Selected { get; private set; }
-        public IList<string> Options { get; set; }
-        public int CorrectOption { get; set; }
+        private int Selected { get; set; }
+        private IList<string> Options { get; set; }
+        private int CorrectOption { get; set; }
 
         public RadioBox(int selected, IList<string> options, int correctOption)
         {
@@ -356,6 +375,21 @@ namespace Learning
             }
             var state = new RadioBox(selectedOption, options, correctOption);
             return state;
+        }
+
+        public IList<string> GetOptions()
+        {
+            return this.Options;
+        }
+
+        public bool isSelected(int choice)
+        {
+            return choice == this.Selected;
+        }
+
+        public bool isCorrect(int choice)
+        {
+            return choice == CorrectOption;
         }
     }
 

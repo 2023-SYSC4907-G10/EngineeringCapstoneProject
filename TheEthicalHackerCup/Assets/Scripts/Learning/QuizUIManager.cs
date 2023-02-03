@@ -1,79 +1,62 @@
-using TMPro;
-using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor;
-using System.Collections.Generic;
-using System;
+using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
 namespace Learning
 {
-
     public class QuizUIManager : MonoBehaviour
     {
+        [SerializeField]
+        private TextMeshProUGUI title;
+        [SerializeField]
+        private Button nextButton;
+        [SerializeField]
+        private GameObject infoPanel;
+        [SerializeField]
+        private GameObject optionPanel;
+
+        private ContentUI current = null;
+
         private QuizModel quiz;
-        private Quiz quizState;
-        public TextMeshProUGUI title;
-        public Button[] buttons = new Button[4];
-        public Button nextButton;
-        private Slide slide = null;
-        private QuestionModel questionModel;
+
+        private TextMeshProUGUI nextText;
+
+        private InfoUI infoUi;
+        private SelectUI selectUi;
+
+        //[SerializeField]
+        //private TextAsset file;
         // Start is called before the first frame update
         void Start()
         {
+            //todo make reference to the content wrappers
+            infoUi = new InfoUI(infoPanel);
+            selectUi = new SelectUI(optionPanel);
+
+
+            nextText = nextButton.GetComponentInChildren<TextMeshProUGUI>();
+            nextText.text = "Next";
+            title.text = "Bruh";
+
+
             var filepath = GameManager.GetInstance().GetNextLearningMinigameFilename();
             var fileContent = Resources.Load<TextAsset>(filepath).ToString();
 
-            quizState = Quiz.FromXml(fileContent);
+            var quizState = Quiz.FromXml(fileContent);
             quiz = new QuizModel(quizState);
-            Debug.Log(quizState.ToXml().ToString());
 
             // setup handlers
             quiz.SlideChanged += handleNextSlide;
             quiz.QuizSubmitted += handleSubmitted;
             quiz.QuizClosed += handleClosed;
 
-            //start quiz
-            quiz.start();
-            showButtons(false);
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                var x = new int();
-                x = i;
-                buttons[i].onClick.AddListener(() => handleOptionSelected(x));
-            }
             nextButton.onClick.AddListener(handleNextSelected);
 
-
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
+            quiz.start();
 
         }
-
-        private void showButtons(bool show)
-        {
-            int i = 0;
-            foreach (var button in buttons)
-            {
-                button.enabled = show;
-                var color = button.colors;
-                color.normalColor = Color.white;
-                color.selectedColor = Color.white;
-                color.highlightedColor = Color.white;
-                color.disabledColor = Color.white;
-                color.pressedColor = Color.white;
-                buttons[i].colors = color;
-                if (i++ != 0)
-                    button.gameObject.SetActive(show);
-            }
-        }
-
         private void handleClosed(object sender, QuizClosedEvent evt)
         {
             Debug.Log(evt.pass ? "Quiz Passed" : "Quiz Failed");
@@ -88,104 +71,50 @@ namespace Learning
 
         private void handleNextSlide(object sender, NextSlideEvent evt)
         {
-            this.slide = evt.slide;
-            this.title.text = this.slide.Name;
+            var slide = evt.slide;
+            this.title.text =  slide.Name;
             var content = slide.Content;
-            if (content is IQuestionState)
+
+            clearContent();
+
+            if (content is ISelectQuestionState)
             {
-                var questionState = (IQuestionState)content;
-                questionModel = QuestionModel.GenerateModel(questionState);
-                questionModel.QuestionStateUpdated += handleQuestionStateChanged;
-                questionModel.invokeQuestionEvent(new StartEvent());
+                current = selectUi; 
+
             }
-            else if (content is InfoContent) {
-                handleInfo();
+            else if (content is InfoContent)
+            {
+                current = infoUi;
             }
-
-
-        }
-        private void handleInfo()
-        {
-
-            showButtons(false);
-            buttons[0].GetComponentInChildren<TMP_Text>().text = ((InfoContent)this.slide.Content).Info;
+            current.Start(content);
         }
 
         private void handleSubmitted(object sender, QuizSubmittedEvent evt)
         {
-            showButtons(false);
+            clearContent();
+            current = infoUi;
             title.text = "SCORE!!!";
             var output = "Your score: " + string.Format("{0:F1}", evt.percentScore) + "%\n" +
                 "You " + (evt.pass ? "Passed!!" : " should review the material and try again next time :D\n" +
                 "Click next to continue back to the main game");
-            buttons[0].GetComponentInChildren<TMP_Text>().text = output;
-        }
-        private void handleQuestionStateChanged(object sender, QuestionStateUpdatedEvent evt)
-        {
-            showButtons(true);
-            if (evt.QuestionState.GetType() == typeof(CheckBox))
-            {
-                this.handleCheckboxQuestion(sender, evt);
-            }
-            else if (evt.QuestionState.GetType() == typeof(RadioBox))
-            {
-                this.handleRadioQuestion(sender, evt);
-            }
-            else
-            {
-                throw new System.Exception("Invalid State type");
-            }
+
+            InfoContent content = new InfoContent(output);
+            current.Start(content);
         }
 
-
-        private void handleCheckboxQuestion(object sender, QuestionStateUpdatedEvent evt)
+        private void clearContent() 
         {
-            var state = (CheckBox)evt.QuestionState;
-            for (int i = 0; i < buttons.Length; i++)
+            if (current != null)
             {
-                if (state.Options.Count > i)
-                {
-                    var optionText = (state.Selected.Contains(i) ? "[x] " : "[ ] ") + state.Options[i];
-                    buttons[i].GetComponentInChildren<TMP_Text>().text = optionText;
-
-                }
-                else
-                {
-                    buttons[i].enabled = false;
-                    buttons[i].gameObject.SetActive(false);
-                }
+                current.End();
             }
-
-        }
-
-        private void handleRadioQuestion(object sender, QuestionStateUpdatedEvent evt)
-        {
-            var state = (RadioBox)evt.QuestionState;
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (state.Options.Count > i)
-                {
-                    var optionText = (state.Selected == i ? "[x] " : "[ ] ") + state.Options[i];
-                    buttons[i].GetComponentInChildren<TMP_Text>().text = optionText;
-
-                }
-                else
-                {
-                    buttons[i].enabled = false;
-                    buttons[i].gameObject.SetActive(false);
-                }
-            }
-        }
-
-        private void handleOptionSelected(int number)
-        {
-            this.questionModel.invokeQuestionEvent(new SelectEvent(number));
         }
 
         private void handleNextSelected()
         {
             this.quiz.next();
-
         }
+
+
     }
 }
