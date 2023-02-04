@@ -1,8 +1,5 @@
-using Codice.Client.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace Learning
@@ -118,9 +115,17 @@ namespace Learning
             {
                 state = RadioBox.FromXml(element);
             }
-            else if (element.Attribute(TAG_TYPE).Value == typeof(InfoContent).ToString()) 
+            else if (element.Attribute(TAG_TYPE).Value == typeof(InfoContent).ToString())
             {
                 state = InfoContent.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(ImageContent).ToString()) 
+            {
+                state = ImageContent.FromXml(element);
+            }
+            else if (element.Attribute(TAG_TYPE).Value == typeof(VideoContent).ToString())
+            {
+                state = VideoContent.FromXml(element);
             }
             else
             {
@@ -180,7 +185,10 @@ namespace Learning
     /// </summary>
     public interface ISelectQuestionState : IQuestionState
     {
+        IList<string> GetOptions();
         void Select(int choice);
+        bool isSelected(int choice);
+        bool isCorrect(int choice);
     }
 
     /// <summary>
@@ -189,11 +197,12 @@ namespace Learning
     public class CheckBox : ISelectQuestionState
     {
         private const string TAG_SELECTION = "Selection", TAG_CORRECT="Correct", TAG_OPTION="Option";
-        public ISet<int> Selected { get; private set; }
-        public IList<string> Options { get; private set; }
-        public ISet<int> CorrectOptions { get; private set; }
+        private ISet<int> Selected { get; set; }
+        private IList<string> Options { get; set; }
+        private ISet<int> CorrectOptions { get; set; }
         public CheckBox(ISet<int> selected, IList<string> options, ISet<int> correctOptions)
         {
+            
             Selected = selected;
             Options = options;
             CorrectOptions = correctOptions;
@@ -284,6 +293,21 @@ namespace Learning
             var state = new CheckBox(selected, options, correctOptions);
             return state;
         }
+
+        public bool isSelected(int choice)
+        {
+            return this.Selected.Contains(choice);
+        }
+
+        public IList<string> GetOptions()
+        {
+            return this.Options;
+        }
+
+        public bool isCorrect(int choice)
+        {
+            return CorrectOptions.Contains(choice);
+        }
     }
 
     /// <summary>
@@ -293,9 +317,9 @@ namespace Learning
     {
         private const string TAG_SELECTION = "Selection", TAG_CORRECT = "Correct", TAG_OPTION = "Option";
         public const int NONE_SELECTED = -1;
-        public int Selected { get; private set; }
-        public IList<string> Options { get; set; }
-        public int CorrectOption { get; set; }
+        private int Selected { get; set; }
+        private IList<string> Options { get; set; }
+        private int CorrectOption { get; set; }
 
         public RadioBox(int selected, IList<string> options, int correctOption)
         {
@@ -357,6 +381,21 @@ namespace Learning
             var state = new RadioBox(selectedOption, options, correctOption);
             return state;
         }
+
+        public IList<string> GetOptions()
+        {
+            return this.Options;
+        }
+
+        public bool isSelected(int choice)
+        {
+            return choice == this.Selected;
+        }
+
+        public bool isCorrect(int choice)
+        {
+            return choice == CorrectOption;
+        }
     }
 
     /// <summary>
@@ -405,6 +444,50 @@ namespace Learning
         {
             var info = element.Value;
             return new InfoContent(info);
+        }
+    }
+
+    public class ImageContent : IContent 
+    {
+        public string ImageLocation { get; private set; }
+        public ImageContent(string imageLocation)
+        {
+            this.ImageLocation = imageLocation;
+        }
+
+        public XElement toXml()
+        {
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            var element = new XElement(IContent.TAG_CONTENT, attr, this.ImageLocation);
+            return element;
+        }
+
+        public static ImageContent FromXml(XElement element)
+        {
+            var imageLocation = element.Value;
+            return new ImageContent(imageLocation);
+        }
+    }
+
+    public class VideoContent : IContent
+    {
+        public string VideoLocation { get; private set; }
+        public VideoContent(string videoLoc)
+        {
+            this.VideoLocation = videoLoc;
+        }
+
+        public XElement toXml()
+        {
+            var attr = new XAttribute(IContent.TAG_TYPE, this.GetType());
+            var element = new XElement(IContent.TAG_CONTENT, attr, this.VideoLocation);
+            return element;
+        }
+
+        public static VideoContent FromXml(XElement element)
+        {
+            var videoLoc = element.Value;
+            return new VideoContent(videoLoc);
         }
     }
 }

@@ -37,14 +37,14 @@ public class RadioBoxTest
     {
 
         radiobox.Select(1);
-        Assert.AreEqual(1, radiobox.Selected);
+        Assert.IsTrue(radiobox.isSelected(1));
     }
     [Test]
     public void changeSelection()
     {
         radiobox.Select(1);
         radiobox.Select(2);
-        Assert.AreNotEqual(1, radiobox.Selected);
+        Assert.IsFalse(radiobox.isSelected(1));
     }
     //exceptions when creating it
     [Test]
@@ -122,20 +122,20 @@ public class CheckBoxTest
     public void AddSelection() {
 
         checkbox.Select(1);
-        Assert.True(checkbox.Selected.Contains(1));
+        Assert.True(checkbox.isSelected(1));
     }
     [Test]
     public void removeSelection() {
         checkbox.Select(1); 
         checkbox.Select(1);
-        Assert.False(checkbox.Selected.Contains(1));
+        Assert.False(checkbox.isSelected(1));
     }
     [Test]
     public void multiSelect() {
         checkbox.Select(1);
         checkbox.Select(2);
-        Assert.True(checkbox.Selected.Contains(1));
-        Assert.True(checkbox.Selected.Contains(2));
+        Assert.True(checkbox.isSelected(1));
+        Assert.True(checkbox.isSelected(2));
     }
     //exceptions when creating it
     [Test]

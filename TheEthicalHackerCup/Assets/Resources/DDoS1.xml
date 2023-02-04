@@ -1,4 +1,7 @@
 <Quiz>
+	<Slide Name="Example">
+		<Content Type="Learning.ImageContent">based</Content>
+	</Slide>
 	<Slide Name="SLIDE 1">
 		<Content Type="Learning.InfoContent">Welcome</Content>
 	</Slide>
