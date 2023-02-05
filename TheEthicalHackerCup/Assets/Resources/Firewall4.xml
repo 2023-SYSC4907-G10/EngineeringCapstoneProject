@@ -1,6 +1,6 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Firewall 4">
+		<Content Type="Learning.InfoContent">This is Firewall4.xml</Content>
 	</Slide>
 	<Slide Name="SLIDE 2">
 		<Content Type="Learning.CheckBox">

@@ -28,12 +28,10 @@ public class DefenseUpgradeClick : MonoBehaviour
     {
         if (upgradeButton.interactable)
         {
-            GameManager.GetInstance().SetNextLearningMinigameSecurityConcept(sc);
             progressBar.GetComponent<ProgressBar>().updateProgressBar(); //This might not need to be dynamically boosted. Instead, set it when the scene loads
 
             // Launch learning minigame 
-            SceneManager.LoadScene("LearningScene");
-
+            GameManager.GetInstance().StartLearningMinigameUpgradeQuiz(sc);
         }
     }
 

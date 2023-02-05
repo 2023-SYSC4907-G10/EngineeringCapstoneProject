@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,13 +34,17 @@ public class GameManager
 
     // Main game fields (Not subscribable)
     private SecurityConcepts _nextLearningMinigameSecurityConcept;
+    private string _nextLearningMinigameTutorialFileName;
+    private string _postLearningMinigameReturnScene;
 
     private string _afterActionReportText;
-    public string AfterActionReportText { 
-        get { return _afterActionReportText;}
-        set {
-            _afterActionReportText = value;
-            SceneManager.LoadScene("AfterActionReport");
+    public string AfterActionReportText
+    {
+        get { return _afterActionReportText; }
+        set
+        {
+            Debug.LogWarning("DEPRECATED: Please replace GameManager.GetInstance().AfterActionReportText = \"...\" \nwith GameManager.GetInstance().SwitchToAfterActionReportScene(...)");
+            SwitchToAfterActionReportScene(value);
         }
     }
 
@@ -81,7 +83,8 @@ public class GameManager
         _reputation = 0;
         _opponentKnowledge = 0;
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
-
+        _nextLearningMinigameTutorialFileName = "";
+        _postLearningMinigameReturnScene = "MainScene";
 
         _incomingAttackLog = new List<SecurityConcepts>();// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
@@ -103,9 +106,16 @@ public class GameManager
     // Getters
     public string GetNextLearningMinigameFilename()
     {
-        return _nextLearningMinigameSecurityConcept + GetAttackMinigamesAttemptsRequiredToUpgrade(_nextLearningMinigameSecurityConcept).ToString();// + ".xml";
+        // Returns the filename only without the .xml extension
+        if (_nextLearningMinigameTutorialFileName == "")
+        {
+            return _nextLearningMinigameSecurityConcept + GetAttackMinigamesAttemptsRequiredToUpgrade(_nextLearningMinigameSecurityConcept).ToString();
+        }
+        else
+        {
+            return _nextLearningMinigameTutorialFileName;
+        }
     }
-    public SecurityConcepts GeNextLearningMinigameSecurityConcept() { return _nextLearningMinigameSecurityConcept; }
     public int GetReputation() { return _reputation; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
     public Dictionary<SecurityConcepts, SecurityConceptProgress> GetSecurityConceptProgressDictionary() { return _securityConceptProgressDictionary; }
@@ -147,7 +157,6 @@ public class GameManager
 
 
     // Primitive Setters
-    public void SetNextLearningMinigameSecurityConcept(SecurityConcepts nextLearningMinigameSecurityConcept) { this._nextLearningMinigameSecurityConcept = nextLearningMinigameSecurityConcept; }
 
     public void SetReputation(int reputation)
     {
@@ -164,6 +173,12 @@ public class GameManager
             this._opponentKnowledge = opponentKnowledge;
             OnOpponentKnowledgeChange?.Invoke(opponentKnowledge);
         }
+    }
+
+    public void SwitchToAfterActionReportScene(string afterActionReportText)
+    {
+        _afterActionReportText = afterActionReportText;
+        SceneManager.LoadScene("AfterActionReport");
     }
 
 
@@ -195,6 +210,30 @@ public class GameManager
         // REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
         this._incomingAttackLog.Add(concept);
         OnIncomingAttackLogChange?.Invoke(concept);
+    }
+
+    public void StartLearningMinigameUpgradeQuiz(SecurityConcepts nextLearningMinigameSecurityConcept)
+    {
+        this._nextLearningMinigameTutorialFileName = ""; //This will be used as the condition to determine if using tutorial or sec concept files
+        this._postLearningMinigameReturnScene = "MainScene";
+        this._nextLearningMinigameSecurityConcept = nextLearningMinigameSecurityConcept;
+        SceneManager.LoadScene("LearningScene");
+    }
+
+    public void StartLearningMinigameTutorial(string tutorialFileName)
+    {
+        this._nextLearningMinigameTutorialFileName = tutorialFileName;
+        this._postLearningMinigameReturnScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("LearningScene");
+    }
+
+    public void EndLearningMinigame(bool quizPassed)
+    {
+        if (quizPassed)
+        {
+            UpgradeDefenseUpgradeLevel(_nextLearningMinigameSecurityConcept);
+        }
+        SceneManager.LoadScene(this._postLearningMinigameReturnScene);
     }
 
 
