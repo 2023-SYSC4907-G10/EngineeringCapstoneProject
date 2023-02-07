@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
-using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
 namespace Learning
 {
@@ -66,13 +64,7 @@ namespace Learning
         private void handleClosed(object sender, QuizClosedEvent evt)
         {
             Debug.Log(evt.pass ? "Quiz Passed" : "Quiz Failed");
-            if (evt.pass)
-            {
-                GameManager.GetInstance().UpgradeDefenseUpgradeLevel(
-                    GameManager.GetInstance().GeNextLearningMinigameSecurityConcept()
-                );
-            }
-            SceneManager.LoadScene("MainScene");
+            GameManager.GetInstance().EndLearningMinigame(evt.pass); //TODO: WHEN IN TUTORIAL MODE, THIS PARAM MUST BE FALSE.
         }
 
         private void handleNextSlide(object sender, NextSlideEvent evt)
