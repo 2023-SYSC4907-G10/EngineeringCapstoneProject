@@ -15,7 +15,7 @@ public class RansomUi : MonoBehaviour
         label.text = "Lock the files and avoid the antivirus";
         manager.FileLocked += delegate (object sender, RansomManager.FileLockedEvent ev)
         {
-            label.text = $"{ev.FilesLeft} file left";
+            label.text = $"{ev.FilesLeft} file{(ev.FilesLeft>1?"s":"")} left";
         };
 
         manager.GameOver += delegate (object sender, RansomManager.GameOverEvent ev)
