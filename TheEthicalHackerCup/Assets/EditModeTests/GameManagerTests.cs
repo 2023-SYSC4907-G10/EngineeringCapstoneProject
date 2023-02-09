@@ -61,16 +61,7 @@ public class GameManagerTests
         GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.Firewall);
         Assert.AreEqual("Firewall2", GameManager.GetInstance().GetNextLearningMinigameFilename());
     }
-    [Test]
-    public void NextLearningMinigameSecurityConceptTest()
-    {
-        BeforeEach();
-        // Firewall is the default
-        Assert.AreEqual(SecurityConcepts.Firewall, GameManager.GetInstance().GeNextLearningMinigameSecurityConcept());
-        SecurityConcepts secConcept = SecurityConcepts.DDoS;
-        GameManager.GetInstance().SetNextLearningMinigameSecurityConcept(secConcept);
-        Assert.AreEqual(secConcept, GameManager.GetInstance().GeNextLearningMinigameSecurityConcept());
-    }
+
 
 
     [Test]

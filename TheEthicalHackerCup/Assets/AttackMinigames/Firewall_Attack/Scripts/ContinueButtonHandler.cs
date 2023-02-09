@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ContinueButtonHandler : MonoBehaviour
 {
     public GameObject CanvasUI;
-    
+
     public void HandleContinueButtonClick()
     {
+        //SAMPLE CALL BELOW USED TO TEST TUTORIAL GOING TO LEARNINGSCENE AND THEN RETURNING TO ORIGINAL SCENE
+        // GameManager.GetInstance().StartLearningMinigameTutorial("Firewall4"); 
         if (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Intro)
         {
             CanvasUI.SetActive(false); // Hiding Canvas UI layers
@@ -18,7 +16,7 @@ public class ContinueButtonHandler : MonoBehaviour
         else
         {
             FirewallAttackGameManager.GetInstance().InitializeGameState();
-            GameManager.GetInstance().AfterActionReportText = "Firewall attack completed dude";
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall attack completed dude");
         }
     }
 }
