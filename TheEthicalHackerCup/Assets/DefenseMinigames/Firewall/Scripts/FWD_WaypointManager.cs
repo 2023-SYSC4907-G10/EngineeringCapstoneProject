@@ -14,6 +14,7 @@ public class FWD_WaypointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FWD_Manager.GetInstance().WaypointManager = this;
 
     }
 
@@ -23,14 +24,14 @@ public class FWD_WaypointManager : MonoBehaviour
 
     }
 
-    public List<FWD_Waypoint> GetWaypointPath()
+    public Queue<FWD_Waypoint> GetWaypointPath()
     {
         // Every packet will get a 3 waypoint path. If they arrive at T1/T2, then they will be deleted and won't even nav to the 3rd waypoint
-        List<FWD_Waypoint> waypoints = new List<FWD_Waypoint>();
+        Queue<FWD_Waypoint> waypoints = new Queue<FWD_Waypoint>();
 
-        waypoints.Add(rootWaypoint);
-        waypoints.Add(secondWaypoints[Random.Range(0, secondWaypoints.Count)]);
-        waypoints.Add(thirdWaypoints[Random.Range(0, thirdWaypoints.Count)]);
+        waypoints.Enqueue(rootWaypoint);
+        waypoints.Enqueue(secondWaypoints[Random.Range(0, secondWaypoints.Count)]);
+        waypoints.Enqueue(thirdWaypoints[Random.Range(0, thirdWaypoints.Count)]);
 
         return waypoints;
     }
