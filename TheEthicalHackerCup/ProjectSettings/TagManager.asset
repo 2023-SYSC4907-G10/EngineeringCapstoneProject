@@ -8,6 +8,7 @@ TagManager:
   - SpearFish
   - Whale
   - Border
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - InsiderComputer
   - MinigameTilemap
   - Environment
-  - 
+  - Ground-PhishingDefense
   - 
   - 
   - 
