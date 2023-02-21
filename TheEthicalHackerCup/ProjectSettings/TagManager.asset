@@ -23,8 +23,8 @@ TagManager:
   - MinigameTilemap
   - Environment
   - Waypoint
-  - 
-  - 
+  - Target
+  - PacketLayerRemover
   - 
   - 
   - 

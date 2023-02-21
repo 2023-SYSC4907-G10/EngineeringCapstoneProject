@@ -21,10 +21,45 @@ public class FWD_Manager
     }
     // </Singleton Operations>
 
-    // private FWD_WaypointManager _waypointManager;
-    public FWD_WaypointManager WaypointManager {get;set;}
+
+    public static event Action<bool> OnPregameStateChange;
+    public static event Action<int> OnBadPacketsReceivedChange;
+    public static event Action<int> OnBurnedGoodPacketsChange;
+
+    public FWD_WaypointManager WaypointManager { get; set; }
+    public FWD_DifficultyLevel DifficultyLevel { get; private set; }
+    private bool _isPregameState;
+    private int _goodPacketsBurned;
+    private int _badPacketsReceived;
+
     public void InitializeGameState()
     {
+        DifficultyLevel = new FWD_DifficultyLevel(0); //TODO: Make this dependent on the overall game state
         WaypointManager = null;
-     }
+        _goodPacketsBurned = 0;
+        _badPacketsReceived = 0;
+        _isPregameState = true;
+    }
+
+    public void BurnGoodPacket()
+    {
+        _goodPacketsBurned++;
+        OnBurnedGoodPacketsChange?.Invoke(_goodPacketsBurned);
+    }
+    public void ReceivedBadPacket()
+    {
+        _badPacketsReceived++;
+        OnBadPacketsReceivedChange?.Invoke(_badPacketsReceived);
+    }
+
+    public void StartGame()
+    {
+        this._isPregameState = false;
+        OnPregameStateChange?.Invoke(false);
+    }
+    public void EndGame()
+    {
+        this._isPregameState = true;
+        OnPregameStateChange?.Invoke(true);
+    }
 }

@@ -49,8 +49,30 @@ public class FWD_Packet : MonoBehaviour
     {
         if (theCollision.gameObject.layer == LayerMask.NameToLayer("Waypoint"))
         {
+            // When reaching a waypoint
             GoTowardsNextWaypoint();
         }
+        else if (theCollision.gameObject.layer == LayerMask.NameToLayer("Target"))
+        {
+            // When reaching the target computer
+            if (this._isMalicious) { FWD_Manager.GetInstance().ReceivedBadPacket(); }
+            
+            // Self destruction
+            Destroy(gameObject);
+        }
+        else if (theCollision.gameObject.layer == LayerMask.NameToLayer("PlayerLayer"))
+        {
+            // When caught by a flame
+            if (!this._isMalicious) { FWD_Manager.GetInstance().BurnGoodPacket(); }
+            
+            // Self destruction
+            Destroy(gameObject);
+        }
+        else if (theCollision.gameObject.layer == LayerMask.NameToLayer("PacketLayerRemover"))
+        {
+            packetSpriteSequence.SwitchToNextPacketLayer();
+        }
+
     }
 
 

@@ -9,13 +9,16 @@ public class FWD_PacketSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(packetPrefab, this.transform);
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.frameCount % 180 == 0)
+        {
+            Instantiate(packetPrefab, this.transform);
+        }
+
     }
 }
