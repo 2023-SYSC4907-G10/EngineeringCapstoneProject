@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        if (rb.bodyType != RigidbodyType2D.Static) {
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -90,10 +92,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("death");
             rb.bodyType = RigidbodyType2D.Static;
         }
+        
     }
 
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void goToSelectionAreaAndFeeze() {
+        transform.position = new Vector2(2.5f, -71f);
+        rb.velocity = new Vector2(0f, 0f);
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void beginMovingAgain() {
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }

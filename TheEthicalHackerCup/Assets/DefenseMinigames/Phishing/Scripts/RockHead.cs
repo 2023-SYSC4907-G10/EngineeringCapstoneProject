@@ -16,6 +16,8 @@ public class RockHead : MonoBehaviour
 
     private AnimationState state;
 
+    private BoxCollider2D coll;
+
     private enum AnimationState
     {
         idle, blink, idleFalling, hit, idleRising
@@ -25,10 +27,11 @@ public class RockHead : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        coll = GetComponent<BoxCollider2D>();
         state = AnimationState.idle;
         timeSinceLastAttack = Time.time;
         timeBetweenAttack = Random.Range(3f, 5f);
-        initialPosition = new Vector2(transform.position.x, transform.position.y);   
+        initialPosition = new Vector2(transform.position.x, transform.position.y);
     }
 
     // Update is called once per frame
