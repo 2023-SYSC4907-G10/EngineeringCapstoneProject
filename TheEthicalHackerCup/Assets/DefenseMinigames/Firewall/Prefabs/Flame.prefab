@@ -93,10 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1353864403732588849}
-  - component: {fileID: 1353864403732588848}
-  - component: {fileID: 1353864403732588863}
+  - component: {fileID: 1796597548262251673}
   m_Layer: 6
-  m_Name: MouseFlame
+  m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,8 +109,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353864403732588862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.97, z: -2.0867395}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0, y: 0.97, z: -2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1353864403715774319}
@@ -121,23 +120,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1353864403732588848
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353864403732588862}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
---- !u!114 &1353864403732588863
+--- !u!114 &1796597548262251673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,14 +129,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353864403732588862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414abc435b884034f9a20cb1e742c215, type: 3}
+  m_Script: {fileID: 11500000, guid: fe19c29b83e6d5d4a87d86a28ff0064b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flames:
-  - {fileID: 1353864403715774318}
-  - {fileID: 1353864404628888670}
-  - {fileID: 1353864404347572888}
-  - {fileID: 1353864403807022561}
 --- !u!1 &1353864403807022560
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class FWD_Manager
 
     public void InitializeGameState()
     {
-        DifficultyLevel = new FWD_DifficultyLevel(0); //TODO: Make this dependent on the overall game state
+        DifficultyLevel = new FWD_DifficultyLevel(GameManager.GetInstance().GetDefenseUpgradeLevel(SecurityConcepts.Firewall));
         WaypointManager = null;
         _goodPacketsBurned = 0;
         _badPacketsReceived = 0;
@@ -62,4 +62,6 @@ public class FWD_Manager
         this._isPregameState = true;
         OnPregameStateChange?.Invoke(true);
     }
+
+    public bool GetIsPregameState() { return _isPregameState; }
 }

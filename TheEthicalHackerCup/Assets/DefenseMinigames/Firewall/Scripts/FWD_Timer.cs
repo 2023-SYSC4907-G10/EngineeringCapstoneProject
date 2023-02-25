@@ -12,7 +12,8 @@ public class FWD_Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _remainingTime = 30f; // 30 Second playtime
+        _remainingTime = FWD_Manager.GetInstance().DifficultyLevel.SecondsUntilEnd;
+        // 30f; // 30 Second playtime
     }
 
     // Update is called once per frame

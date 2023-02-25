@@ -6,22 +6,31 @@ public class FWD_Packet : MonoBehaviour
 {
     // Inspector based fields
     public PacketSpriteSequence packetSpriteSequence;
+    public GameObject MaliciousSprites;
+    public GameObject DeathFlamePrefab;
 
     private bool _isMalicious;
-    private Queue<FWD_Waypoint> _waypoints;
+    private Queue<GameObject> _waypoints;
     private Rigidbody2D _rb;
     private float _movementSpeed;
 
+    private readonly int FIREWALL_MALICIOUS_FILTER_ACCURACY_PERCENT = 75;
+    private readonly int BETTER_FIREWALL_MALICIOUS_FILTER_ACCURACY_PERCENT = 90;
+    private readonly int MALICIOUS_PACKET_PERCENT = 40;
 
 
 
     // // Start is called before the first frame update
     void Start()
     {
-        this._isMalicious = true; // TODO: Get from manager
+        this._isMalicious = Random.Range(0, 100) < MALICIOUS_PACKET_PERCENT;
+        if (this._isMalicious)
+        {
+            MaliciousSprites.SetActive(true);
+        }
         this._waypoints = FWD_Manager.GetInstance().WaypointManager.GetWaypointPath();
         this._rb = GetComponent<Rigidbody2D>();
-        this._movementSpeed = 4; //TODO: Get from FWD manager
+        this._movementSpeed = 5;
 
         GoTowardsNextWaypoint();
 
@@ -29,7 +38,7 @@ public class FWD_Packet : MonoBehaviour
 
     private void GoTowardsNextWaypoint()
     {
-        FWD_Waypoint nextWaypoint;// = _waypoints.Dequeue();
+        GameObject nextWaypoint;
 
         if (_waypoints.TryDequeue(out nextWaypoint))
         {
@@ -56,7 +65,7 @@ public class FWD_Packet : MonoBehaviour
         {
             // When reaching the target computer
             if (this._isMalicious) { FWD_Manager.GetInstance().ReceivedBadPacket(); }
-            
+
             // Self destruction
             Destroy(gameObject);
         }
@@ -64,7 +73,7 @@ public class FWD_Packet : MonoBehaviour
         {
             // When caught by a flame
             if (!this._isMalicious) { FWD_Manager.GetInstance().BurnGoodPacket(); }
-            
+
             // Self destruction
             Destroy(gameObject);
         }
@@ -72,8 +81,21 @@ public class FWD_Packet : MonoBehaviour
         {
             packetSpriteSequence.SwitchToNextPacketLayer();
         }
-
+        else if (theCollision.gameObject.layer == LayerMask.NameToLayer("FirewallDefense"))
+        {
+            if (this._isMalicious && Random.Range(0, 100) < FIREWALL_MALICIOUS_FILTER_ACCURACY_PERCENT)
+            {
+                Destroy(gameObject);
+                Instantiate(DeathFlamePrefab, theCollision.gameObject.transform);
+            }
+        }
+        else if (theCollision.gameObject.layer == LayerMask.NameToLayer("BetterFirewallDefense"))
+        {
+            if (this._isMalicious && Random.Range(0, 100) < BETTER_FIREWALL_MALICIOUS_FILTER_ACCURACY_PERCENT)
+            {
+                Destroy(gameObject);
+                Instantiate(DeathFlamePrefab, theCollision.gameObject.transform);
+            }
+        }
     }
-
-
 }

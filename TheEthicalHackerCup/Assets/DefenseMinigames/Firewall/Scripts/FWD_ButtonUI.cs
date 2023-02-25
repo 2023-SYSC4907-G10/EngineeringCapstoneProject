@@ -20,7 +20,8 @@ public class FWD_ButtonUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CanvasText.text = "TODO: Build a string based on upgrade level";
+        CanvasText.text = "Welcome to Firewall Defense!\n";
+        CanvasText.text += "Your current upgrade level is "+ FWD_Manager.GetInstance().DifficultyLevel.DifficultyLevel +"\n";
     }
 
 }

@@ -4,38 +4,37 @@ public class FWD_DifficultyLevel
     {
         if (level <= 0)
         {
-            // EASY
+            // EASY - No upgrades
             DifficultyLevel = 0;
-            SecondsUntilEnd = 12;
-            PacketsPerSecondSpawnRate = 12;
-            PacketMovementSpeed = 12;
+            SecondsUntilEnd = 30;
             MaliciousPacketPercentage = 12;
         }
         else if (level == 1)
         {
-            // MEDIUM
+            // LO MID - 1 upgrade
             DifficultyLevel = 1;
-            SecondsUntilEnd = 22;
-            PacketsPerSecondSpawnRate = 22;
-            PacketMovementSpeed = 22;
+            SecondsUntilEnd = 30;
+            MaliciousPacketPercentage = 22;
+        }
+        else if (level == 2)
+        {
+            // HI MID - 2 upgrades
+            DifficultyLevel = 2;
+            SecondsUntilEnd = 45;
             MaliciousPacketPercentage = 22;
         }
         else
         {
-            // HARD
-            DifficultyLevel = 2;
-            SecondsUntilEnd = 32;
-            PacketsPerSecondSpawnRate = 32;
-            PacketMovementSpeed = 32;
+            // HARD - 3 upgrades
+            DifficultyLevel = 3;
+            SecondsUntilEnd = 60;
             MaliciousPacketPercentage = 32;
         }
     }
 
 
     public int DifficultyLevel { get; private set; }
-    public int SecondsUntilEnd { get; private set; }
-    public int PacketsPerSecondSpawnRate { get; private set; }
-    public int PacketMovementSpeed { get; private set; }
+    public float SecondsUntilEnd { get; private set; }
     public int MaliciousPacketPercentage { get; private set; }
 
 }

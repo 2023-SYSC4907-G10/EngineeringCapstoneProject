@@ -11,7 +11,7 @@ public class FWD_MouseFlame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _ticksRemaining = 10;
+        _ticksRemaining = 9;
     }
 
     // Update is called once per frame

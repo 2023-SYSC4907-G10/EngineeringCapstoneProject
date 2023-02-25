@@ -25,8 +25,8 @@ TagManager:
   - Waypoint
   - Target
   - PacketLayerRemover
-  - 
-  - 
+  - FirewallDefense
+  - BetterFirewallDefense
   - 
   - 
   - 
