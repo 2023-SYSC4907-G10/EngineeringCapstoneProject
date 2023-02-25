@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CountdownTimer : MonoBehaviour
 {
     private float currentTime;
-    private float startingTime = 20f;
 
     public Text countdownText;
 
@@ -15,8 +14,8 @@ public class CountdownTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = 0f;
-        currentTime = startingTime;
+        // How much time the player has to complete the game
+        currentTime = 35f;
     }
 
     // Update is called once per frame
