@@ -36,6 +36,15 @@ EditorBuildSettings:
     path: Assets/Scenes/AfterActionReport.unity
     guid: dd0b9e7aac1658c4b8b7dd044a58673d
   - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/InsiderDefense.unity
+    guid: f05fe32cf2d0550468d97b597e61495c
+  - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/InsiderDefenseIntro.unity
+    guid: 8f515f8e30263f54e8ab7dd7b6e880cb
+  - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/InsiderDefenseEnd.unity
+    guid: b8a8b7e2bb8df9441860e634d0f1d735
+  - enabled: 1
     path: Assets/Scenes/Defense Minigame Scenes/Firewall_Defense.unity
     guid: a640f6723c84915469890d94a259100a
   m_configObjects: {}
