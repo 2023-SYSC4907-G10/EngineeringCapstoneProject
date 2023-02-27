@@ -1,0 +1,16 @@
+Stanley logged into a server
+Patricia logged into a server
+Stanley logged out of a server
+Ruth logged into a server
+Ruth logged out of a server
+Patricia logged out of a server
+Jesica logged into a server
+Stanley logged into a server
+Jessica logged out of a server
+Stanley logged out of a server
+Jessica logged into a server
+Stanley logged into a server
+Ruth logged into a server
+Jessica logged out of a server
+Ruth logged out of a server
+Stanley logged out of a server

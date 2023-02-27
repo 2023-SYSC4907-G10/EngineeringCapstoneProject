@@ -1,0 +1,6 @@
+[7:34] Stanley saw Patricia accessing the server
+[9:12] Jessica saw Patricia accessing the server
+[10:25] Patricia saw Stanley accessing the server
+[13:22] Ruth saw Stanley accessing the server
+[17:42] Patricia saw Ruth accessing the server
+[19:21] Ruth saw Patricia accessing the server

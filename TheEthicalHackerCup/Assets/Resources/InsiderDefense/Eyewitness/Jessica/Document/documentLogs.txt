@@ -1,0 +1,6 @@
+[7:34] Stanley saw Jessica accessing the document
+[9:12] Patricia saw Jessica accessing the document
+[10:25] Jessica saw Stanley accessing the document
+[13:22] Ruth saw Stanley accessing the document
+[17:42] Patricia saw Ruth accessing the document
+[19:21] Ruth saw Jessica accessing the document

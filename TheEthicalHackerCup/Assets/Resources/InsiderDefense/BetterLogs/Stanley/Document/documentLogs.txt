@@ -1,0 +1,10 @@
+[7:33] Stanley checked out a document
+[8:54] Patricia checked out a document
+[9:23] Stanley logged out of a computer
+[10:35] Ruth checked out a document
+[11:22] Ruth logged out of a computer
+[13:23] Patricia logged out of a computer
+[14:45] Jessica checked out a document
+[15:42] Stanley checked out a document
+[20:20] Stanley logged out of a computer
+[20:30] Jessica logged out of a computer
