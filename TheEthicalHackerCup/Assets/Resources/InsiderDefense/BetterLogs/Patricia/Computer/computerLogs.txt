@@ -1,0 +1,10 @@
+[7:33] Stanley logged into a computer
+[8:54] Jessica logged into a computer
+[9:23] Stanley logged out of a computer
+[10:35] Ruth logged into a computer
+[11:22] Ruth logged out of a computer
+[13:23] Jessica logged out of a computer
+[14:45] Patricia logged into a computer
+[15:42] Ruth logged into a computer
+[20:20] Ruth logged out of a computer
+[20:30] Patricia logged out of a computer
