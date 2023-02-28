@@ -16,7 +16,8 @@ public class RansomManager : MonoBehaviour
         GameOver += delegate (object sender, GameOverEvent evt) 
         {
             //Debug.Log("Game Over");
-            Time.timeScale = 0;
+
+            GameManager.GetInstance().SwitchToAfterActionReportScene("You " + (evt.Win ? "encrypted all their files" : "got caught and removed from the system"));
             // idk put a call to the game manager here or something idc
         };
         FileLocked += delegate (object sender, FileLockedEvent evt)
