@@ -8,12 +8,13 @@ public class ToggleCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(ce);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CanvasEnum canvasEnum = InsiderDefenseSingleton.GetInstance().getCanvasEnum();
-        bool isCanvas = canvasEnum == ce;
-        gameObject.SetActive(isCanvas);
+        bool isCanvasActive = canvasEnum == ce;
+        gameObject.GetComponent<Canvas> ().enabled = isCanvasActive;
     }
 }

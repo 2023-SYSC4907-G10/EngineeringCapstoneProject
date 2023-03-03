@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -20,6 +19,6 @@ public class SelectBreach : MonoBehaviour
 
         SuspectEnum? culprit = (SuspectEnum?)Random.Range(0, 4);
         InsiderDefenseSingleton.GetInstance().setCuplrit(culprit);
-        SceneManager.LoadScene("InsiderDefense");
+        InsiderDefenseSingleton.GetInstance().setCanvasEnum(CanvasEnum.Main);
     }
 }

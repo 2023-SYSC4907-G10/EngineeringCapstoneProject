@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class AccuseSuspectButton : MonoBehaviour
 {
@@ -17,6 +16,6 @@ public class AccuseSuspectButton : MonoBehaviour
     void AccuseClicked()
     {
         InsiderDefenseSingleton.GetInstance().setAccusedCulprit(se);
-        SceneManager.LoadScene("InsiderDefenseEnd");
+        InsiderDefenseSingleton.GetInstance().setCanvasEnum(CanvasEnum.End);
     }
 }
