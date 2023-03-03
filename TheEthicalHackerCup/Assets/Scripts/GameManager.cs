@@ -9,6 +9,7 @@ public class GameManager
     public static readonly SecurityConcepts[] With3Upgrades =
     { // Currently based on proposal. Those not in here have 4 upgrades
         SecurityConcepts.DDoS,
+        SecurityConcepts.Firewall,
         SecurityConcepts.Ransomware,
     };
 
