@@ -10,6 +10,7 @@ public class InsiderDefenseSingleton
     private SuspectEnum? accusedCulprit;
     private SuspectEnum? culprit;
     private ToolEnum? selectedTool;
+    private CanvasEnum canvasEnum;
 
     // Static singleton
     private static InsiderDefenseSingleton _instance;
@@ -32,6 +33,7 @@ public class InsiderDefenseSingleton
         this.accusedCulprit = null;
         this.selectedTool = null;
         this.culprit = null;
+        this.canvasEnum = CanvasEnum.Intro;
     }
 
     public void setBreachType(BreachType? type) {
@@ -50,6 +52,10 @@ public class InsiderDefenseSingleton
         this.culprit = se;
     }
 
+    public void setCanvasEnum(CanvasEnum ce) {
+        this.canvasEnum = ce;
+    }
+
     public ToolEnum? getSelectedTool() {
         return this.selectedTool;
     }
@@ -64,6 +70,10 @@ public class InsiderDefenseSingleton
 
     public SuspectEnum? getCulprit() {
         return this.culprit;
+    }
+
+    public CanvasEnum getCanvasEnum() {
+        return this.canvasEnum;
     }
 
     public bool isCulpritCorrect() {
