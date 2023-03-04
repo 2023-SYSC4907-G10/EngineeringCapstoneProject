@@ -23,11 +23,12 @@ TagManager:
   - InsiderComputer
   - MinigameTilemap
   - Environment
+  - Waypoint
+  - Target
+  - PacketLayerRemover
+  - FirewallDefense
+  - BetterFirewallDefense
   - Ground-PhishingDefense
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
