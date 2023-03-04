@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        proceedToAfterActionReport("You have lost the game");
     }
 
     public void goToSelectionAreaAndFeeze() {
@@ -108,5 +108,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void beginMovingAgain() {
         rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    private void proceedToAfterActionReport(string afterActionReportMessage)
+    {
+        GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
     }
 }
