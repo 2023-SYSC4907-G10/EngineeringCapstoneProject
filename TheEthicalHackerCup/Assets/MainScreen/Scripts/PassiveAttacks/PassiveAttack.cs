@@ -16,9 +16,10 @@ public abstract class PassiveAttack : MonoBehaviour
 
     public LayerMask playerMask;
 
+    public GameObject ExclamationMarkIndicator;
+
     private float timeSinceAvailable;
     private float timeSinceStartingAttack;
-
     private float lengthOfEvent;
 
 
@@ -41,6 +42,7 @@ public abstract class PassiveAttack : MonoBehaviour
     void Start()
     {
         state = State.Idle;
+        ExclamationMarkIndicator.SetActive(false);
         changeToIdleDisplay();
     }
 
