@@ -11,19 +11,18 @@ public class KeyLoggerAttack : PassiveAttack
 
     public override void changeToAttackingDisplay()
     {
-        //Debug.Log("Active Display");
         laptop.material = active;
     }
 
     public override void changeToAvailableDisplay()
     {
-        //Debug.Log("Available Display");
+        ExclamationMarkIndicator.SetActive(true);
         laptop.material = available;
     }
 
     public override void changeToIdleDisplay()
     {
-        //Debug.Log("Idle Display");
+        ExclamationMarkIndicator.SetActive(false);
         laptop.material = idle;
     }
 

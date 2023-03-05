@@ -8,6 +8,7 @@ TagManager:
   - SpearFish
   - Whale
   - Border
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -27,6 +28,7 @@ TagManager:
   - PacketLayerRemover
   - FirewallDefense
   - BetterFirewallDefense
+  - Ground-PhishingDefense
   - 
   - 
   - 
