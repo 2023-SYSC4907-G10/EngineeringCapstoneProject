@@ -12,8 +12,6 @@ public class EmailHandlerNotPhishing : MonoBehaviour
 
     private bool correctIsPhishingAnswer = false;
 
-    private bool win = false;
-
     private SpriteRenderer rend;
     private SpriteRenderer rendAnnotated;
     // Start is called before the first frame update
