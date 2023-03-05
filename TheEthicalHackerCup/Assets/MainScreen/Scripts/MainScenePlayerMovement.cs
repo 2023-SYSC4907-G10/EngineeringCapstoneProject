@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class MainScenePlayerMovement : MonoBehaviour
 {
     private static readonly int VELOCITY_MULTIPLIER = 4;
     private Rigidbody rb;
