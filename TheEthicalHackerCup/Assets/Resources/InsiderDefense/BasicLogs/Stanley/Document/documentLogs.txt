@@ -1,0 +1,16 @@
+Stanley checked out a document
+Patricia checked out a document
+Stanley returned a document
+Ruth checked out a document
+Ruth returned a document
+Patricia returned a document
+Jesica checked out a document
+Stanley checked out a document
+Jessica returned a document
+Stanley returned a document
+Jessica checked out a document
+Stanley checked out a document
+Ruth checked out a document
+Jessica returned a document
+Ruth returned a document
+Stanley returned a document

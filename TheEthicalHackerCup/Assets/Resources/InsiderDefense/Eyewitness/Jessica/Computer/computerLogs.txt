@@ -1,0 +1,6 @@
+[7:34] Stanley saw Jessica accessing the computer
+[9:12] Patricia saw Jessica accessing the computer
+[10:25] Jessica saw Stanley accessing the computer
+[13:22] Ruth saw Stanley accessing the computer
+[17:42] Patricia saw Ruth accessing the computer
+[19:21] Ruth saw Jessica accessing the computer

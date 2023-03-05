@@ -1,0 +1,10 @@
+[7:33] Stanley logged into a server
+[8:54] Patricia logged into a server
+[9:23] Stanley logged out of a server
+[10:35] Ruth logged into a server
+[11:22] Ruth logged out of a server
+[13:23] Patricia logged out of a server
+[14:45] Ruth logged into a server
+[15:42] Patricia logged into a server
+[20:20] Patricia logged out of a server
+[20:30] Ruth logged out of a server
