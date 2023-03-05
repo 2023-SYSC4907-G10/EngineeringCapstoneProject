@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class SuspectImage : MonoBehaviour
 {
     Sprite culpritImg;
-    // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         SuspectEnum? se = InsiderDefenseSingleton.GetInstance().getAccusedCulprit();
         switch (se) {
@@ -26,10 +25,5 @@ public class SuspectImage : MonoBehaviour
         }
 
         gameObject.GetComponent<Image>().sprite = culpritImg;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

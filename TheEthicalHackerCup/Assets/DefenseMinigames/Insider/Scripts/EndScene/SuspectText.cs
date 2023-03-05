@@ -19,10 +19,4 @@ public class SuspectText : MonoBehaviour
             gameObject.GetComponent<TextMeshProUGUI>().color = new Color32(255, 50, 50, 255);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
