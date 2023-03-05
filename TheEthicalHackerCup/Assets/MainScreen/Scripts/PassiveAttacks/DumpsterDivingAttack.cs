@@ -17,11 +17,13 @@ public class DumpsterDivingAttack : PassiveAttack
 
     public override void changeToAvailableDisplay()
     {
+        ExclamationMarkIndicator.SetActive(true);
         garbage.material = available;
     }
 
     public override void changeToIdleDisplay()
     {
+        ExclamationMarkIndicator.SetActive(false);
         garbage.material = idle;
     }
 

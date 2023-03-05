@@ -9,6 +9,7 @@ public class GameManager
     public static readonly SecurityConcepts[] With3Upgrades =
     { // Currently based on proposal. Those not in here have 4 upgrades
         SecurityConcepts.DDoS,
+        SecurityConcepts.Firewall,
         SecurityConcepts.Ransomware,
     };
 
@@ -49,7 +50,7 @@ public class GameManager
     }
 
     // Main game fields (subscribable)
-    private int _reputation;
+    private int _respect;
     private int _opponentKnowledge;
     private Dictionary<SecurityConcepts, SecurityConceptProgress> _securityConceptProgressDictionary;
     private List<SecurityConcepts> _incomingAttackLog;// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
@@ -57,7 +58,7 @@ public class GameManager
 
 
     // Update events to subscribe to
-    public static event Action<int> OnReputationChange;
+    public static event Action<int> OnRespectChange;
     public static event Action<int> OnOpponentKnowledgeChange;
     public static event Action<SecurityConcepts, int> OnDefenseUpgradeLevelsChange;
     public static event Action<SecurityConcepts, int> OnAttackMinigameAttemptChange;
@@ -80,7 +81,7 @@ public class GameManager
     {
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
-        _reputation = 0;
+        _respect = 25;
         _opponentKnowledge = 0;
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
@@ -116,7 +117,7 @@ public class GameManager
             return _nextLearningMinigameTutorialFileName;
         }
     }
-    public int GetReputation() { return _reputation; }
+    public int GetRespect() { return _respect; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
     public Dictionary<SecurityConcepts, SecurityConceptProgress> GetSecurityConceptProgressDictionary() { return _securityConceptProgressDictionary; }
     public int GetDefenseUpgradeLevel(SecurityConcepts concept)
@@ -158,12 +159,12 @@ public class GameManager
 
     // Primitive Setters
 
-    public void SetReputation(int reputation)
+    public void SetRespect(int respect)
     {
-        if (reputation >= 0 && reputation < MaxReputation)
+        if (respect >= 0 && respect < MaxReputation)
         {
-            this._reputation = reputation;
-            OnReputationChange?.Invoke(reputation);
+            this._respect = respect;
+            OnRespectChange?.Invoke(respect);
         }
     }
     public void SetOpponentKnowledge(int opponentKnowledge)
@@ -238,7 +239,7 @@ public class GameManager
 
 
     // Changers
-    public void ChangeReputation(int change) { this.SetReputation(this._reputation + change); }
+    public void ChangeReputation(int change) { this.SetRespect(this._respect + change); }
     public void ChangeOpponentKnowledge(int change) { this.SetOpponentKnowledge(this._opponentKnowledge + change); }
 }
 

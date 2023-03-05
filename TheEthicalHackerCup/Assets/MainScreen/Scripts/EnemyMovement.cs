@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
     public Material normal;
     public Material available;
     public Material active;
+    public GameObject ExclamationMarkIndicator;
 
     public bool isMainEavesdropper;
 
@@ -43,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         state = State.Standing;
+        ExclamationMarkIndicator.SetActive(false);
     }
 
     // Calling this method forces the enemy to go initiate a talking event
@@ -62,11 +64,13 @@ public class EnemyMovement : MonoBehaviour
 
     void changeToAvailableDisplay()
     {
+        ExclamationMarkIndicator.SetActive(true);
         agentRenderer.material = available;
     }
 
     void changeToNormalDisplay()
     {
+        ExclamationMarkIndicator.SetActive(false);
         agentRenderer.material = normal;
     }
 
