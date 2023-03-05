@@ -39,6 +39,8 @@ public class GameManager
     private string _postLearningMinigameReturnScene;
 
     private string _afterActionReportText;
+    private string _playerEmail;
+    
     public string AfterActionReportText
     {
         get { return _afterActionReportText; }
@@ -86,6 +88,7 @@ public class GameManager
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
+        _playerEmail = "";
 
         _incomingAttackLog = new List<SecurityConcepts>();// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
@@ -142,6 +145,9 @@ public class GameManager
     }
     public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
+    public string GetPlayerEmail() {
+        return this._playerEmail;
+    }
 
     // Boolean indicators
     public bool IsEverythingFullyUpgraded()
@@ -180,6 +186,10 @@ public class GameManager
     {
         _afterActionReportText = afterActionReportText;
         SceneManager.LoadScene("AfterActionReport");
+    }
+
+    public void SetPlayerEmail(string email) {
+        this._playerEmail = email;
     }
 
 
