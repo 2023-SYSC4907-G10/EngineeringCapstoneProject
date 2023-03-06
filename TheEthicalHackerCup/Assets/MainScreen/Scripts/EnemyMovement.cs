@@ -77,8 +77,6 @@ public class EnemyMovement : MonoBehaviour
     void onSuccess()
     {
         GameManager.GetInstance().ChangeOpponentKnowledge(PassiveAttack.SUCCESS_OPP_KNOWLEDGE_INCREASE);
-        Debug.Log("Succesfully captured eavesdropping attack");
-        Debug.Log("Opp knowledge: " + GameManager.GetInstance().GetOpponentKnowledge());
     }
 
     // Update is called once per frame

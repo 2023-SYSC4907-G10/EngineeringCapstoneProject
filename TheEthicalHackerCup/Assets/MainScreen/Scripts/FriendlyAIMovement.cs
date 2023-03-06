@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FriendlyAIMovement : MonoBehaviour
 {
-    
+
     private NavMeshAgent agent;
     private Vector3 walkingDestination;
     private float startStandingTime;
@@ -16,7 +16,7 @@ public class FriendlyAIMovement : MonoBehaviour
         Walking,
         Standing
     }
-    private State state;
+    public State state;
     // Start is called before the first frame update
     void Start()
     {
