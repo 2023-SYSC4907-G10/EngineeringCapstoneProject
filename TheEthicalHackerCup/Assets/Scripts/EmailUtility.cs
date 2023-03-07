@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class EmailUtility : MonoBehaviour
 {
     private Button btn;
-    private MailAddress from;
-    private MailAddress to;
-    private MailMessage message;
-    private SmtpClient client;
-    // Start is called before the first frame update
-    void Start()
-    {
+    private static MailAddress from;
+    private static MailAddress to;
+    private static MailMessage message;
+    private static SmtpClient client;
+
+    public static void SendEmail(string subject, string body) {
         // Command-line argument must be the SMTP host.
         client = new SmtpClient("smtp.office365.com", 587);
         client.Credentials = new System.Net.NetworkCredential(
@@ -29,9 +28,6 @@ public class EmailUtility : MonoBehaviour
         
         // Set the method that is called back when the send operation ends.
         client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
-    }
-
-    public void SendEmail(string subject, string body) {
         // Set destinations for the email message.
         string email = GameManager.GetInstance().GetPlayerEmail();
         to = new MailAddress(email);
