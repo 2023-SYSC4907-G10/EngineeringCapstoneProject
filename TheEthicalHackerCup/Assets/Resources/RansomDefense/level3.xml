@@ -1,0 +1,45 @@
+<GameProps>
+	<Heuristic>hh</Heuristic>
+	<MetaDataCollection>
+		<MetaData>
+			<Name>microsoftword</Name>
+			<Type>executable</Type>
+			<FileSize>500MB</FileSize>
+			<Description>word processor</Description>
+			<Author>microsoft</Author>
+			<Origin>microsoft.com</Origin>
+			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>earnings report</Name>
+			<Type>word file</Type>
+			<FileSize>10MB</FileSize>
+			<Description>URGENT REPORT OPEN ASAP</Description>
+			<Author>unknown</Author>
+			<Origin>email</Origin>
+			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<InfectionTime>5</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>myName</Name>
+			<Type>myType</Type>
+			<FileSize>10MB</FileSize>
+			<Description>desc</Description>
+			<Author>author</Author>
+			<Origin>origin</Origin>
+			<Content>content</Content>
+			<InfectionTime>100</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>myName</Name>
+			<Type>myType</Type>
+			<FileSize>10MB</FileSize>
+			<Description>desc</Description>
+			<Author>author</Author>
+			<Origin>origin</Origin>
+			<Content>content</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+	</MetaDataCollection>
+</GameProps>
