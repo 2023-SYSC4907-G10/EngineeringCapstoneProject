@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Defense Minigame Scenes/Firewall_Defense.unity
     guid: a640f6723c84915469890d94a259100a
+  - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/InsiderAttack_Defense.unity
+    guid: a72caf7aea1c6094180ecd94c007d6dd
+  - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/DDoS_Defense.unity
+    guid: df0f835c311c54345a0239036d5af74e
+  - enabled: 1
+    path: Assets/Scenes/Defense Minigame Scenes/Phishing_Defense.unity
+    guid: 506383e39b8e6ed4f8bb700c464809b7
   m_configObjects: {}

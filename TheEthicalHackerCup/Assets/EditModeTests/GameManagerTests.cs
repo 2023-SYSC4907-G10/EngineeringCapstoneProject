@@ -69,8 +69,8 @@ public class GameManagerTests
     {
         BeforeEach();
 
-        GameManager.OnReputationChange += AssertIntegerEquals;
-        Assert.AreEqual(0, GameManager.GetInstance().GetReputation());
+        GameManager.OnRespectChange += AssertIntegerEquals;
+        Assert.AreEqual(0, GameManager.GetInstance().GetRespect());
         // Increase by 20 from 0
         _currentExpectedInteger = 20;
         GameManager.GetInstance().ChangeReputation(20);
@@ -81,18 +81,18 @@ public class GameManagerTests
 
         // Fail to decrease into the negatives. Stay at 10
         GameManager.GetInstance().ChangeReputation(-100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetReputation());
+        Assert.AreEqual(10, GameManager.GetInstance().GetRespect());
 
         // Fail to increase past limit. Stay at 10
         GameManager.GetInstance().ChangeReputation(GameManager.MaxReputation + 100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetReputation());
+        Assert.AreEqual(10, GameManager.GetInstance().GetRespect());
 
         // Set Directly
         _currentExpectedInteger = 88;
-        GameManager.GetInstance().SetReputation(88);
-        Assert.AreEqual(88, GameManager.GetInstance().GetReputation());
+        GameManager.GetInstance().SetRespect(88);
+        Assert.AreEqual(88, GameManager.GetInstance().GetRespect());
 
-        GameManager.OnReputationChange -= AssertIntegerEquals;
+        GameManager.OnRespectChange -= AssertIntegerEquals;
         Assert.AreEqual(3, this._assertCalls);
     }
 
