@@ -1,44 +1,54 @@
 <GameProps>
-	<Heuristic>hh</Heuristic>
+	<Heuristic>Reject any files that have a 9 and also a 4 in their content or that have an unkown author. </Heuristic>
 	<MetaDataCollection>
 		<MetaData>
-			<Name>microsoftword</Name>
-			<Type>executable</Type>
-			<FileSize>500MB</FileSize>
-			<Description>word processor</Description>
-			<Author>microsoft</Author>
-			<Origin>microsoft.com</Origin>
-			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<Name>Discord</Name>
+			<Type>exe</Type>
+			<FileSize>2GB</FileSize>
+			<Description>communication application</Description>
+			<Author>discord</Author>
+			<Origin>wepage</Origin>
+			<Content>82471374123976512965</Content>
 			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>earnings report</Name>
-			<Type>word file</Type>
-			<FileSize>10MB</FileSize>
-			<Description>URGENT REPORT OPEN ASAP</Description>
+			<Name>Outlook</Name>
+			<Type>exe</Type>
+			<FileSize>500MB</FileSize>
+			<Description>installer for outlook</Description>
+			<Author>microsoft</Author>
+			<Origin>webpage</Origin>
+			<Content>89080235</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Letter of Offer</Name>
+			<Type>pdf</Type>
+			<FileSize>2GB</FileSize>
+			<Description>OPEN AND RESPOND IMMEDIATELY</Description>
 			<Author>unknown</Author>
 			<Origin>email</Origin>
-			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
-			<InfectionTime>5</InfectionTime>
+			<Content>78759075492878927490</Content>
+			<InfectionTime>20</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>myName</Name>
-			<Type>myType</Type>
-			<FileSize>10MB</FileSize>
-			<Description>desc</Description>
-			<Author>author</Author>
-			<Origin>origin</Origin>
-			<Content>content</Content>
-			<InfectionTime>100</InfectionTime>
+			<Name>Notepad++</Name>
+			<Type>exe</Type>
+			<FileSize>100MB</FileSize>
+			<Description>text editor</Description>
+			<Author>Don Ho</Author>
+			<Origin>webpage</Origin>
+			<Content>9080788977007896096767809631323</Content>
+			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>myName</Name>
-			<Type>myType</Type>
-			<FileSize>10MB</FileSize>
-			<Description>desc</Description>
-			<Author>author</Author>
-			<Origin>origin</Origin>
-			<Content>content</Content>
+			<Name>Firefox</Name>
+			<Type>exe</Type>
+			<FileSize>140MB</FileSize>
+			<Description>installer for firefox browser</Description>
+			<Author>mozilla</Author>
+			<Origin>usb</Origin>
+			<Content>64127856127856128568</Content>
 			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 	</MetaDataCollection>

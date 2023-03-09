@@ -1,44 +1,74 @@
 <GameProps>
-	<Heuristic>hh</Heuristic>
+	<Heuristic>Reject any files that originate from torrents, have an unknown author, or contain the following byte sequence: 01234567. It is also important that if something looks suspicious, to sandbox it for a period of time</Heuristic>
 	<MetaDataCollection>
 		<MetaData>
-			<Name>microsoftword</Name>
-			<Type>executable</Type>
-			<FileSize>500MB</FileSize>
-			<Description>word processor</Description>
-			<Author>microsoft</Author>
-			<Origin>microsoft.com</Origin>
-			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<Name>Eclipse IDE</Name>
+			<Type>exe</Type>
+			<FileSize>10MB</FileSize>
+			<Description>integrated development environment for Java</Description>
+			<Author>Eclipse Foundation</Author>
+			<Origin>webpage</Origin>
+			<Content>75147145789014578913457891457895142</Content>
 			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>earnings report</Name>
-			<Type>word file</Type>
+			<Name>Wave Browser Installer</Name>
+			<Type>exe</Type>
 			<FileSize>10MB</FileSize>
-			<Description>URGENT REPORT OPEN ASAP</Description>
+			<Description>installer</Description>
+			<Author>wave foundation</Author>
+			<Origin>webpage</Origin>
+			<Content>7152908571901234567892745892175890</Content>
+			<InfectionTime>15</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Random Number Plugin</Name>
+			<Type>Excel Plugin</Type>
+			<FileSize>10MB</FileSize>
+			<Description>plugin to allow random numbers in excel</Description>
+			<Author>jklfasuioafjm</Author>
+			<Origin>unkown</Origin>
+			<Content>87859175891234222567899</Content>
+			<InfectionTime>2</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Total Recall (720p)</Name>
+			<Type>exe</Type>
+			<FileSize>1GB</FileSize>
+			<Description>total recall</Description>
+			<Author>unkown</Author>
+			<Origin>torrent</Origin>
+			<Content>7428957890217598271894</Content>
+			<InfectionTime>1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Vacation Photo</Name>
+			<Type>jpeg</Type>
+			<FileSize>10MB</FileSize>
+			<Description>JPEG image</Description>
 			<Author>unknown</Author>
-			<Origin>email</Origin>
-			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
-			<InfectionTime>5</InfectionTime>
+			<Origin>camera</Origin>
+			<Content>09979879472975927897357073498</Content>
+			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>myName</Name>
-			<Type>myType</Type>
+			<Name>Vacation Photo 2</Name>
+			<Type>jpeg</Type>
 			<FileSize>10MB</FileSize>
-			<Description>desc</Description>
-			<Author>author</Author>
-			<Origin>origin</Origin>
-			<Content>content</Content>
-			<InfectionTime>100</InfectionTime>
+			<Description>JPEG image</Description>
+			<Author>unknown</Author>
+			<Origin>camera</Origin>
+			<Content>1099798794722975927897357073498</Content>
+			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 		<MetaData>
-			<Name>myName</Name>
-			<Type>myType</Type>
+			<Name>Vacation Photo 3</Name>
+			<Type>jpeg</Type>
 			<FileSize>10MB</FileSize>
-			<Description>desc</Description>
-			<Author>author</Author>
-			<Origin>origin</Origin>
-			<Content>content</Content>
+			<Description>JPEG image</Description>
+			<Author>unknown</Author>
+			<Origin>camera</Origin>
+			<Content>1312341099798794722975927897357073498</Content>
 			<InfectionTime>-1</InfectionTime>
 		</MetaData>
 	</MetaDataCollection>
