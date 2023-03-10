@@ -43,7 +43,8 @@ public class Main : MonoBehaviour
 
     private void proceedToAfterActionReport(string afterActionReportMessage)
     {
-        GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        // GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportMessage);
     }
 
 }

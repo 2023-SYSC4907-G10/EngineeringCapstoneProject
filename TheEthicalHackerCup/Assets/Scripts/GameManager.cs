@@ -40,22 +40,19 @@ public class GameManager
 
     private string _afterActionReportText;
     private string _playerEmail;
-    
-    public string AfterActionReportText
-    {
-        get { return _afterActionReportText; }
-        set
-        {
-            Debug.LogWarning("DEPRECATED: Please replace GameManager.GetInstance().AfterActionReportText = \"...\" \nwith GameManager.GetInstance().SwitchToAfterActionReportScene(...)");
-            SwitchToAfterActionReportScene(value);
-        }
-    }
+
+    public string AfterActionReportText { get { return _afterActionReportText; } }
 
     // Main game fields (subscribable)
     private int _respect;
     private int _opponentKnowledge;
     private Dictionary<SecurityConcepts, SecurityConceptProgress> _securityConceptProgressDictionary;
-    private List<SecurityConcepts> _incomingAttackLog;// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+    // private List<SecurityConcepts> _incomingAttackLog;// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+    private List<SecurityConcepts> _currentDefenseMinigameOptions;
+
+
+
+
 
 
 
@@ -65,19 +62,7 @@ public class GameManager
     public static event Action<SecurityConcepts, int> OnDefenseUpgradeLevelsChange;
     public static event Action<SecurityConcepts, int> OnAttackMinigameAttemptChange;
     public static event Action<SecurityConcepts, int> OnAttackSpecificHeatChange;
-    public static event Action<SecurityConcepts> OnIncomingAttackLogChange;
-    /*
-        HOW TO SUBSCRIBE TO EVENTS
-        
-        // Consider this class the observable, to make a different area an observer, do this in an initializer method
-        GameManager.OnReputationChange += LocallyDefinedFunction_ParamMatchingAction
-        // In this case, LocallyDefinedFunction_ParamMatchingAction(int reputation) would be a defined function
-
-        // Make sure to make an OnDestroy() method to unsubscribe from the event like this 
-        GameManager.OnReputationChange -= LocallyDefinedFunction_ParamMatchingAction
-
-        NOTE THAT OBSERVERS ARE ADDED TO THE BASE CLASS AND NOT TO THE INSTANCE
-    */
+    // public static event Action<SecurityConcepts> OnIncomingAttackLogChange;
 
     public void InitializeGameState()
     {
@@ -89,24 +74,18 @@ public class GameManager
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
         _playerEmail = "";
-
-        _incomingAttackLog = new List<SecurityConcepts>();// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+        _currentDefenseMinigameOptions = new List<SecurityConcepts>();
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
+            _currentDefenseMinigameOptions.Add(concept);
             int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
             _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
         }
     }
 
 
-
-    /*
-        HOW TO CALL THESE METHODS
-        GameManager.GetInstance().SetReputation(20);
-        MAKE SURE TO USE THE INSTANCE PROPERTY AS THAT IS THE SINGLE INSTANCE
-    */
     // Getters
     public string GetNextLearningMinigameFilename()
     {
@@ -123,31 +102,14 @@ public class GameManager
     public int GetRespect() { return _respect; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
     public Dictionary<SecurityConcepts, SecurityConceptProgress> GetSecurityConceptProgressDictionary() { return _securityConceptProgressDictionary; }
-    public int GetDefenseUpgradeLevel(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel();
-    }
-    public int GetMaxDefenseUpgradeLevel(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetMaxDefenseUpgradeLevel();
-    }
-    public int GetAttackMinigamesAttempted(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted();
-    }
-    public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade();
-    }
-    public int GetAttackSpecificHeat(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetHeat();
-    }
-    public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+    public int GetDefenseUpgradeLevel(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel(); }
+    public int GetMaxDefenseUpgradeLevel(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetMaxDefenseUpgradeLevel(); }
+    public int GetAttackMinigamesAttempted(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted(); }
+    public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade(); }
+    public int GetAttackSpecificHeat(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetHeat(); }
+    // public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
 
-    public string GetPlayerEmail() {
-        return this._playerEmail;
-    }
+    public string GetPlayerEmail() { return this._playerEmail; }
 
     // Boolean indicators
     public bool IsEverythingFullyUpgraded()
@@ -160,6 +122,50 @@ public class GameManager
             }
         }
         return true;
+    }
+
+    public SecurityConcepts GetNextDefenseMinigame()
+    {
+        // Try to get least upgraded
+        int currentLowestUpgradeLevel = _securityConceptProgressDictionary[_currentDefenseMinigameOptions[0]].GetCurrentDefenseUpgradeLevel();
+
+        foreach (SecurityConcepts concept in _currentDefenseMinigameOptions)
+        {
+            currentLowestUpgradeLevel = Math.Min(currentLowestUpgradeLevel, _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel());
+        }
+
+        List<SecurityConcepts> lowestUpgradedConcepts = new List<SecurityConcepts>();
+        foreach (SecurityConcepts concept in _currentDefenseMinigameOptions)
+        {
+            if (_securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel() == currentLowestUpgradeLevel)
+            {
+                lowestUpgradedConcepts.Add(concept);
+            }
+        }
+
+        if (lowestUpgradedConcepts.Count == 1)
+        {
+            UpdateCurrentDefenseMinigameOptions(lowestUpgradedConcepts[0]);
+            return lowestUpgradedConcepts[0];
+        }
+        // When upgrade levels tied, choose highest heat of the tied ones
+
+        // If all heat values are tied, randomly select from the heat tied ones
+        return SecurityConcepts.Firewall;
+    }
+
+    private void UpdateCurrentDefenseMinigameOptions(SecurityConcepts concecptAboutToBeReturned)
+    {
+        _currentDefenseMinigameOptions.RemoveAll(concept => concept == concecptAboutToBeReturned);
+
+        if (_currentDefenseMinigameOptions.Count <= 0)
+        {
+            //After the last sec concept is done for this round, start the next round by re-filling the list
+            foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
+            {
+                _currentDefenseMinigameOptions.Add(concept);
+            }
+        }
     }
 
 
@@ -188,7 +194,8 @@ public class GameManager
         SceneManager.LoadScene("AfterActionReport");
     }
 
-    public void SetPlayerEmail(string email) {
+    public void SetPlayerEmail(string email)
+    {
         this._playerEmail = email;
     }
 
@@ -216,12 +223,12 @@ public class GameManager
             OnAttackSpecificHeatChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetHeat());
         }
     }
-    public void UpdateIncommingAttackLog(SecurityConcepts concept)
-    {
-        // REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
-        this._incomingAttackLog.Add(concept);
-        OnIncomingAttackLogChange?.Invoke(concept);
-    }
+    // public void UpdateIncommingAttackLog(SecurityConcepts concept)
+    // {
+    //     // REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+    //     this._incomingAttackLog.Add(concept);
+    //     OnIncomingAttackLogChange?.Invoke(concept);
+    // }
 
     public void StartLearningMinigameUpgradeQuiz(SecurityConcepts nextLearningMinigameSecurityConcept)
     {

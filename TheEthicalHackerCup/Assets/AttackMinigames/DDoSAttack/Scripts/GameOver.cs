@@ -18,6 +18,6 @@ public class GameOver : MonoBehaviour
 
     public void Continue()
     {
-        GameManager.GetInstance().AfterActionReportText = "DDoS Attack Failed Dude";
+        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Attack Failed Dude");
     }
 }
