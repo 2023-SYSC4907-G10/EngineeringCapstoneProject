@@ -1,0 +1,55 @@
+<GameProps>
+	<Heuristic>Reject any files that have a 9 and also a 4 in their content or that have an unkown author.  Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
+	<MetaDataCollection>
+		<MetaData>
+			<Name>Discord</Name>
+			<Type>exe</Type>
+			<FileSize>2GB</FileSize>
+			<Description>communication application</Description>
+			<Author>discord</Author>
+			<Origin>wepage</Origin>
+			<Content>82471374123976512965</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Outlook</Name>
+			<Type>exe</Type>
+			<FileSize>500MB</FileSize>
+			<Description>installer for outlook</Description>
+			<Author>microsoft</Author>
+			<Origin>webpage</Origin>
+			<Content>89080235</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Letter of Offer</Name>
+			<Type>pdf</Type>
+			<FileSize>2GB</FileSize>
+			<Description>OPEN AND RESPOND IMMEDIATELY</Description>
+			<Author>unknown</Author>
+			<Origin>email</Origin>
+			<Content>78759075492878927490</Content>
+			<InfectionTime>20</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Notepad++</Name>
+			<Type>exe</Type>
+			<FileSize>100MB</FileSize>
+			<Description>text editor</Description>
+			<Author>Don Ho</Author>
+			<Origin>webpage</Origin>
+			<Content>9080788977007896096767809631323</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Firefox</Name>
+			<Type>exe</Type>
+			<FileSize>140MB</FileSize>
+			<Description>installer for firefox browser</Description>
+			<Author>mozilla</Author>
+			<Origin>usb</Origin>
+			<Content>64127856127856128568</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+	</MetaDataCollection>
+</GameProps>

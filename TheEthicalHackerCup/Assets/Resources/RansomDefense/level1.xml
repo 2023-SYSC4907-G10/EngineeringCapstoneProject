@@ -1,0 +1,55 @@
+<GameProps>
+	<Heuristic>Reject all files which contain the following: a 64 and also a 75 in their content or docx type files that are over 10 MB large. If anything else looks weird, sandbox the file for a select period of time. Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
+	<MetaDataCollection>
+		<MetaData>
+			<Name>microsoftword</Name>
+			<Type>executable</Type>
+			<FileSize>500MB</FileSize>
+			<Description>word processor</Description>
+			<Author>microsoft</Author>
+			<Origin>microsoft.com</Origin>
+			<Content>65ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>earnings report</Name>
+			<Type>docx</Type>
+			<FileSize>11MB</FileSize>
+			<Description>URGENT REPORT OPEN ASAP</Description>
+			<Author>unknown</Author>
+			<Origin>email</Origin>
+			<Content>645ee08fea617785e0a33af66a774043d9b576cc4f61c33ecba750b0a3090098</Content>
+			<InfectionTime>5</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Timesheet</Name>
+			<Type>docx</Type>
+			<FileSize>10MB</FileSize>
+			<Description>Time sheet to be filled out</Description>
+			<Author>manager</Author>
+			<Origin>email</Origin>
+			<Content>043d9b5768647565ee08fea617cba750b0a30900785cc4f61c33e9e0a33af66a774</Content>
+			<InfectionTime>1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>autoformatter plugin</Name>
+			<Type>word plugin</Type>
+			<FileSize>50MB</FileSize>
+			<Description>word plugin to make sure our reports are formatted correctly</Description>
+			<Author>finance team</Author>
+			<Origin>dropbox</Origin>
+			<Content>0a30900785cc4f61c33e9e0a33af6</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>free antivirus (cracked)</Name>
+			<Type>exe</Type>
+			<FileSize>10GB</FileSize>
+			<Description>desc</Description>
+			<Author>unknown</Author>
+			<Origin>torrent</Origin>
+			<Content>785cc4f61c33e9e0a33af66a774785cc4f61c33e9e0a33af66a774</Content>
+			<InfectionTime>2</InfectionTime>
+		</MetaData>
+	</MetaDataCollection>
+</GameProps>
