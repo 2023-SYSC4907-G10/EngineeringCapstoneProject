@@ -1,5 +1,5 @@
 <GameProps>
-	<Heuristic>Reject all files which contain the following: a 64 and also a 75 in their content or docx type files that are over 10 MB large. If anything else looks weird, sandbox the file for a select period of time</Heuristic>
+	<Heuristic>Reject all files which contain the following: a 64 and also a 75 in their content or docx type files that are over 10 MB large. If anything else looks weird, sandbox the file for a select period of time. Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
 	<MetaDataCollection>
 		<MetaData>
 			<Name>microsoftword</Name>

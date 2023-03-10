@@ -1,5 +1,5 @@
 <GameProps>
-	<Heuristic>Reject any files that originate from torrents, have an unknown author, or contain the following byte sequence: 01234567. It is also important that if something looks suspicious, to sandbox it for a period of time</Heuristic>
+	<Heuristic>Reject any files that originate from torrents, have an unknown author, or contain the following byte sequence: 01234567. It is also important that if something looks suspicious, to sandbox it for a period of time. Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
 	<MetaDataCollection>
 		<MetaData>
 			<Name>Eclipse IDE</Name>

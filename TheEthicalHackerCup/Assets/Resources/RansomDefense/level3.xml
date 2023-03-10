@@ -1,5 +1,5 @@
 <GameProps>
-	<Heuristic>Reject any files that have a 9 and also a 4 in their content or that have an unkown author. </Heuristic>
+	<Heuristic>Reject any files that have a 9 and also a 4 in their content or that have an unkown author.  Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
 	<MetaDataCollection>
 		<MetaData>
 			<Name>Discord</Name>
