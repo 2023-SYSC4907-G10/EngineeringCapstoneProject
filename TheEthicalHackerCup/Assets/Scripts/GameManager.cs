@@ -101,6 +101,10 @@ public class GameManager
     public int GetAttackSpecificHeat(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetHeat(); }
     public string GetPlayerEmail() { return this._playerEmail; }
 
+    public bool GetTutorialSeen(string tutorialName) {
+        return this._tutorialSeen[tutorialName];
+    }
+
     // Boolean indicators
     public bool IsEverythingFullyUpgraded()
     {
@@ -211,6 +215,10 @@ public class GameManager
     public void SetPlayerEmail(string email)
     {
         this._playerEmail = email;
+    }
+
+    public void SetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = true;
     }
 
 

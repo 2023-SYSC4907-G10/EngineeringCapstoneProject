@@ -1,0 +1,4 @@
+The goal is to use investigation tools such as logs, eye witness accounts and cameras to figure out the insider
+At defense level 1, only basic logs are available to view
+At higher levels, you get access to more tools that provide more insight into who the insider could be
+When you think you know who the insider is click the insider in the accuse panel to see if you are correct

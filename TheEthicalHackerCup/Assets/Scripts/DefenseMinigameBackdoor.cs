@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class DefenseMinigameBackdoor : MonoBehaviour
 {
     private readonly bool ENABLED_DEFENSE_MINIGAME_BACKDOOR = true;
-    
+
     void Update()
     {
         if (ENABLED_DEFENSE_MINIGAME_BACKDOOR && Input.GetKeyDown(KeyCode.Backspace))
@@ -14,7 +14,16 @@ public class DefenseMinigameBackdoor : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.Alpha2)) // Numerical 2
             {
-                SceneManager.LoadScene("InsiderAttack_Defense");
+                if (!GameManager.GetInstance().GetTutorialSeen(SecurityConcepts.InsiderAttack.ToString()))
+                {
+                    TutorialInit.DefenseMinigame(SecurityConcepts.InsiderAttack);
+                    GameManager.GetInstance().SetTutorialSeen(SecurityConcepts.InsiderAttack.ToString());
+                    SceneManager.LoadScene("Tutorial");
+                }
+                else
+                {
+                    SceneManager.LoadScene("InsiderAttack_Defense");
+                }
             }
             else if (Input.GetKey(KeyCode.Alpha3)) // Numerical 3
             {

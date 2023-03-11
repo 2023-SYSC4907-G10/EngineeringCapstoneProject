@@ -1,4 +1,0 @@
-This menu allows you to perform active attacks. Each button corresponds to an attack.
-Below the bar is the "heat bar". Each attack has its own unique heat. After every attack, the heat will increase.
-If the heat is too high, the attack becomes less likely to suceed. Heat will go down if a different attack is used. 
-This concludes the defense menu tutorial

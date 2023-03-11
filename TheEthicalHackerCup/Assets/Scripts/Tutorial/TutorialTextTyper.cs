@@ -6,11 +6,12 @@ using RedBlueGames.Tools.TextTyper;
 public class TutorialTextTyper : MonoBehaviour
 {
     [SerializeField] private TextTyper tt;
-    [SerializeField] private TextAsset textFile;
+    private TextAsset textFile;
     private Queue<string> textQueue;
     // Start is called before the first frame update
     void Start()
     {
+        textFile = TutorialSingleton.GetInstance().getTextFile();
         textQueue = new Queue<string>();
         initQueue();
         showText();
@@ -43,15 +44,7 @@ public class TutorialTextTyper : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
-            if (this.tt.IsSkippable() && this.tt.IsTyping)
-            {
-                this.tt.Skip();
-            }
-            else
-            {
-                showText();
-            }
+            showText();
         }
     }
 }
