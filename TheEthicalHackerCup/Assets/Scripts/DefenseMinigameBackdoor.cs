@@ -4,38 +4,43 @@ public class DefenseMinigameBackdoor : MonoBehaviour
 {
     private readonly bool ENABLED_DEFENSE_MINIGAME_BACKDOOR = true;
 
+    private void StartTutorial(SecurityConcepts sc)
+    {
+        if (!GameManager.GetInstance().GetTutorialSeen(sc.ToString()))
+        {
+            TutorialInit.DefenseMinigame(sc);
+            GameManager.GetInstance().SetTutorialSeen(sc.ToString());
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            SceneManager.LoadScene(sc + "_Defense");
+        }
+    }
+
     void Update()
     {
         if (ENABLED_DEFENSE_MINIGAME_BACKDOOR && Input.GetKeyDown(KeyCode.Backspace))
         {
             if (Input.GetKey(KeyCode.Alpha1)) // Numerical 1
             {
-                SceneManager.LoadScene("DDoS_Defense");
+                StartTutorial(SecurityConcepts.DDoS);
             }
             else if (Input.GetKey(KeyCode.Alpha2)) // Numerical 2
             {
-                if (!GameManager.GetInstance().GetTutorialSeen(SecurityConcepts.InsiderAttack.ToString()))
-                {
-                    TutorialInit.DefenseMinigame(SecurityConcepts.InsiderAttack);
-                    GameManager.GetInstance().SetTutorialSeen(SecurityConcepts.InsiderAttack.ToString());
-                    SceneManager.LoadScene("Tutorial");
-                }
-                else
-                {
-                    SceneManager.LoadScene("InsiderAttack_Defense");
-                }
+                StartTutorial(SecurityConcepts.InsiderAttack);
             }
             else if (Input.GetKey(KeyCode.Alpha3)) // Numerical 3
             {
-                SceneManager.LoadScene("Firewall_Defense");
+                StartTutorial(SecurityConcepts.Firewall);
             }
             else if (Input.GetKey(KeyCode.Alpha4)) // Numerical 4
             {
-                SceneManager.LoadScene("Phishing_Defense");
+                StartTutorial(SecurityConcepts.Phishing);
             }
             else if (Input.GetKey(KeyCode.Alpha5)) // Numerical 5
             {
-                SceneManager.LoadScene("Ransomware_Defense");
+               StartTutorial(SecurityConcepts.Ransomware);
             }
         }
 
