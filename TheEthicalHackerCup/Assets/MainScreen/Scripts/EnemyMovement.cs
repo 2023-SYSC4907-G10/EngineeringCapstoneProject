@@ -76,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
 
     void onSuccess()
     {
-        GameManager.GetInstance().ChangeOpponentKnowledge(PassiveAttack.SUCCESS_OPP_KNOWLEDGE_INCREASE);
+        GameManager.GetInstance().SetOpponentKnowledge(GameManager.MAX_OPP_KNOWLEDGE);
     }
 
     // Update is called once per frame

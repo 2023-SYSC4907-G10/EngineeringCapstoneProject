@@ -9,7 +9,7 @@ public class InsiderMovement : MonoBehaviour
     private float jumpForce;
     private Rigidbody2D rb;
     private bool isGrounded;
-    private SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class InsiderMovement : MonoBehaviour
         jumpForce = 7.0f;
         rb = GetComponent<Rigidbody2D>();
         isGrounded = true;
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class InsiderMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
         }
-        renderer.flipX = horizontalInput < 0;
+        _renderer.flipX = horizontalInput < 0;
     }
 
     void OnCollisionEnter2D(Collision2D theCollision){
