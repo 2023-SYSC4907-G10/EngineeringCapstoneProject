@@ -1,0 +1,75 @@
+<GameProps>
+	<Heuristic>Reject any files that originate from torrents, have an unknown author, or contain the following byte sequence: 01234567. It is also important that if something looks suspicious, to sandbox it for a period of time. Letting ransomware pass will cost 2 lives and rejecting non-malicious software will cost 1.</Heuristic>
+	<MetaDataCollection>
+		<MetaData>
+			<Name>Eclipse IDE</Name>
+			<Type>exe</Type>
+			<FileSize>10MB</FileSize>
+			<Description>integrated development environment for Java</Description>
+			<Author>Eclipse Foundation</Author>
+			<Origin>webpage</Origin>
+			<Content>75147145789014578913457891457895142</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Wave Browser Installer</Name>
+			<Type>exe</Type>
+			<FileSize>10MB</FileSize>
+			<Description>installer</Description>
+			<Author>wave foundation</Author>
+			<Origin>webpage</Origin>
+			<Content>7152908571901234567892745892175890</Content>
+			<InfectionTime>15</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Random Number Plugin</Name>
+			<Type>Excel Plugin</Type>
+			<FileSize>10MB</FileSize>
+			<Description>plugin to allow random numbers in excel</Description>
+			<Author>jklfasuioafjm</Author>
+			<Origin>unkown</Origin>
+			<Content>87859175891234222567899</Content>
+			<InfectionTime>2</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Total Recall (720p)</Name>
+			<Type>exe</Type>
+			<FileSize>1GB</FileSize>
+			<Description>total recall</Description>
+			<Author>unkown</Author>
+			<Origin>torrent</Origin>
+			<Content>7428957890217598271894</Content>
+			<InfectionTime>1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Vacation Photo</Name>
+			<Type>jpeg</Type>
+			<FileSize>10MB</FileSize>
+			<Description>JPEG image</Description>
+			<Author>unknown</Author>
+			<Origin>camera</Origin>
+			<Content>09979879472975927897357073498</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Vacation Photo 2</Name>
+			<Type>jpeg</Type>
+			<FileSize>10MB</FileSize>
+			<Description>JPEG image</Description>
+			<Author>unknown</Author>
+			<Origin>camera</Origin>
+			<Content>1099798794722975927897357073498</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+		<MetaData>
+			<Name>Vacation Photo 3</Name>
+			<Type>jpeg</Type>
+			<FileSize>10MB</FileSize>
+			<Description>JPEG image</Description>
+			<Author>unknown</Author>
+			<Origin>camera</Origin>
+			<Content>1312341099798794722975927897357073498</Content>
+			<InfectionTime>-1</InfectionTime>
+		</MetaData>
+	</MetaDataCollection>
+</GameProps>
