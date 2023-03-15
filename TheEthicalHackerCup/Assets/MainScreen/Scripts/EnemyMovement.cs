@@ -20,6 +20,9 @@ public class EnemyMovement : MonoBehaviour
 
     public LayerMask enemyMask;
     public LayerMask playerMask;
+
+    public GameObject detectionRing;
+
     private State state;
 
 
@@ -88,6 +91,7 @@ public class EnemyMovement : MonoBehaviour
             case State.PreparingToWalk:
                 walkingDestination = KeyLocations.getRandomLocationOnEnemyArea();
                 agent.SetDestination(walkingDestination);
+                detectionRing.SendMessage("eavesdroppingStopped");
                 state = State.Walking;
                 break;
 
@@ -120,6 +124,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     startTalkingTime = Time.time;
                     changeToAvailableDisplay();
+                    detectionRing.SendMessage("eavesdroppingStarted");
                     state = State.TalkingAvailable;
                 }
                 break;
