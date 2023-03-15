@@ -12,11 +12,11 @@ public class Enemy : MonoBehaviour {
 
 	int waypointIndex = 0;
 
-	private SpriteRenderer renderer;
+	private SpriteRenderer _renderer;
 	private bool enemyFlipped;
 	void Start () {
 		transform.position = waypoints[waypointIndex].transform.position;
-		renderer = GetComponent<SpriteRenderer>();
+		_renderer = GetComponent<SpriteRenderer>();
 		enemyFlipped = false;
 	}
 
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour {
         // move us back to starting waypoint
 		if (lastWaypoint) {
             waypointIndex = 0;
-			renderer.flipX = true;
+			_renderer.flipX = true;
 			enemyFlipped = true;
         }
 
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
 												moveSpeed * Time.deltaTime);
         } else {
 			if (waypointIndex == 0) {
-				renderer.flipX = false;
+				_renderer.flipX = false;
 				enemyFlipped = false;
 			}
             waypointIndex += 1;

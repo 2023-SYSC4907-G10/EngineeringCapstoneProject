@@ -13,12 +13,6 @@ public class BackOut : MonoBehaviour
         closeMenuButton.onClick.AddListener(closeMenu);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void closeMenu()
     {
         SceneManager.LoadScene("MainScene");
