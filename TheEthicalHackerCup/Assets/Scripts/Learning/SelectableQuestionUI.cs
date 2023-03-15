@@ -42,6 +42,13 @@ public class SelectableQuestionUI : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             var button = buttons[i];
+            if(state.GetOptions().Count <= i)
+            {
+            	button.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            	button.SetActive(false);
+            	continue;
+            }
+            button.SetActive(true);
             var option = state.GetOptions()[i];
             button.GetComponentInChildren<TextMeshProUGUI>().text = (state.isSelected(i) ? "[x]" : "[ ]") + option;
 
