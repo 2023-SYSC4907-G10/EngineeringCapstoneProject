@@ -75,7 +75,7 @@ public class TutorialInit
 
     private static void RansomwareAttack()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareAttack1", "Tutorial/Images/RansomwareAttack2", "Tutorial/Images/RansomwareAttack3" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareAttack1", "Tutorial/Images/RansomwareAttack2", "Tutorial/Images/RansomwareAttack3", "Tutorial/Images/RansomwareAttack4", "Tutorial/Images/RansomwareAttack5" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/RansomwareAttack");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Ransomware_Attack");
@@ -115,7 +115,7 @@ public class TutorialInit
 
     private static void RansomwareDefense()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareDefense1", "Tutorial/Images/RansomwareDefense2", "Tutorial/Images/RansomwareDefense3" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareDefense1", "Tutorial/Images/RansomwareDefense2", "Tutorial/Images/RansomwareDefense3", "Tutorial/Images/RansomwareDefense4", "Tutorial/Images/RansomwareDefense5" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/RansomwareDefense");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Ransomware_Defense");

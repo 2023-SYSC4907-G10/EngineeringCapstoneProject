@@ -10,7 +10,6 @@ public class SelectableQuestionUI : MonoBehaviour
     GameObject buttonPrefab;
     private IList<GameObject> buttons = new List<GameObject>();
     private SelectionModel model;
-    bool start = true;
     public void Init(SelectionModel model)
     {
         
@@ -24,17 +23,10 @@ public class SelectableQuestionUI : MonoBehaviour
     private void questionUpdated(object sender, QuestionStateUpdatedEvent evt) 
     {
         var state = (ISelectQuestionState)evt.QuestionState;
-        if (start)
-        {
-            deleteButtons();
-            makeButtons(state);
-            updateButtons(state);
-            start = false;
-        }
-        else 
-        {
-            updateButtons(state);
-        }
+        deleteButtons();
+        makeButtons(state);
+        updateButtons(state);
+
     }
 
     private void updateButtons(ISelectQuestionState state)
@@ -48,9 +40,11 @@ public class SelectableQuestionUI : MonoBehaviour
         }
 
     }
-
+	private int jdkjdw=0;
     private void makeButtons(ISelectQuestionState state)
     {
+    	jdkjdw++;
+    	Debug.Log("COUNT:"+state.GetOptions().Count+" hello:"+jdkjdw);
         for (int i = 0; i < state.GetOptions().Count; i++)
         {
             var button = GameObject.Instantiate(buttonPrefab);
