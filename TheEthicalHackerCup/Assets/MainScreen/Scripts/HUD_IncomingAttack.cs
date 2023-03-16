@@ -50,7 +50,16 @@ public class HUD_IncomingAttack : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 // Defend
-                SceneManager.LoadScene(_currentDefenseMinigame + "_Defense");
+                if (!GameManager.GetInstance().GetTutorialSeen(_currentDefenseMinigame.ToString()))
+                {
+                    TutorialInit.DefenseMinigame(_currentDefenseMinigame);
+                    GameManager.GetInstance().SetTutorialSeen(_currentDefenseMinigame.ToString());
+                    SceneManager.LoadScene("Tutorial");
+                }
+                else
+                {
+                    SceneManager.LoadScene(_currentDefenseMinigame + "_Defense");
+                }
             }
         }
     }
