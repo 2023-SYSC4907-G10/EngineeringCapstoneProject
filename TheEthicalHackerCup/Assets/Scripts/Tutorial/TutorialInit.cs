@@ -83,7 +83,7 @@ public class TutorialInit
 
     private static void PhisingAttack()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/PhisingAttack1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/PhisingAttack1", "Tutorial/Images/PhisingAttack2", "Tutorial/Images/PhisingAttack3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/PhisingAttack");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Phishing_Attack");
@@ -123,7 +123,7 @@ public class TutorialInit
 
     private static void PhisingDefense()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/PhisingDefense1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/PhisingDefense1", "Tutorial/Images/PhisingDefense2", "Tutorial/Images/PhisingDefense3", "Tutorial/Images/PhisingDefense4", "Tutorial/Images/PhisingDefense5" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/PhisingDefense");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Phishing_Defense");

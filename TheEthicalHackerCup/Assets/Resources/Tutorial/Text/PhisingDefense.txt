@@ -1,1 +1,5 @@
-PHISING DEFENSE TUTORIAL
+Move the character with arrows keys while using space for jump
+Hitting any obstacles will lead to you losing the game
+Your goal is to find the file that contains a potential phishing email
+Click the screen once you have read the potential phishing email
+Jump to the side of the platform that you think classifies the email
