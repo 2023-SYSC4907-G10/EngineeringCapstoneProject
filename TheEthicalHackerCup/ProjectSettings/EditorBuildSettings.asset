@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Defense Minigame Scenes/Ransomware_Defense.unity
     guid: a56087d1f2479ae42bd4b7b6bba431ad
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 2b0d25eaef3bfbd459afa30e87b2d6af
   m_configObjects: {}
