@@ -1,3 +1,5 @@
-The goal of this game is to reject or accept files based on criteria in the right panel
-The left panel shows the incoming file along with details about that file
-You have 4 lives and you lose two when accepting ransomeware files and lose 1 when rejecting benign files
+The objective is to classify incoming files as safe or as ransomware. The files metadata and data is shown in the left panel
+The signature and heuristic data to use will be shown in the right panel
+In order to deny or accept a file into the system, use the deny and accept buttons respectively
+The sandbox puts the file in an isolated environment. If the file is ransomware, the sandbox may or may not notify you.
+This label is the number of lives you have. Avoid losing them.
