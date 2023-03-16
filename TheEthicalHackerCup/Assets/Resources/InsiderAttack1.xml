@@ -1,20 +1,25 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Defense Upgrade Quiz Level 1">
+		<Content Type="Learning.InfoContent"></Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="What are things insiders steal from (Select all that apply)">
 		<Content Type="Learning.CheckBox">
-			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>0</Correct>
+			<Correct>2</Correct>
+			<Option>Documents</Option>
+			<Option>Textbooks</Option>
+			<Option>Computers</Option>
+			<Option>Cameras</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="Who can get suspicious of insiders">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
-			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Selection>0</Selection>
+			<Correct>1</Correct>
+			<Option>Janitor</Option>
+			<Option>Co-workers</Option>
+			<Option>Stakeholders</Option>
+			<Option>Police</Option>
 		</Content>
 	</Slide>
 </Quiz>

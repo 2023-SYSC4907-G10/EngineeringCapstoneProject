@@ -1,20 +1,25 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Defense Upgrade Quiz Level 3">
+		<Content Type="Learning.InfoContent"></Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="What sort of information should insider investigators look for">
 		<Content Type="Learning.CheckBox">
-			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>People who are shy</Option>
+			<Option>Happy employees</Option>
+			<Option>Irregular access times</Option>
+			<Option>Multiple eyewitness accounts</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+	<Slide Name="What to do when you think a co-worker is an insider">
+		<Content Type="Learning.Checkbox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>1</Correct>
+			<Option>Bring it up to a manager</Option>
+			<Option>Gather more evidence</Option>
+			<Option>Accuse them in front of the office</Option>
+			<Option>Steal their computer</Option>
 		</Content>
 	</Slide>
 </Quiz>

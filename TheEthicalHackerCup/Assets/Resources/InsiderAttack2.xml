@@ -1,20 +1,25 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Defense Upgrade Quiz Level 2">
+		<Content Type="Learning.InfoContent"></Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="What are ways to find out who an insider is (Select all that apply)">
 		<Content Type="Learning.CheckBox">
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>3</Correct>
+			<Option>Following them</Option>
+			<Option>Computer logs</Option>
+			<Option>Watching them work</Option>
+			<Option>Cameras</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="What gives rise to insiders">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
-			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Selection>0</Selection>
+			<Correct>3</Correct>
+			<Option>Inclusive workplace</Option>
+			<Option>Good managers</Option>
+			<Option>Friendly co-workers</Option>
+			<Option>Paycuts</Option>
 		</Content>
 	</Slide>
 </Quiz>
