@@ -9,8 +9,12 @@
 		<Content Type="Learning.InfoContent">Antivirus is the second line of defense. If someone installs malware, antivirus is a type of program designed to detect and prevent the malware from running.</Content>
 	</Slide>
 	<Slide Name="Detection">
-		<Content Type="Learning.InfoContent">Antivirus used to classify files via signiture detection. This is where it would analyze the contents of the file and see if it recognizes any patterns of known viruses. Modern antiviruses work through heuristic detection alongside signiture detection. Heuristic detection is where the viruses are detected by running the program and analyzing its behaviour within an environment where the virus wont cause any damage.</Content>
+		<Content Type="Learning.InfoContent">Antivirus used to classify files via signiture detection. This is where it would analyze the contents of the file and see if it recognizes any patterns of known viruses.</Content>
 	</Slide>
+	<Slide Name="Detection">
+		<Content Type="Learning.InfoContent">Modern antiviruses work through heuristic detection alongside signiture detection. Heuristic detection is where the viruses are detected by running the program and analyzing its behaviour within an environment where the virus wont cause any damage.</Content>
+	</Slide>
+
 	<Slide Name="Antivirus is the first line of defense against ransomware">
 		<Content Type="Learning.RadioBox">
 			<Selection>0</Selection>
@@ -19,7 +23,7 @@
 			<Option>True</Option>
 		</Content>
 	</Slide>
-	<Slide Name="Computer users should download anything from anywhere or plug anything into their computer without worry of ransomware">
+	<Slide Name="Computer users should download anything from anywhere without worry">
 		<Content Type="Learning.RadioBox">
 			<Selection>0</Selection>
 			<Correct>0</Correct>
@@ -30,6 +34,7 @@
 	<Slide Name="Modern antiviruses work via">
 		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
+			<Correct>2</Correct>
 			<Option>Signiture Based Detection</Option>
 			<Option>Guess and Check</Option>
 			<Option>Heuristic Based Detection</Option>

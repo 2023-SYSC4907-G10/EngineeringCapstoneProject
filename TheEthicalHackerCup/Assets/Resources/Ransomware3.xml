@@ -3,10 +3,10 @@
 		<Content Type="Learning.InfoContent">Welcome to the third Ransomware Quiz. This quiz contains information and questions about the dealing with ransomware</Content>
 	</Slide>
 	<Slide Name="Meeting the ransomers demands">
-		<Content Type="Learning.InfoContent">If your system is ever the victim of ransomware, it is best to not pay the ransomers demands. This is because it is never guaranteed that the ransomer will give you the key/password once you pay. Also, paying the ransomers gives ransomers means and insentive to continue.</Content>
+		<Content Type="Learning.InfoContent">If your system is ever the victim of ransomware, it is best to not pay the ransomers demands. This is because it is never guaranteed that the ransomer will give you the key/password once you pay. Also, paying the ransomers gives ransomers means and incentive to continue.</Content>
 	</Slide>
 	<Slide Name="Preventing Disaster">
-		<Content Type="Learning.InfoContent">Backing up your data is crutial! Having redundant copies of your data means that if something unfortunate happens to one copy, one of the backups can be used and little to no data is lost. This is especially true with ransomwae; the more copies of your data you have, the more targets the attacker would need to infect for a successful attack to take place.</Content>
+		<Content Type="Learning.InfoContent">Backing up your data is crucial! Having redundant copies of your data means that if something unfortunate happens to one copy, one of the backups can be used and little to no data is lost. This is especially true with ransomwae; the more copies of your data you have, the more targets the attacker would need to infect for a successful attack to take place.</Content>
 	</Slide>
 	<Slide Name="You should always pay into the attackers demands">
 		<Content Type="Learning.RadioBox">
