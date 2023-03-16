@@ -10,7 +10,7 @@
 	</Slide>
 	<Slide Name="You should always pay into the attackers demands">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
 			<Option>False</Option>
 			<Option>True</Option>
@@ -18,7 +18,7 @@
 	</Slide>
 	<Slide Name="You should keep multiple redundant backups of your critical data">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
 			<Option>False</Option>
 			<Option>True</Option>
