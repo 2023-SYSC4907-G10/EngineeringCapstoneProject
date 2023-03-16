@@ -1,20 +1,33 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Information Slide">
+		<Content Type="Learning.ImageContent">Phishing2_1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Information Slide">
+		<Content Type="Learning.ImageContent">Phishing2_2</Content>
+	</Slide>
+	<Slide Name="Does MFA reduce how often someone falls victim to a phishing attack?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>Yes</Option>
+			<Option>No</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="At what point is Multi Factor Authentication most helpful?">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
-			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Selection>-1</Selection>
+			<Correct>2</Correct>
+			<Option>Before a phishing attack</Option>
+			<Option>During a phishing attack</Option>
+			<Option>After a phishing attack</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Would MFA help a victim who lost their credit card number during a phishing attack?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>Yes</Option>
+			<Option>No</Option>
 		</Content>
 	</Slide>
 </Quiz>

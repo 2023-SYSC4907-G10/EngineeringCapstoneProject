@@ -1,20 +1,36 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Information Slide">
+		<Content Type="Learning.ImageContent">Phishing3_1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Information Slide">
+		<Content Type="Learning.ImageContent">Phishing3_2</Content>
+	</Slide>
+	<Slide Name="Information Slide">
+		<Content Type="Learning.ImageContent">Phishing3_3</Content>
+	</Slide>
+	<Slide Name="Should phishing training only be conducted with new employees?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>Yes</Option>
+			<Option>No</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="After training, you are certain that employees will not fall victim to phishing.">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
-			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>Yes</Option>
+			<Option>No</Option>
+		</Content>
+	</Slide>
+	<Slide Name="How should organizations validate that their phishing training is effective?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>See if employees complete the training</Option>
+			<Option>Do a live phishing test</Option>
+			<Option>Training is always effective</Option>
 		</Content>
 	</Slide>
 </Quiz>
