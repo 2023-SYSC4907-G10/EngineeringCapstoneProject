@@ -1,20 +1,20 @@
-<Quiz Name="Firewa<Quiz>
-<Slide Name="SLIDE 1">
-	<Content Type="Learning.InfoContent">Welcome</Content>
-</Slide>
-<Slide Name="SLIDE 2">
-	<Content Type="Learning.CheckBox">
-		<Correct>1</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
-	</Content>
-</Slide>
-<Slide Name="SLIDE 3">
-	<Content Type="Learning.RadioBox">
-		<Selection>1</Selection>
-		<Correct>0</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
-	</Content>
-</Slide>
+<Quiz>
+	<Slide Name="SLIDE 1">
+		<Content Type="Learning.InfoContent">Welcome</Content>
+	</Slide>
+	<Slide Name="SLIDE 2">
+		<Content Type="Learning.CheckBox">
+			<Correct>1</Correct>
+			<Option>Hello</Option>
+			<Option>Bruh</Option>
+		</Content>
+	</Slide>
+	<Slide Name="SLIDE 3">
+		<Content Type="Learning.RadioBox">
+			<Selection>1</Selection>
+			<Correct>0</Correct>
+			<Option>Hello</Option>
+			<Option>Bruh</Option>
+		</Content>
+	</Slide>
 </Quiz>

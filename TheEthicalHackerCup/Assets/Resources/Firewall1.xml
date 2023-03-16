@@ -1,20 +1,52 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Firewall Upgrade 1">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall1_1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Firewall Upgrade 1">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall1_2</Content>
+	</Slide>
+	<Slide Name="Firewall Upgrade 1">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall1_3</Content>
+	</Slide>
+	<Slide Name="Device based packet filtering firewalls work on which networking layers?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>Physical</Option>
+			<Option>Transport</Option>
+			<Option>Presentation</Option>
+			<Option>Application</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+	<Slide Name="What do basic packet filtering firewalls use to filter connections?">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>IP addresses</Option>
+			<Option>Connection history</Option>
+			<Option>Port numbers</Option>
+			<Option>Connection direction</Option>
+		</Content>
+	</Slide>
+	<Slide Name="What are some advantages of using packet filtering firewalls?">
+		<Content Type="Learning.CheckBox">
+			<Correct>1</Correct>
+			<Correct>3</Correct>
+			<Option>Regulates all connections in a network</Option>
+			<Option>Simplicity</Option>
+			<Option>Increasing network performance</Option>
+			<Option>Low cost</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Which of the following can be used to get past a packet filtering firewall?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>Sending A LOT of connection requests</Option>
+			<Option>IP Spoofing</Option>
+			<Option>Encryption</Option>
+			<Option>Marking packets as URGENT</Option>
 		</Content>
 	</Slide>
 </Quiz>
