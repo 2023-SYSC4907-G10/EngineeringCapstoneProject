@@ -44,7 +44,7 @@
 			<Option>true</Option>
 		</Content>
 	</Slide>
-	<Slide Name="The hackers that made the ransomware will give you the password to your files if you ask nicely">
+	<Slide Name="Ransomware makers will unlock your files if you ask nicely">
 		<Content Type="Learning.RadioBox">
 			<Selection>-1</Selection>
 			<Correct>0</Correct>
