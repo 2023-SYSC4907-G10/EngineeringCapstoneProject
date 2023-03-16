@@ -1,0 +1,4 @@
+The goal is to collect things insiders steal from such as documents, computers, and server
+The top right UI shows the remaining items to steal
+When you are in view of an enemy, your suspicion level in the top right UI increases
+The game is over when suspicion is at 100 or you've collected everything

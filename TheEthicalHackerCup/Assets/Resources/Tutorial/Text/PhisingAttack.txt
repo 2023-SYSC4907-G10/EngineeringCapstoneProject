@@ -1,0 +1,3 @@
+Press space to launch your arrow to try to catch the fish
+You can click the various tools on the left to switch between them
+Clicking the info button will bring up a dialog to inform you what fish to target

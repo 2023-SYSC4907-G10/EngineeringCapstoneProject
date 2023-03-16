@@ -1,0 +1,3 @@
+This menu is where you improve security defense to prevent active attacks by the other team
+To upgrade a defense you must have attempted the required amount of corresponding attacks
+Once you have enough attacks attempted you can upgrade the defense

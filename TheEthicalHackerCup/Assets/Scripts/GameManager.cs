@@ -46,6 +46,7 @@ public class GameManager
     // Main game fields (subscribable)
     private int _respect;
     private int _opponentKnowledge;
+    private Dictionary<string, bool> _tutorialSeen;
     private Dictionary<SecurityConcepts, SecurityConceptProgress> _securityConceptProgressDictionary;
     private List<SecurityConcepts> _currentDefenseMinigameOptions;
 
@@ -61,16 +62,21 @@ public class GameManager
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _respect = 25;
-        _opponentKnowledge = 0;
+        _opponentKnowledge = 100;
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
         _playerEmail = "";
         _currentDefenseMinigameOptions = new List<SecurityConcepts>();
+        _tutorialSeen = new Dictionary<string, bool>();
+        _tutorialSeen.Add("AttackMenu", false);
+        _tutorialSeen.Add("DefenseMenu", false);
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
+            _tutorialSeen.Add(concept.ToString() + "_Defense", false);
+            _tutorialSeen.Add(concept.ToString() + "_Attack", false);
             _currentDefenseMinigameOptions.Add(concept);
             int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
             _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
@@ -100,6 +106,10 @@ public class GameManager
     public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade(); }
     public int GetAttackSpecificHeat(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetHeat(); }
     public string GetPlayerEmail() { return this._playerEmail; }
+
+    public bool GetTutorialSeen(string tutorialName) {
+        return this._tutorialSeen[tutorialName];
+    }
 
     // Boolean indicators
     public bool IsEverythingFullyUpgraded()
@@ -211,6 +221,14 @@ public class GameManager
     public void SetPlayerEmail(string email)
     {
         this._playerEmail = email;
+    }
+
+    public void SetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = true;
+    }
+    
+    public void ResetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = false;
     }
 
 

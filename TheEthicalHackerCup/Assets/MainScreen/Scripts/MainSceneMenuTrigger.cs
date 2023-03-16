@@ -23,7 +23,23 @@ public class MainSceneMenuTrigger : MonoBehaviour
     {
         if (_playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(IsAttackMenu ? "AttackMenu" : "DefenseMenu");
+            string menu = IsAttackMenu ? "AttackMenu" : "DefenseMenu";
+            if (!GameManager.GetInstance().GetTutorialSeen(menu) && IsAttackMenu)
+            {
+                TutorialInit.AttackMenu();
+                GameManager.GetInstance().SetTutorialSeen(menu);
+                SceneManager.LoadScene("Tutorial");
+            }
+            else if (!GameManager.GetInstance().GetTutorialSeen(menu) && !IsAttackMenu)
+            {
+                TutorialInit.DefenseMenu();
+                GameManager.GetInstance().SetTutorialSeen(menu);
+                SceneManager.LoadScene("Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene(menu);
+            }
         }
         SpinningSprite.transform.Rotate(new Vector3(0, 0.5f, 0));
     }
