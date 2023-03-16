@@ -33,10 +33,10 @@ public class ButtonHeatBar : MonoBehaviour
         SceneManager.LoadScene(sc + "_Attack");
 
         string conceptString = sc.ToString();
-        if (!GameManager.GetInstance().GetTutorialSeen(conceptString))
+        if (!GameManager.GetInstance().GetTutorialSeen(conceptString + "_Attack"))
         {
             TutorialInit.AttackMinigame(sc);
-            GameManager.GetInstance().SetTutorialSeen(conceptString);
+            GameManager.GetInstance().SetTutorialSeen(conceptString + "_Attack");
             SceneManager.LoadScene("Tutorial");
         }
         else

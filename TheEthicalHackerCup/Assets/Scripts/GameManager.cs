@@ -75,7 +75,8 @@ public class GameManager
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            _tutorialSeen.Add(concept.ToString(), false);
+            _tutorialSeen.Add(concept.ToString() + "_Defense", false);
+            _tutorialSeen.Add(concept.ToString() + "_Attack", false);
             _currentDefenseMinigameOptions.Add(concept);
             int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
             _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
