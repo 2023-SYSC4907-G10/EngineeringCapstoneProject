@@ -9,6 +9,7 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] private Material notDetected;
     [SerializeField] private Material detected;
     [SerializeField] private GameObject GetOutOfHereSpeechBubble;
+    private CapsuleCollider coll;
 
     private bool _isSpeechBubbleActive;
     private float _remainingSpeechBubbleShowTime;
@@ -18,6 +19,7 @@ public class EnemyDetection : MonoBehaviour
     {
         GetOutOfHereSpeechBubble.SetActive(false);
         _isSpeechBubbleActive = false;
+        coll = GetComponent<CapsuleCollider>();
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -54,5 +56,13 @@ public class EnemyDetection : MonoBehaviour
             else { _remainingSpeechBubbleShowTime -= Time.deltaTime; }
         }
     }
+    public void eavesdroppingStarted() {
+        rend.enabled = false;
+        coll.enabled = false;
+    }
 
+    public void eavesdroppingStopped() {
+        rend.enabled = true;
+        coll.enabled = true;
+    }
 }

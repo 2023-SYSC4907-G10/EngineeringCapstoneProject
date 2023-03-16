@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class PassiveAttack : MonoBehaviour
 {
-    public const int SUCCESS_OPP_KNOWLEDGE_INCREASE = 10;
     public enum State
     {
         Idle,

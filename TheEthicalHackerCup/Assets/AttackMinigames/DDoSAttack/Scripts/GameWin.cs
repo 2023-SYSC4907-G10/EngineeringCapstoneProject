@@ -18,6 +18,6 @@ public class GameWin : MonoBehaviour
 
     public void Continue()
     {
-        GameManager.GetInstance().AfterActionReportText = "DDoS Attack Completed Dude";
+        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Attack Completed Dude");
     }
 }
