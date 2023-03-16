@@ -22,7 +22,7 @@
 	</Slide>
 	<Slide Name="all ransomware is malware but not all malware is ransomware">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
 			<Option>false</Option>
 			<Option>true</Option>
@@ -30,7 +30,7 @@
 	</Slide>
 	<Slide Name="ransomware is undesirable to have on your computer">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
 			<Option>false</Option>
 			<Option>true</Option>
@@ -38,7 +38,7 @@
 	</Slide>
 	<Slide Name="Ransomware locks your files by encrypting the data">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
 			<Option>false</Option>
 			<Option>true</Option>
@@ -46,7 +46,7 @@
 	</Slide>
 	<Slide Name="The hackers that made the ransomware will give you the password to your files if you ask nicely">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
 			<Option>false</Option>
 			<Option>true</Option>
