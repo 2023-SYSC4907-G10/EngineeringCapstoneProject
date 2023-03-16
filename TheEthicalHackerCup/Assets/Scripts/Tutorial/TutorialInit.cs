@@ -91,7 +91,7 @@ public class TutorialInit
 
     private static void FirewallAttack()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/FirewallAttack1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/FirewallAttack1", "Tutorial/Images/FirewallAttack2", "Tutorial/Images/FirewallAttack3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/FirewallAttack");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Firewall_Attack");
@@ -131,7 +131,7 @@ public class TutorialInit
 
     private static void FirewallDefense()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/FirewallDefense1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/FirewallDefense1", "Tutorial/Images/FirewallDefense2", "Tutorial/Images/FirewallDefense3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/FirewallDefense");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Firewall_Defense");
