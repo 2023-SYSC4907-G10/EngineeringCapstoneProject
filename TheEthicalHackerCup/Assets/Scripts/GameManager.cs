@@ -62,7 +62,7 @@ public class GameManager
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _respect = 25;
-        _opponentKnowledge = 0;
+        _opponentKnowledge = 100;
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
@@ -75,7 +75,8 @@ public class GameManager
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
-            _tutorialSeen.Add(concept.ToString(), false);
+            _tutorialSeen.Add(concept.ToString() + "_Defense", false);
+            _tutorialSeen.Add(concept.ToString() + "_Attack", false);
             _currentDefenseMinigameOptions.Add(concept);
             int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
             _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
