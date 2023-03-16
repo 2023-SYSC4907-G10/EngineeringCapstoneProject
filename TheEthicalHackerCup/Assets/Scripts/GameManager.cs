@@ -225,6 +225,10 @@ public class GameManager
     public void SetTutorialSeen(string tutorialName) {
         this._tutorialSeen[tutorialName] = true;
     }
+    
+    public void ResetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = false;
+    }
 
 
     // Non primitive updates

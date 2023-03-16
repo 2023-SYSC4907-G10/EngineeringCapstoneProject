@@ -37,7 +37,7 @@ public class TutorialInit
         }
     }
 
-    public static void DefenseMinigame(SecurityConcepts sc) {
+    public static void DefenseMinigame(SecurityConcepts? sc) {
         switch(sc) {
             case SecurityConcepts.InsiderAttack:
                 InsiderDefense();

@@ -41,10 +41,8 @@ public class Blade : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)){
             StartSlicing();
-            Debug.Log("mouse button pressed");
         } else if (Input.GetMouseButtonUp(0)){
             StopSlicing();
-            Debug.Log("mouse button released");
         } else if (isSlicing){
             ContinueSlicing();
         }
