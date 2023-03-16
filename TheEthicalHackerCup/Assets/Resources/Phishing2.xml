@@ -1,8 +1,8 @@
 <Quiz>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 2">
 		<Content Type="Learning.ImageContent">Phishing2_1</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 2">
 		<Content Type="Learning.ImageContent">Phishing2_2</Content>
 	</Slide>
 	<Slide Name="Does MFA reduce how often someone falls victim to a phishing attack?">
@@ -22,7 +22,7 @@
 			<Option>After a phishing attack</Option>
 		</Content>
 	</Slide>
-	<Slide Name="Would MFA help a victim who lost their credit card number during a phishing attack?">
+	<Slide Name="Would MFA help if you lost your credit card number during a phishing attack?">
 		<Content Type="Learning.RadioBox">
 			<Selection>-1</Selection>
 			<Correct>1</Correct>

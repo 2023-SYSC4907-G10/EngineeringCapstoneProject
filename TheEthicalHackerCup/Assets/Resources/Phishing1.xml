@@ -1,17 +1,17 @@
 <Quiz>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 1">
 		<Content Type="Learning.ImageContent">Phishing1_1</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 1">
 		<Content Type="Learning.ImageContent">Phishing1_2</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 1">
 		<Content Type="Learning.ImageContent">Phishing1_3</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 1">
 		<Content Type="Learning.ImageContent">Phishing1_4</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 1">
 		<Content Type="Learning.ImageContent">Phishing1_5</Content>
 	</Slide>
 	<Slide Name="Will email filters stop all phishing attacks from reaching your inbox?">

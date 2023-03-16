@@ -1,11 +1,11 @@
 <Quiz>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 3">
 		<Content Type="Learning.ImageContent">Phishing3_1</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 3">
 		<Content Type="Learning.ImageContent">Phishing3_2</Content>
 	</Slide>
-	<Slide Name="Information Slide">
+	<Slide Name="Phishing Upgrade 3">
 		<Content Type="Learning.ImageContent">Phishing3_3</Content>
 	</Slide>
 	<Slide Name="Should phishing training only be conducted with new employees?">
@@ -16,7 +16,7 @@
 			<Option>No</Option>
 		</Content>
 	</Slide>
-	<Slide Name="After training, you are certain that employees will not fall victim to phishing.">
+	<Slide Name="Does training guarantee that employees will not fall victim to phishing?">
 		<Content Type="Learning.RadioBox">
 			<Selection>-1</Selection>
 			<Correct>1</Correct>
