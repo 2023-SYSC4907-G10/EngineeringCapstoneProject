@@ -1,1 +1,3 @@
-DDOS ATTACK TUTORIAL
+In this minigame, you are a bad bot trying to take down a server. Move with up/down arrows
+The firewalls prevent the bad bot from reaching the server. Game ends on firewall contact
+Once you make it to the finish line, you have successfully disrupted the server and won the game

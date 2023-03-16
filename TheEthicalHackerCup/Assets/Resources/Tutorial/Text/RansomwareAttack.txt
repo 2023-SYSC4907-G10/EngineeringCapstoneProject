@@ -1,1 +1,3 @@
-RANSOMEWARE ATTACK TUTORIAL
+You are a virus who is trying to lock all the files scattered across the network
+To lock a file, make contact with the file until the file appears locked
+Avoid the anti-virus NPC roaming around. If you make contact with them the game ends

@@ -67,7 +67,7 @@ public class TutorialInit
 
     private static void DDosAttack()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/DdosAttack1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/DDosAttack1", "Tutorial/Images/DDosAttack2", "Tutorial/Images/DDosAttack3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/DdosAttack");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("DDoS_Attack");
@@ -75,7 +75,7 @@ public class TutorialInit
 
     private static void RansomwareAttack()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareAttack1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareAttack1", "Tutorial/Images/RansomwareAttack2", "Tutorial/Images/RansomwareAttack3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/RansomwareAttack");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Ransomware_Attack");
@@ -107,7 +107,7 @@ public class TutorialInit
 
     private static void DDosDefense()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/DDosDefense1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/DDosDefense1", "Tutorial/Images/DDosDefense2", "Tutorial/Images/DDosDefense3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/DDosDefense");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("DDoS_Defense");
@@ -115,7 +115,7 @@ public class TutorialInit
 
     private static void RansomwareDefense()
     {
-        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareDefense1" };
+        List<string> tutorialImages = new List<string> { "Tutorial/Images/RansomwareDefense1", "Tutorial/Images/RansomwareDefense2", "Tutorial/Images/RansomwareDefense3" };
         TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/RansomwareDefense");
         TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("Ransomware_Defense");
