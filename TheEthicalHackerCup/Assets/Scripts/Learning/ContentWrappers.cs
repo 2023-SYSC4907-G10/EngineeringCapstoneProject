@@ -76,7 +76,6 @@ class ImageUI : ContentUI
     {
         this.content = (ImageContent)content;
         var sprite = Resources.Load<Sprite>(this.content.ImageLocation);
-        Debug.Log(sprite);
         image.sprite = sprite;
         image.overrideSprite = sprite;
     }

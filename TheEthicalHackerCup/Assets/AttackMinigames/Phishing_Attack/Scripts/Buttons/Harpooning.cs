@@ -24,7 +24,6 @@ public class Harpooning : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Debug.Log("Harpooning Selected");
         shooter.SendMessage("selectHarpooning");
         gameObject.GetComponent<SpriteRenderer>().sprite = selected;
         spearFishing.SendMessage("unSelect");

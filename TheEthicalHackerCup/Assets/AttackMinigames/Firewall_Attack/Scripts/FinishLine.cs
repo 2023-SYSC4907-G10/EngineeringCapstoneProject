@@ -8,7 +8,6 @@ public class FinishLine : MonoBehaviour
     {
         if (theCollision.gameObject.layer == LayerMask.NameToLayer("PlayerLayer"))
         {
-            Debug.Log("Reached finish line");
             FirewallAttackGameManager.GetInstance().CurrentGameState = FirewallAttackStates.Win;
         }
     }

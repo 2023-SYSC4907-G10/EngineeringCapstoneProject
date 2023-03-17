@@ -56,7 +56,6 @@ public class PhishingEmails : MonoBehaviour
     }
 
     void foundFile() {
-        Debug.Log(emails.Length);
         randomEmail = Random.Range(0, emails.Length);
         emails[randomEmail].SendMessage("foundFile");
         state = EmailState.showEmail;

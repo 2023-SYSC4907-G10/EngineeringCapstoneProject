@@ -17,7 +17,7 @@ public class GameManagerTests
     private int _assertCalls;
 
     // Assumes all secConcepts have 4 upgrades, except those in GameManager.With3Upgrades that have 3 upgrades
-    private static readonly int TotalPossibleUpgradesCount = Enum.GetNames(typeof(SecurityConcepts)).Length * 4 - GameManager.With3Upgrades.Length;
+    private static readonly int TotalPossibleUpgradesCount = Enum.GetNames(typeof(SecurityConcepts)).Length * 3;
 
     private void BeforeEach()
     {

@@ -47,7 +47,6 @@ public class dRansomManager : MonoBehaviour
 
         //read and process files
         var fileContent = Resources.Load<TextAsset>(FileHelperSingleton.Singleton.currentFileName).ToString();
-        Debug.Log(fileContent);
         XDocument doc = XDocument.Parse(fileContent);
         metaData = MetaData.ListFromXml(doc.Root.Element("MetaDataCollection"));
         heuristics = doc.Root.Element("Heuristic").Value;
