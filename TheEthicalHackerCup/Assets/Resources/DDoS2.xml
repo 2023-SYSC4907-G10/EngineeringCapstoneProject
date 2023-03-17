@@ -1,20 +1,28 @@
 <Quiz>
-<Slide Name="SLIDE 1">
-	<Content Type="Learning.InfoContent">Welcome</Content>
+<Slide Name="DDoS Upgrade Level 2">
+	<Content Type="Learning.ImageContent">DDoSLearning/DDoSinfo1</Content>
 </Slide>
-<Slide Name="SLIDE 2">
+<Slide Name="What are the goals of Bots?">
 	<Content Type="Learning.CheckBox">
-		<Correct>1</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
+		<Correct>0</Correct>
+		<Option>Take web resources offline</Option>
+		<Option>Shut down a computer</Option>
 	</Content>
 </Slide>
-<Slide Name="SLIDE 3">
+<Slide Name="How do you know when an attack happened?">
 	<Content Type="Learning.RadioBox">
 		<Selection>1</Selection>
 		<Correct>0</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
+		<Option>Website is slow/unavailable</Option>
+		<Option>Computer screen goes blue</Option>
+	</Content>
+</Slide>
+<Slide Name="What is a main characteristic of a good DDoS Attack?">
+	<Content Type="Learning.RadioBox">
+		<Selection>1</Selection>
+		<Correct>1</Correct>
+		<Option>The attack happens immediately</Option>
+		<Option>Bad bot traffic resembles regular human traffic flow to a site</Option>
 	</Content>
 </Slide>
 </Quiz>

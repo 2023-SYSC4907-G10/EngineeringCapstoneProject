@@ -1,20 +1,26 @@
 <Quiz>
-<Slide Name="SLIDE 1">
-	<Content Type="Learning.InfoContent">Welcome</Content>
+<Slide Name="DDoS Upgrade Level 3">
+	<Content Type="Learning.ImageContent">DDoSLearning/DDoSinfo1</Content>
 </Slide>
-<Slide Name="SLIDE 2">
+<Slide Name="What is one way to tell bad traffic?">
 	<Content Type="Learning.CheckBox">
 		<Correct>1</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
+		<Option>Lots of ads appear</Option>
+		<Option>Traffic is coming from one IP source</Option>
 	</Content>
 </Slide>
-<Slide Name="SLIDE 3">
-	<Content Type="Learning.RadioBox">
-		<Selection>1</Selection>
+<Slide Name="What is a hard part of defending from a DDoS attack?">
+	<Content Type="Learning.CheckBox">
+		<Correct>1</Correct>
+		<Option>Making firewalls</Option>
+		<Option>Differentiating from good traffic to bad traffic</Option>
+	</Content>
+</Slide>
+<Slide Name="What is an example of a system that is vulnerable from a DDoS attack?">
+	<Content Type="Learning.CheckBox">
 		<Correct>0</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
+		<Option>A Minecraft server</Option>
+		<Option>Photoshop</Option>
 	</Content>
 </Slide>
-</Quiz>z
+</Quiz>
