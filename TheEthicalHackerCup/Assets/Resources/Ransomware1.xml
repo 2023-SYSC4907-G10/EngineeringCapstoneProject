@@ -1,20 +1,55 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Welcome">
+		<Content Type="Learning.InfoContent">Welcome to the first Ransomware Quiz. This quiz contains information and questions about the basics of ransomware</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="General Information">
+		<Content Type="Learning.InfoContent">Ransomware is a type of malware that, when installed on your computer, will encrypt all your data making it inaccessible to you. The hackers who made the ransomware will give you the password to get your data back, but only if you pay them a sum of money</Content>
+	</Slide>
+	<Slide Name="General Information">
+		<Content Type="Learning.InfoContent">Ransomware and other types of malware can be hidden in any type of file (not just executable programs) This includes PDFs, Excel and Word Documents, or even video files.</Content>
+	</Slide>
+	<Slide Name="Which of the following file formats can result in ransomware">
 		<Content Type="Learning.CheckBox">
+			<Correct>0</Correct>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>PDF</Option>
+			<Option>Video Files</Option>
+			<Option>Executables</Option>
+			<Option>Word Files</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="all ransomware is malware but not all malware is ransomware">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>false</Option>
+			<Option>true</Option>
+		</Content>
+	</Slide>
+	<Slide Name="ransomware is undesirable to have on your computer">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>false</Option>
+			<Option>true</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Ransomware locks your files by encrypting the data">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>false</Option>
+			<Option>true</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Ransomware makers will unlock your files if you ask nicely">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>false</Option>
+			<Option>true</Option>
 		</Content>
 	</Slide>
 </Quiz>
