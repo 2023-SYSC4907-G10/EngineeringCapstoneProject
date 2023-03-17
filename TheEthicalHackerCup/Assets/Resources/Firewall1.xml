@@ -18,7 +18,7 @@
 			<Option>Application</Option>
 		</Content>
 	</Slide>
-	<Slide Name="What do basic packet filtering firewalls use to filter connections?">
+	<Slide Name="Select all factors that packet filtering firewalls use to filter connections?">
 		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
 			<Correct>2</Correct>
@@ -29,7 +29,7 @@
 			<Option>Connection direction</Option>
 		</Content>
 	</Slide>
-	<Slide Name="What are some advantages of using packet filtering firewalls?">
+	<Slide Name="Select all of the advantages of using packet filtering firewalls?">
 		<Content Type="Learning.CheckBox">
 			<Correct>1</Correct>
 			<Correct>3</Correct>
