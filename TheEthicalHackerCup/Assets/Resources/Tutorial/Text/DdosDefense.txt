@@ -1,0 +1,3 @@
+In this game your goal to to slice the red bots with your mouse while avoiding the green bots
+You win the game by running out the clock at the top right and lose by slicing a green bot
+When a bad bot is sliced it will turn grey indicating it is offline and can no longer be sliced

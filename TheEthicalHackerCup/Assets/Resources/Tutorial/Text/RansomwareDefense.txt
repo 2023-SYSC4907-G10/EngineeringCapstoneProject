@@ -1,0 +1,5 @@
+The objective is to classify incoming files as safe or as ransomware. The files metadata and data is shown in the left panel
+The signature and heuristic data to use will be shown in the right panel
+In order to deny or accept a file into the system, use the deny and accept buttons respectively
+The sandbox puts the file in an isolated environment. If the file is ransomware, the sandbox may or may not notify you.
+This label is the number of lives you have. Avoid losing them.

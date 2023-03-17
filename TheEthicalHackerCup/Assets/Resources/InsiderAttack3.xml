@@ -1,20 +1,21 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Insider Defense Upgrade Level 3">
+		<Content Type="Learning.ImageContent">InsiderAttack6</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
-			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+	<Slide Name="Are security cameras the most accurate tool for catching insiders">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>0</Correct>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="Do cameras give timestamps of events that occured">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
 </Quiz>

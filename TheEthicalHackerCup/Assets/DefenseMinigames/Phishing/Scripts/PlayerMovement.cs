@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void proceedToAfterActionReport(string afterActionReportMessage)
     {
-        GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        // GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportMessage);
     }
 }

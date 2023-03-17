@@ -1,20 +1,47 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Phishing Upgrade 1">
+		<Content Type="Learning.ImageContent">Phishing1_1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
-			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+	<Slide Name="Phishing Upgrade 1">
+		<Content Type="Learning.ImageContent">Phishing1_2</Content>
+	</Slide>
+	<Slide Name="Phishing Upgrade 1">
+		<Content Type="Learning.ImageContent">Phishing1_3</Content>
+	</Slide>
+	<Slide Name="Phishing Upgrade 1">
+		<Content Type="Learning.ImageContent">Phishing1_4</Content>
+	</Slide>
+	<Slide Name="Phishing Upgrade 1">
+		<Content Type="Learning.ImageContent">Phishing1_5</Content>
+	</Slide>
+	<Slide Name="Will email filters stop all phishing attacks from reaching your inbox?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>0</Correct>
+			<Option>Yes</Option>
+			<Option>No</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="What is the most common medium of phishing attacks?">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>SMS</Option>
+			<Option>Email</Option>
+			<Option>Mail</Option>
+			<Option>Fax</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Select all that are email filtering techniques">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>1</Correct>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>Reputation Based</Option>
+			<Option>Safelisting</Option>
+			<Option>Blocklisting</Option>
+			<Option>Language Filters</Option>
 		</Content>
 	</Slide>
 </Quiz>

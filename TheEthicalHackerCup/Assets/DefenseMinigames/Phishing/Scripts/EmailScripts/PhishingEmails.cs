@@ -74,7 +74,8 @@ public class PhishingEmails : MonoBehaviour
 
     private void proceedToAfterActionReport(string afterActionReportMessage)
     {
-        GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        // GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
+        GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportMessage);
     }
 
     void wonGame() {

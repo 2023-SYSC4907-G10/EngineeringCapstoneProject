@@ -13,9 +13,9 @@ public class GameManager
         SecurityConcepts.Ransomware,
     };
 
-    public const int MaxReputation = 100;
-    public const int MaxOpponentKnowledge = 100;
-    public const int MaxHeat = 100;
+    public const int MAX_RESPECT = 100;
+    public const int MAX_OPP_KNOWLEDGE = 100;
+    public const int MAX_HEAT = 100;
 
     // Static singleton
     private static GameManager _instance;
@@ -40,24 +40,15 @@ public class GameManager
 
     private string _afterActionReportText;
     private string _playerEmail;
-    
-    public string AfterActionReportText
-    {
-        get { return _afterActionReportText; }
-        set
-        {
-            Debug.LogWarning("DEPRECATED: Please replace GameManager.GetInstance().AfterActionReportText = \"...\" \nwith GameManager.GetInstance().SwitchToAfterActionReportScene(...)");
-            SwitchToAfterActionReportScene(value);
-        }
-    }
+
+    public string AfterActionReportText { get { return _afterActionReportText; } }
 
     // Main game fields (subscribable)
     private int _respect;
     private int _opponentKnowledge;
+    private Dictionary<string, bool> _tutorialSeen;
     private Dictionary<SecurityConcepts, SecurityConceptProgress> _securityConceptProgressDictionary;
-    private List<SecurityConcepts> _incomingAttackLog;// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
-
-
+    private List<SecurityConcepts> _currentDefenseMinigameOptions;
 
     // Update events to subscribe to
     public static event Action<int> OnRespectChange;
@@ -65,48 +56,34 @@ public class GameManager
     public static event Action<SecurityConcepts, int> OnDefenseUpgradeLevelsChange;
     public static event Action<SecurityConcepts, int> OnAttackMinigameAttemptChange;
     public static event Action<SecurityConcepts, int> OnAttackSpecificHeatChange;
-    public static event Action<SecurityConcepts> OnIncomingAttackLogChange;
-    /*
-        HOW TO SUBSCRIBE TO EVENTS
-        
-        // Consider this class the observable, to make a different area an observer, do this in an initializer method
-        GameManager.OnReputationChange += LocallyDefinedFunction_ParamMatchingAction
-        // In this case, LocallyDefinedFunction_ParamMatchingAction(int reputation) would be a defined function
-
-        // Make sure to make an OnDestroy() method to unsubscribe from the event like this 
-        GameManager.OnReputationChange -= LocallyDefinedFunction_ParamMatchingAction
-
-        NOTE THAT OBSERVERS ARE ADDED TO THE BASE CLASS AND NOT TO THE INSTANCE
-    */
 
     public void InitializeGameState()
     {
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _respect = 25;
-        _opponentKnowledge = 0;
+        _opponentKnowledge = 100;
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
         _playerEmail = "";
-
-        _incomingAttackLog = new List<SecurityConcepts>();// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+        _currentDefenseMinigameOptions = new List<SecurityConcepts>();
+        _tutorialSeen = new Dictionary<string, bool>();
+        _tutorialSeen.Add("AttackMenu", false);
+        _tutorialSeen.Add("DefenseMenu", false);
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
         {
+            _tutorialSeen.Add(concept.ToString() + "_Defense", false);
+            _tutorialSeen.Add(concept.ToString() + "_Attack", false);
+            _currentDefenseMinigameOptions.Add(concept);
             int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
             _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
         }
     }
 
 
-
-    /*
-        HOW TO CALL THESE METHODS
-        GameManager.GetInstance().SetReputation(20);
-        MAKE SURE TO USE THE INSTANCE PROPERTY AS THAT IS THE SINGLE INSTANCE
-    */
     // Getters
     public string GetNextLearningMinigameFilename()
     {
@@ -123,30 +100,15 @@ public class GameManager
     public int GetRespect() { return _respect; }
     public int GetOpponentKnowledge() { return _opponentKnowledge; }
     public Dictionary<SecurityConcepts, SecurityConceptProgress> GetSecurityConceptProgressDictionary() { return _securityConceptProgressDictionary; }
-    public int GetDefenseUpgradeLevel(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel();
-    }
-    public int GetMaxDefenseUpgradeLevel(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetMaxDefenseUpgradeLevel();
-    }
-    public int GetAttackMinigamesAttempted(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted();
-    }
-    public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade();
-    }
-    public int GetAttackSpecificHeat(SecurityConcepts concept)
-    {
-        return _securityConceptProgressDictionary[concept].GetHeat();
-    }
-    public List<SecurityConcepts> GetIncommingAttackLog() { return _incomingAttackLog; }// REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
+    public int GetDefenseUpgradeLevel(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel(); }
+    public int GetMaxDefenseUpgradeLevel(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetMaxDefenseUpgradeLevel(); }
+    public int GetAttackMinigamesAttempted(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetAttackMinigamesAttempted(); }
+    public int GetAttackMinigamesAttemptsRequiredToUpgrade(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetAttackMinigameAttemptsRequiredToUpgrade(); }
+    public int GetAttackSpecificHeat(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetHeat(); }
+    public string GetPlayerEmail() { return this._playerEmail; }
 
-    public string GetPlayerEmail() {
-        return this._playerEmail;
+    public bool GetTutorialSeen(string tutorialName) {
+        return this._tutorialSeen[tutorialName];
     }
 
     // Boolean indicators
@@ -162,24 +124,92 @@ public class GameManager
         return true;
     }
 
+    public SecurityConcepts GetNextDefenseMinigame()
+    {
+        // Try to get least upgraded
+        int currentLowestUpgradeLevel = _securityConceptProgressDictionary[_currentDefenseMinigameOptions[0]].GetCurrentDefenseUpgradeLevel();
+
+        foreach (SecurityConcepts concept in _currentDefenseMinigameOptions)
+        {
+            currentLowestUpgradeLevel = Math.Min(currentLowestUpgradeLevel, _securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel());
+        }
+
+        List<SecurityConcepts> lowestUpgradedConcepts = new List<SecurityConcepts>();
+        foreach (SecurityConcepts concept in _currentDefenseMinigameOptions)
+        {
+            if (_securityConceptProgressDictionary[concept].GetCurrentDefenseUpgradeLevel() == currentLowestUpgradeLevel)
+            {
+                lowestUpgradedConcepts.Add(concept);
+            }
+        }
+        if (lowestUpgradedConcepts.Count == 1) { return UpdateCurrentDefenseMinigameOptions(lowestUpgradedConcepts[0]); }
+
+
+        // When upgrade levels tied, choose highest heat of the tied ones
+        int currentHighestHeatLevel = _securityConceptProgressDictionary[lowestUpgradedConcepts[0]].GetHeat();
+        foreach (SecurityConcepts concept in lowestUpgradedConcepts)
+        {
+            currentHighestHeatLevel = Math.Max(currentHighestHeatLevel, _securityConceptProgressDictionary[concept].GetHeat());
+        }
+        List<SecurityConcepts> highestHeatConcepts = new List<SecurityConcepts>();
+        foreach (SecurityConcepts concept in _currentDefenseMinigameOptions)
+        {
+            if (_securityConceptProgressDictionary[concept].GetHeat() == currentHighestHeatLevel)
+            {
+                highestHeatConcepts.Add(concept);
+            }
+        }
+        if (highestHeatConcepts.Count == 1) { return UpdateCurrentDefenseMinigameOptions(highestHeatConcepts[0]); }
+
+
+        // If all heat values are tied, randomly select from the heat tied ones
+        return UpdateCurrentDefenseMinigameOptions(highestHeatConcepts[UnityEngine.Random.Range(0, highestHeatConcepts.Count)]);
+    }
+
+    private SecurityConcepts UpdateCurrentDefenseMinigameOptions(SecurityConcepts concecptAboutToBeReturned)
+    {
+        _currentDefenseMinigameOptions.RemoveAll(concept => concept == concecptAboutToBeReturned);
+
+        if (_currentDefenseMinigameOptions.Count <= 0)
+        {
+            //After the last sec concept is done for this round, start the next round by re-filling the list
+            foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
+            {
+                _currentDefenseMinigameOptions.Add(concept);
+            }
+        }
+        // Return input param so that this method can be the return value
+        return concecptAboutToBeReturned;
+    }
+
 
     // Primitive Setters
 
     public void SetRespect(int respect)
     {
-        if (respect >= 0 && respect < MaxReputation)
+        this._respect = respect;
+        if (respect <= 0)
         {
-            this._respect = respect;
-            OnRespectChange?.Invoke(respect);
+            this._respect = 0;
         }
+        else if (respect >= MAX_RESPECT)
+        {
+            this._respect = MAX_RESPECT;
+        }
+        OnRespectChange?.Invoke(this._respect);
     }
     public void SetOpponentKnowledge(int opponentKnowledge)
     {
-        if (opponentKnowledge >= 0 && opponentKnowledge < MaxOpponentKnowledge)
+        this._opponentKnowledge = opponentKnowledge;
+        if (opponentKnowledge <= 0)
         {
-            this._opponentKnowledge = opponentKnowledge;
-            OnOpponentKnowledgeChange?.Invoke(opponentKnowledge);
+            this._opponentKnowledge = 0;
         }
+        else if (opponentKnowledge >= MAX_OPP_KNOWLEDGE)
+        {
+            this._opponentKnowledge = MAX_OPP_KNOWLEDGE;
+        }
+        OnOpponentKnowledgeChange?.Invoke(this._opponentKnowledge);
     }
 
     public void SwitchToAfterActionReportScene(string afterActionReportText)
@@ -188,8 +218,17 @@ public class GameManager
         SceneManager.LoadScene("AfterActionReport");
     }
 
-    public void SetPlayerEmail(string email) {
+    public void SetPlayerEmail(string email)
+    {
         this._playerEmail = email;
+    }
+
+    public void SetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = true;
+    }
+    
+    public void ResetTutorialSeen(string tutorialName) {
+        this._tutorialSeen[tutorialName] = false;
     }
 
 
@@ -215,12 +254,6 @@ public class GameManager
         {
             OnAttackSpecificHeatChange?.Invoke(concept, this._securityConceptProgressDictionary[concept].GetHeat());
         }
-    }
-    public void UpdateIncommingAttackLog(SecurityConcepts concept)
-    {
-        // REVISIT THIS WHEN ADDRESSING INCOMMING ATTACK FREQUENCY
-        this._incomingAttackLog.Add(concept);
-        OnIncomingAttackLogChange?.Invoke(concept);
     }
 
     public void StartLearningMinigameUpgradeQuiz(SecurityConcepts nextLearningMinigameSecurityConcept)
@@ -249,7 +282,7 @@ public class GameManager
 
 
     // Changers
-    public void ChangeReputation(int change) { this.SetRespect(this._respect + change); }
+    public void ChangeRespect(int change) { this.SetRespect(this._respect + change); }
     public void ChangeOpponentKnowledge(int change) { this.SetOpponentKnowledge(this._opponentKnowledge + change); }
 }
 

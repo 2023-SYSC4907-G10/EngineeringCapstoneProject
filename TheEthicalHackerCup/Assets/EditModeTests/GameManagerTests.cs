@@ -26,7 +26,6 @@ public class GameManagerTests
         // Never do this under normal circumstances. 
         // Simply referencing the GameManager.GetInstance() as shown below should suffice
 
-
         this._assertCalls = 0;
     }
 
@@ -45,7 +44,59 @@ public class GameManagerTests
         this._assertCalls++;
     }
 
+    [Test]
+    public void NextDefenseMinigameTest()
+    {
+        BeforeEach();
+        GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.DDoS);
+        GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.InsiderAttack);
+        GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Firewall);
+        GameManager.GetInstance().AttemptAttackMinigame(SecurityConcepts.Phishing);
 
+        GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.DDoS);
+        GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.InsiderAttack);
+        GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.Firewall);
+        GameManager.GetInstance().UpgradeDefenseUpgradeLevel(SecurityConcepts.Phishing);
+
+        GameManager.GetInstance().ChangeAttackSpecificHeat(SecurityConcepts.DDoS, 80);
+        GameManager.GetInstance().ChangeAttackSpecificHeat(SecurityConcepts.InsiderAttack, 20);
+
+        // Least upgraded
+        Assert.AreEqual(SecurityConcepts.Ransomware, GameManager.GetInstance().GetNextDefenseMinigame());
+
+        // Then prioritize highest heat
+        Assert.AreEqual(SecurityConcepts.DDoS, GameManager.GetInstance().GetNextDefenseMinigame());
+        Assert.AreEqual(SecurityConcepts.InsiderAttack, GameManager.GetInstance().GetNextDefenseMinigame());
+
+        // Random selection now to complete the cylce
+        Assert.Contains(
+            GameManager.GetInstance().GetNextDefenseMinigame(),
+            new[] { SecurityConcepts.Firewall, SecurityConcepts.Phishing },
+            "Error in determining next defense minigame"
+        );
+        Assert.Contains(
+            GameManager.GetInstance().GetNextDefenseMinigame(),
+            new[] { SecurityConcepts.Firewall, SecurityConcepts.Phishing },
+            "Error in determining next defense minigame"
+        );
+
+        //After the cycle resets, should still return the least upgraded
+        Assert.AreEqual(SecurityConcepts.Ransomware, GameManager.GetInstance().GetNextDefenseMinigame());
+        // Then prioritize highest heat again
+        Assert.AreEqual(SecurityConcepts.DDoS, GameManager.GetInstance().GetNextDefenseMinigame());
+        Assert.AreEqual(SecurityConcepts.InsiderAttack, GameManager.GetInstance().GetNextDefenseMinigame());
+        // Random selection now to complete the cylce again
+        Assert.Contains(
+            GameManager.GetInstance().GetNextDefenseMinigame(),
+            new[] { SecurityConcepts.Firewall, SecurityConcepts.Phishing },
+            "Error in determining next defense minigame"
+        );
+        Assert.Contains(
+            GameManager.GetInstance().GetNextDefenseMinigame(),
+            new[] { SecurityConcepts.Firewall, SecurityConcepts.Phishing },
+            "Error in determining next defense minigame"
+        );
+    }
 
     [Test]
     public void NextLearningMinigameFilenameTest()
@@ -65,27 +116,31 @@ public class GameManagerTests
 
 
     [Test]
-    public void ReputationTest()
+    public void RespectTest()
     {
         BeforeEach();
 
         GameManager.OnRespectChange += AssertIntegerEquals;
-        Assert.AreEqual(0, GameManager.GetInstance().GetRespect());
+        Assert.AreEqual(25, GameManager.GetInstance().GetRespect());
+        _currentExpectedInteger = 0;
+        GameManager.GetInstance().ChangeRespect(-25);
         // Increase by 20 from 0
         _currentExpectedInteger = 20;
-        GameManager.GetInstance().ChangeReputation(20);
+        GameManager.GetInstance().ChangeRespect(20);
 
         // Decrease by 10 from 20
         _currentExpectedInteger = 10;
-        GameManager.GetInstance().ChangeReputation(-10);
+        GameManager.GetInstance().ChangeRespect(-10);
 
-        // Fail to decrease into the negatives. Stay at 10
-        GameManager.GetInstance().ChangeReputation(-100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetRespect());
+        // Attempt to decrease into the negatives. Stay at 0
+        _currentExpectedInteger = 0;
+        GameManager.GetInstance().ChangeRespect(-100);
+        Assert.AreEqual(0, GameManager.GetInstance().GetRespect());
 
-        // Fail to increase past limit. Stay at 10
-        GameManager.GetInstance().ChangeReputation(GameManager.MaxReputation + 100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetRespect());
+        // try to increase past limit. Stay at limit
+        _currentExpectedInteger = GameManager.MAX_RESPECT;
+        GameManager.GetInstance().ChangeRespect(GameManager.MAX_RESPECT + 100);
+        Assert.AreEqual(GameManager.MAX_RESPECT, GameManager.GetInstance().GetRespect());
 
         // Set Directly
         _currentExpectedInteger = 88;
@@ -93,7 +148,7 @@ public class GameManagerTests
         Assert.AreEqual(88, GameManager.GetInstance().GetRespect());
 
         GameManager.OnRespectChange -= AssertIntegerEquals;
-        Assert.AreEqual(3, this._assertCalls);
+        Assert.AreEqual(6, this._assertCalls);
     }
 
     [Test]
@@ -112,13 +167,15 @@ public class GameManagerTests
         _currentExpectedInteger = 10;
         GameManager.GetInstance().ChangeOpponentKnowledge(-10);
 
-        // Fail to decrease into the negatives. Stay at 10
+        // Attempting to decrease into the negatives. Stay at zero
+        _currentExpectedInteger = 0;
         GameManager.GetInstance().ChangeOpponentKnowledge(-100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetOpponentKnowledge());
+        Assert.AreEqual(0, GameManager.GetInstance().GetOpponentKnowledge());
 
-        // Fail to increase past limit. Stay at 10
-        GameManager.GetInstance().ChangeOpponentKnowledge(GameManager.MaxOpponentKnowledge + 100);
-        Assert.AreEqual(10, GameManager.GetInstance().GetOpponentKnowledge());
+        // Attempt to increase past limit. Stay at max
+        _currentExpectedInteger = GameManager.MAX_OPP_KNOWLEDGE;
+        GameManager.GetInstance().ChangeOpponentKnowledge(GameManager.MAX_OPP_KNOWLEDGE + 100);
+        Assert.AreEqual(GameManager.MAX_OPP_KNOWLEDGE, GameManager.GetInstance().GetOpponentKnowledge());
 
         // Set Directly
         _currentExpectedInteger = 88;
@@ -126,7 +183,7 @@ public class GameManagerTests
         Assert.AreEqual(88, GameManager.GetInstance().GetOpponentKnowledge());
 
         GameManager.OnOpponentKnowledgeChange -= AssertIntegerEquals;
-        Assert.AreEqual(3, this._assertCalls);
+        Assert.AreEqual(5, this._assertCalls);
     }
 
     [Test]
@@ -313,7 +370,7 @@ public class GameManagerTests
         AssertAllHeatEquals(99);
 
         // Attempt and fail to change all heats beyone upper limit. Remain at 99
-        tryToChangeAllHeats(GameManager.MaxHeat);
+        tryToChangeAllHeats(GameManager.MAX_HEAT);
         AssertAllHeatEquals(99);
 
         GameManager.OnAttackSpecificHeatChange -= AssertSecurityConceptAndIntegerEquals;

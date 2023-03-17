@@ -1,20 +1,44 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Welcome to the second ransomware quiz">
+		<Content Type="Learning.InfoContent">This quiz will focus on avoiding and detecting ransomware</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
-			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+	<Slide Name="Avoidance">
+		<Content Type="Learning.InfoContent">Avoiding ransomware, and malware in general is simple from a users point of view. As long as their system stays up to date and the only things being downloaded are from trusted sources, this in most cases is suffient.</Content>
+	</Slide>
+	<Slide Name="Detection">
+		<Content Type="Learning.InfoContent">Antivirus is the second line of defense. If someone installs malware, antivirus is a type of program designed to detect and prevent the malware from running.</Content>
+	</Slide>
+	<Slide Name="Detection">
+		<Content Type="Learning.InfoContent">Antivirus used to classify files via signiture detection. This is where it would analyze the contents of the file and see if it recognizes any patterns of known viruses.</Content>
+	</Slide>
+	<Slide Name="Detection">
+		<Content Type="Learning.InfoContent">Modern antiviruses work through heuristic detection alongside signiture detection. Heuristic detection is where the viruses are detected by running the program and analyzing its behaviour within an environment where the virus wont cause any damage.</Content>
+	</Slide>
+
+	<Slide Name="Antivirus is the first line of defense against ransomware">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>0</Correct>
+			<Option>False</Option>
+			<Option>True</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
+	<Slide Name="Computer users should download anything from anywhere without worry">
 		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>False</Option>
+			<Option>True</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Modern antiviruses work via">
+		<Content Type="Learning.CheckBox">
+			<Correct>0</Correct>
+			<Correct>2</Correct>
+			<Option>Signiture Based Detection</Option>
+			<Option>Guess and Check</Option>
+			<Option>Heuristic Based Detection</Option>
+			<Option>Medium Based Detection</Option>
 		</Content>
 	</Slide>
 </Quiz>

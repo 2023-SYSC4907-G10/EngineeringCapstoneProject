@@ -1,0 +1,5 @@
+In this game, you play as ransomware. You control the ransomware by your arrow keys or the WASD keys.
+Your objective is to encrypt all files in the system. These files are redundant copies of the same data, and therefore all must be locked to win.
+By keeping the ransomware on a file long enough, the data will change into a encrypted state denoted by the lock icon on the file.
+The layout of the game is like a maze. This is to represent the difficulties of finding exploits in software systems.
+The cops represent protection systems such as antivirus. If you let one of them touch you, then you will lose.
