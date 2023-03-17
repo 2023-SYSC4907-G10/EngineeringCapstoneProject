@@ -13,16 +13,19 @@ public class RansomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameOver += delegate (object sender, GameOverEvent evt) 
+        GameOver += delegate (object sender, GameOverEvent evt)
         {
-            //Debug.Log("Game Over");
-
-            GameManager.GetInstance().SwitchToAfterActionReportScene("You " + (evt.Win ? "encrypted all their files" : "got caught and removed from the system"));
+            GameManager.GetInstance().ChangeRespect(evt.Win ? 10 : -10);
+            GameManager.GetInstance().SwitchToAfterActionReportScene(
+                "You " +
+                (evt.Win ?
+                    "Successfully encrypted all their files!\n +10 Respect" :
+                    "FAILED! You got caught and removed from the system\n -10 Respect"
+                ));
             // idk put a call to the game manager here or something idc
         };
         FileLocked += delegate (object sender, FileLockedEvent evt)
         {
-            //Debug.Log("File Locked");
         };
     }
 
@@ -43,11 +46,11 @@ public class RansomManager : MonoBehaviour
                 fileCount = value;
                 FileLocked.Invoke(this, new FileLockedEvent(fileCount));
             }
-            else 
+            else
             {
                 fileCount = value;
             }
-            
+
         }
     }
 

@@ -1,20 +1,41 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Firewall Upgrade 3">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall3_1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="Firewall Upgrade 3">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall3_2</Content>
+	</Slide>
+	<Slide Name="Select all contexts that make next-gen firewalls better than traditional firewalls">
 		<Content Type="Learning.CheckBox">
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>When there are budget constraints</Option>
+			<Option>When performance is not prioritized</Option>
+			<Option>When a company's security reputation is at stake</Option>
+			<Option>When new and novel threats are encountered frequently</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+		<Slide Name="Select all features of next-generation firewalls?">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>1</Correct>
+			<Correct>3</Correct>
+			<Option>Deep packet inspection</Option>
+			<Option>Dynamic security updates</Option>
+			<Option>Encryption and decryption</Option>
+			<Option>Intrusion prevention systems</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Select all true statements">
+		<Content Type="Learning.CheckBox">
+			<Correct>0</Correct>
+			<Correct>2</Correct>
+			<Correct>3</Correct>
+			<Option>Next-generation firewalls sacrifice performance for security</Option>
+			<Option>Next-generation firewalls are often the cheapest available option</Option>
+			<Option>Next-generation firewalls analyze multiple networking layers</Option>
+			<Option>Next-generation firewalls track active connections</Option>
 		</Content>
 	</Slide>
 </Quiz>

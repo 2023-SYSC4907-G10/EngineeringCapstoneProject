@@ -21,9 +21,9 @@ public class HUD_IncomingAttack : MonoBehaviour
     {
         _timeUntilNextRespectPointLoss = RESPECT_POINT_LOSS_PERIOD;
         _timeUntilNextDefenseMinigame = DEFENSE_MINIGAME_MINIMUM_DELAY;
-        _currentDefenseMinigame = SecurityConcepts.Firewall;
-        ShowWarningPanel(_currentDefenseMinigame);
-        // HideWarningPanel();
+        // _currentDefenseMinigame = SecurityConcepts.Firewall;
+        // ShowWarningPanel(_currentDefenseMinigame);
+        HideWarningPanel();
     }
 
     // Update is called once per frame
@@ -51,6 +51,7 @@ public class HUD_IncomingAttack : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
+                HideWarningPanel();
                 // Defend
                 if (!GameManager.GetInstance().GetTutorialSeen(_currentDefenseMinigame.ToString() + "_Defense"))
                 {

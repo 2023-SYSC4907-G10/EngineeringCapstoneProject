@@ -94,18 +94,14 @@ public class Shooter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (state == State.Shooting) {
-            Debug.Log("hit detected");
             if (collider.gameObject.tag == "Fish" && shootingMode != ShootingMode.Phishing) {
                 state = State.Hit;
-                Debug.Log("Wrong tool");
                 return;
             } else if (collider.gameObject.tag == "SpearFish" && shootingMode != ShootingMode.SpearFish) {
                 state = State.Hit;
-                Debug.Log("Wrong tool");
                 return;
             } else if (collider.gameObject.tag == "Whale" && shootingMode != ShootingMode.Harpooning) {
                 state = State.Hit;
-                Debug.Log("Wrong tool");
                 return;
             }
 

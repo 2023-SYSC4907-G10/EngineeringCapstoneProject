@@ -23,7 +23,6 @@ public class Phishing : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Debug.Log("Phishing Selected");
         shooter.SendMessage("selectPhishing");
         gameObject.GetComponent<SpriteRenderer>().sprite = selected;
         spearFishing.SendMessage("unSelect");

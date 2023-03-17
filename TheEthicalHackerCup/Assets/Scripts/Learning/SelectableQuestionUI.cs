@@ -44,7 +44,6 @@ public class SelectableQuestionUI : MonoBehaviour
     private void makeButtons(ISelectQuestionState state)
     {
     	jdkjdw++;
-    	Debug.Log("COUNT:"+state.GetOptions().Count+" hello:"+jdkjdw);
         for (int i = 0; i < state.GetOptions().Count; i++)
         {
             var button = GameObject.Instantiate(buttonPrefab);

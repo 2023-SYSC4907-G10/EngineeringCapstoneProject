@@ -28,8 +28,29 @@ public class FWD_Timer : MonoBehaviour
         else
         {
             // End the game
+
+            int goodPacketsBurned = FWD_Manager.GetInstance().GetGoodPacketsBurned();
+            int badPacketsReceived = FWD_Manager.GetInstance().GetBadPacketsReceived();
+            string endStatement = "Good packets burned: " +goodPacketsBurned + "\n";
+            endStatement +=  "Bad packets received: "+badPacketsReceived + "\n";
+            if (goodPacketsBurned == 0 && badPacketsReceived == 0)
+            {
+                endStatement += "Flawless victory! +20 Respect!";
+                GameManager.GetInstance().ChangeRespect(20);
+            }
+            else if (goodPacketsBurned <= 10 && badPacketsReceived <= 10)
+            {
+                GameManager.GetInstance().ChangeRespect(10);
+                endStatement += "Good work! +10 Respect";
+            }
+            else
+            {
+                GameManager.GetInstance().ChangeRespect(-10);
+                endStatement += "We need a better firewall system. -10 Respect";
+            }
+
             FWD_Manager.GetInstance().EndGame();
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall defense minigame finished");
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall defense minigame finished\n\n" + endStatement);
         }
     }
 }

@@ -6,13 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager
 {
     // Constants
-    public static readonly SecurityConcepts[] With3Upgrades =
-    { // Currently based on proposal. Those not in here have 4 upgrades
-        SecurityConcepts.DDoS,
-        SecurityConcepts.Firewall,
-        SecurityConcepts.Ransomware,
-    };
-
     public const int MAX_RESPECT = 100;
     public const int MAX_OPP_KNOWLEDGE = 100;
     public const int MAX_HEAT = 100;
@@ -62,7 +55,7 @@ public class GameManager
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _respect = 25;
-        _opponentKnowledge = 100;
+        _opponentKnowledge = 100; //TODO: Review starting oppKnowledge. Easier to be non-zero for demo purposes
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
@@ -78,8 +71,7 @@ public class GameManager
             _tutorialSeen.Add(concept.ToString() + "_Defense", false);
             _tutorialSeen.Add(concept.ToString() + "_Attack", false);
             _currentDefenseMinigameOptions.Add(concept);
-            int currentMaxUpgrade = Array.Exists(With3Upgrades, sc => sc == concept) ? 3 : 4;
-            _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(currentMaxUpgrade));
+            _securityConceptProgressDictionary.Add(concept, new SecurityConceptProgress(3));
         }
     }
 
@@ -107,7 +99,8 @@ public class GameManager
     public int GetAttackSpecificHeat(SecurityConcepts concept) { return _securityConceptProgressDictionary[concept].GetHeat(); }
     public string GetPlayerEmail() { return this._playerEmail; }
 
-    public bool GetTutorialSeen(string tutorialName) {
+    public bool GetTutorialSeen(string tutorialName)
+    {
         return this._tutorialSeen[tutorialName];
     }
 
@@ -223,11 +216,13 @@ public class GameManager
         this._playerEmail = email;
     }
 
-    public void SetTutorialSeen(string tutorialName) {
+    public void SetTutorialSeen(string tutorialName)
+    {
         this._tutorialSeen[tutorialName] = true;
     }
-    
-    public void ResetTutorialSeen(string tutorialName) {
+
+    public void ResetTutorialSeen(string tutorialName)
+    {
         this._tutorialSeen[tutorialName] = false;
     }
 

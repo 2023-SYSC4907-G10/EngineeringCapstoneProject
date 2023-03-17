@@ -5,23 +5,20 @@ using UnityEngine;
 public class SpawnFinishLine : MonoBehaviour
 {
     public GameObject finishLine;
-    public int timeUntilSpawn;
-    private int startFrame;
+    public float timeUntilSpawn;
     private bool hasFinishLineSpawnedYet;
 
-    //TODO: Initialize timeUntilSpawn in Start() method
     void Start()
     {
-        startFrame = Time.frameCount;
+        timeUntilSpawn = 10f;
         hasFinishLineSpawnedYet = false;
-        
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.fixedTime == startFrame + timeUntilSpawn && hasFinishLineSpawnedYet == false)
+        timeUntilSpawn -= Time.deltaTime;
+        if (timeUntilSpawn <= 0 && hasFinishLineSpawnedYet == false)
         {
             Spawn();
             hasFinishLineSpawnedYet = true;
@@ -30,7 +27,7 @@ public class SpawnFinishLine : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(finishLine, transform.position + new Vector3(1, 1 , 0), transform.rotation);
+        Instantiate(finishLine, transform.position + new Vector3(1, 1, 0), transform.rotation);
     }
 
 }

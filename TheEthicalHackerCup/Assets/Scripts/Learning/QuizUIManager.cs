@@ -40,7 +40,6 @@ namespace Learning
             imageUi = new ImageUI(imagePanel);
             videoUi = new VideoUI(videoPanel);
 
-            
             nextText = nextButton.GetComponentInChildren<TextMeshProUGUI>();
             nextText.text = "Next";
             title.text = "Bruh";
@@ -63,14 +62,13 @@ namespace Learning
         }
         private void handleClosed(object sender, QuizClosedEvent evt)
         {
-            Debug.Log(evt.pass ? "Quiz Passed" : "Quiz Failed");
-            GameManager.GetInstance().EndLearningMinigame(evt.pass); //TODO: WHEN IN TUTORIAL MODE, THIS PARAM MUST BE FALSE.
+            GameManager.GetInstance().EndLearningMinigame(evt.pass);
         }
 
         private void handleNextSlide(object sender, NextSlideEvent evt)
         {
             var slide = evt.slide;
-            this.title.text =  slide.Name;
+            this.title.text = slide.Name;
             var content = slide.Content;
 
             clearContent();
@@ -108,7 +106,7 @@ namespace Learning
             current.Start(content);
         }
 
-        private void clearContent() 
+        private void clearContent()
         {
             if (current != null)
             {

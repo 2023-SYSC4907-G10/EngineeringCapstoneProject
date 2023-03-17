@@ -31,7 +31,6 @@ public class FWD_Manager
     private bool _isPregameState;
     private int _goodPacketsBurned;
     private int _badPacketsReceived;
-
     public void InitializeGameState()
     {
         DifficultyLevel = new FWD_DifficultyLevel(GameManager.GetInstance().GetDefenseUpgradeLevel(SecurityConcepts.Firewall));
@@ -50,6 +49,15 @@ public class FWD_Manager
     {
         _badPacketsReceived++;
         OnBadPacketsReceivedChange?.Invoke(_badPacketsReceived);
+    }
+
+    public int GetGoodPacketsBurned()
+    {
+        return _goodPacketsBurned;
+    }
+    public int GetBadPacketsReceived()
+    {
+        return _badPacketsReceived;
     }
 
     public void StartGame()

@@ -1,20 +1,37 @@
-<Quiz Name="Firewa<Quiz>
-<Slide Name="SLIDE 1">
-	<Content Type="Learning.InfoContent">Welcome</Content>
-</Slide>
-<Slide Name="SLIDE 2">
-	<Content Type="Learning.CheckBox">
-		<Correct>1</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
-	</Content>
-</Slide>
-<Slide Name="SLIDE 3">
-	<Content Type="Learning.RadioBox">
-		<Selection>1</Selection>
-		<Correct>0</Correct>
-		<Option>Hello</Option>
-		<Option>Bruh</Option>
-	</Content>
-</Slide>
+<Quiz>
+	<Slide Name="Firewall Upgrade 2">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall2_1</Content>
+	</Slide>
+	<Slide Name="Firewall Upgrade 2">
+		<Content Type="Learning.ImageContent">FirewallLearning/Firewall2_2</Content>
+	</Slide>
+	<Slide Name="Select all true statements">
+		<Content Type="Learning.CheckBox">
+			<Correct>1</Correct>
+			<Correct>2</Correct>
+			<Option>Network level firewalls can safely replace device level firewalls</Option>
+			<Option>Network level firewalls can be used to block websites on a network</Option>
+			<Option>VPNs can be used to bypass network level firewalls</Option>
+			<Option>Network level firewalls have no effect on network performance</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Select all applications of network based firewalls">
+		<Content Type="Learning.CheckBox">
+			<Correct>0</Correct>
+			<Correct>3</Correct>
+			<Option>Internet censorship</Option>
+			<Option>Communication encryption</Option>
+			<Option>Impersonation of other networks and devices</Option>
+			<Option>Internet parental controls</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Which of the following is the least secure?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>2</Correct>
+			<Option>Having firewalls on the network and on each device</Option>
+			<Option>Only having firewalls on the network</Option>
+			<Option>Only having firewalls on each device</Option>
+		</Content>
+	</Slide>
 </Quiz>

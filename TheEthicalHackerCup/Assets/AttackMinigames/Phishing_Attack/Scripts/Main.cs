@@ -31,19 +31,19 @@ public class Main : MonoBehaviour
         count--;
         if (count == 0)
         {
-            proceedToAfterActionReport("Phishing WIN :)");
+            GameManager.GetInstance().ChangeRespect(10);
+            proceedToAfterActionReport("Phishing WIN!\n +10 Respect");
         }
     }
 
     void outOfTime()
     {
-        Debug.Log("game loss");
-        proceedToAfterActionReport("Phishing loss :(");
+        GameManager.GetInstance().ChangeRespect(-10);
+        proceedToAfterActionReport("Phishing loss.\n -10 Respect");
     }
 
     private void proceedToAfterActionReport(string afterActionReportMessage)
     {
-        // GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
         GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportMessage);
     }
 

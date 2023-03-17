@@ -39,24 +39,27 @@ public class PhishingEmails : MonoBehaviour
                 state = EmailState.showAnnotatedEmail;
             } else {
                 if (win) {
-                    proceedToAfterActionReport("You have won the game");
+                    GameManager.GetInstance().ChangeRespect(10);
+                    proceedToAfterActionReport("You have won the game\n +10 Respect");
                 } else {
-                    proceedToAfterActionReport("You have lost the game");
+                    GameManager.GetInstance().ChangeRespect(-10);
+                    proceedToAfterActionReport("You have lost the game.\n -10 Respect");
                 }
 
             }
         } else if (Input.GetMouseButtonDown(0) && state == EmailState.showAnnotatedEmail){
             emails[randomEmail].SendMessage("clearEmail");
             if (win) {
-                proceedToAfterActionReport("You have won the game");
+                GameManager.GetInstance().ChangeRespect(10);
+                proceedToAfterActionReport("You have won the game\n +10 Respect");
             } else {
-                proceedToAfterActionReport("You have lost the game");
+                GameManager.GetInstance().ChangeRespect(-10);
+                proceedToAfterActionReport("You have lost the game.\n -10 Respect");
             }
         }
     }
 
     void foundFile() {
-        Debug.Log(emails.Length);
         randomEmail = Random.Range(0, emails.Length);
         emails[randomEmail].SendMessage("foundFile");
         state = EmailState.showEmail;
@@ -74,7 +77,6 @@ public class PhishingEmails : MonoBehaviour
 
     private void proceedToAfterActionReport(string afterActionReportMessage)
     {
-        // GameManager.GetInstance().AfterActionReportText = afterActionReportMessage;
         GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportMessage);
     }
 

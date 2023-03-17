@@ -253,7 +253,6 @@ class SlideTest {
 
         var xml = slide.toXml();
         var c2 = Slide.FromXml(xml);
-        Debug.Log(xml.ToString());
         Assert.AreEqual(slide.toXml().ToString(), c2.toXml().ToString());
     }
 

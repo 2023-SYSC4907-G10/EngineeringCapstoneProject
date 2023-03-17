@@ -6,8 +6,6 @@ public class ContinueButtonHandler : MonoBehaviour
 
     public void HandleContinueButtonClick()
     {
-        //SAMPLE CALL BELOW USED TO TEST TUTORIAL GOING TO LEARNINGSCENE AND THEN RETURNING TO ORIGINAL SCENE
-        // GameManager.GetInstance().StartLearningMinigameTutorial("Firewall4"); 
         if (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Intro)
         {
             CanvasUI.SetActive(false); // Hiding Canvas UI layers
@@ -15,8 +13,15 @@ public class ContinueButtonHandler : MonoBehaviour
         }
         else
         {
+            GameManager.GetInstance().ChangeRespect(
+                FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? 10 : -10
+            );
+
             FirewallAttackGameManager.GetInstance().InitializeGameState();
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall attack completed dude");
+            GameManager.GetInstance().SwitchToAfterActionReportScene(
+                "Firewall attack completed!\n" +
+                (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? "+" : "-")
+                + "10 Respect");
         }
     }
 }

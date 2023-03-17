@@ -24,7 +24,6 @@ public class SpearPhishingScript : MonoBehaviour
 
 
     void OnMouseDown() {
-        Debug.Log("Spear Phishing Selected");
         shooter.SendMessage("selectSpearFishing");
         gameObject.GetComponent<SpriteRenderer>().sprite = selected;
         phishing.SendMessage("unSelect");
