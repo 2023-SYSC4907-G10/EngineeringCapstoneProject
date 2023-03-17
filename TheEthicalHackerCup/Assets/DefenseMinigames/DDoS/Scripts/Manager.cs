@@ -74,13 +74,13 @@ public class Manager : MonoBehaviour
     public void Continue()
     {
         GameManager.GetInstance().ChangeRespect(-10);
-        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Defense Failed.");
+        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Defense Failed.\n -10 Respect");
     }
 
 
     public void GoodContinue()
     {
         GameManager.GetInstance().ChangeRespect(10);
-        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Defense Successful.");
+        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Defense Successful.\n +10 Respect");
     }
 }

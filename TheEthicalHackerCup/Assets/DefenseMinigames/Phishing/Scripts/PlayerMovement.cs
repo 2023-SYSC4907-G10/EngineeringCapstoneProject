@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     private void RestartLevel()
     {
         GameManager.GetInstance().ChangeRespect(-10);
-        proceedToAfterActionReport("You have lost the game");
+        proceedToAfterActionReport("You have lost the game\n -10 Respect");
     }
 
     public void goToSelectionAreaAndFeeze() {

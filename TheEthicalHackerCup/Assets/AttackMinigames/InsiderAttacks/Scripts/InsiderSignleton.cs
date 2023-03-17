@@ -125,28 +125,28 @@ public class InsiderSingleton
         this.SetCollectedDocuments(this.collectedDocuments + change);
         if (this.LevelOver()) {
             GameManager.GetInstance().ChangeRespect(10);
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!");
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!\n +10 Respect");
         }
     }
     public void ChangeCollectedComputers(int change) { 
         this.SetCollectedComputers(this.collectedComputers + change); 
         if (this.LevelOver()) {
             GameManager.GetInstance().ChangeRespect(10);
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!");
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!\n +10 Respect");
         }
     }
     public void ChangeCollectedServers(int change) { 
         this.SetCollectedServers(this.collectedServers + change);
         if (this.LevelOver()) {
             GameManager.GetInstance().ChangeRespect(10);
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!");
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack success!\n +10 Respect");
         }
     }
     public void ChangeSuspicionLevel(double change) { 
         this.SetSuspicionLevel(this.suspicionLevel + change); 
         if (this.LevelOver()) {
             GameManager.GetInstance().ChangeRespect(-10);
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack failed");
+            GameManager.GetInstance().SwitchToAfterActionReportScene("Insider attack failed!\n -10 Respect");
         }
     }
 

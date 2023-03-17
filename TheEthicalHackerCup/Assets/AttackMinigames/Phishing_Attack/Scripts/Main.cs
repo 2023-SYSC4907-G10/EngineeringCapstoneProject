@@ -32,14 +32,14 @@ public class Main : MonoBehaviour
         if (count == 0)
         {
             GameManager.GetInstance().ChangeRespect(10);
-            proceedToAfterActionReport("Phishing WIN :)");
+            proceedToAfterActionReport("Phishing WIN!\n +10 Respect");
         }
     }
 
     void outOfTime()
     {
         GameManager.GetInstance().ChangeRespect(-10);
-        proceedToAfterActionReport("Phishing loss :(");
+        proceedToAfterActionReport("Phishing loss.\n -10 Respect");
     }
 
     private void proceedToAfterActionReport(string afterActionReportMessage)

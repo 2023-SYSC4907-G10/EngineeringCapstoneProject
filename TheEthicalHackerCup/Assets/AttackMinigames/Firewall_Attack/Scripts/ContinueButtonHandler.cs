@@ -14,11 +14,14 @@ public class ContinueButtonHandler : MonoBehaviour
         else
         {
             GameManager.GetInstance().ChangeRespect(
-                FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? 10:-10
+                FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? 10 : -10
             );
 
             FirewallAttackGameManager.GetInstance().InitializeGameState();
-            GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall attack completed dude");
+            GameManager.GetInstance().SwitchToAfterActionReportScene(
+                "Firewall attack completed!\n" +
+                (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? "+" : "-")
+                + "10 Respect");
         }
     }
 }

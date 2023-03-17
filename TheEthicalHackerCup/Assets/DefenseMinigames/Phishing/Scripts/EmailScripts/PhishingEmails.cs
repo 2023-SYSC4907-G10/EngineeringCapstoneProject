@@ -40,10 +40,10 @@ public class PhishingEmails : MonoBehaviour
             } else {
                 if (win) {
                     GameManager.GetInstance().ChangeRespect(10);
-                    proceedToAfterActionReport("You have won the game");
+                    proceedToAfterActionReport("You have won the game\n +10 Respect");
                 } else {
                     GameManager.GetInstance().ChangeRespect(-10);
-                    proceedToAfterActionReport("You have lost the game");
+                    proceedToAfterActionReport("You have lost the game.\n -10 Respect");
                 }
 
             }
@@ -51,10 +51,10 @@ public class PhishingEmails : MonoBehaviour
             emails[randomEmail].SendMessage("clearEmail");
             if (win) {
                 GameManager.GetInstance().ChangeRespect(10);
-                proceedToAfterActionReport("You have won the game");
+                proceedToAfterActionReport("You have won the game\n +10 Respect");
             } else {
                 GameManager.GetInstance().ChangeRespect(-10);
-                proceedToAfterActionReport("You have lost the game");
+                proceedToAfterActionReport("You have lost the game.\n -10 Respect");
             }
         }
     }

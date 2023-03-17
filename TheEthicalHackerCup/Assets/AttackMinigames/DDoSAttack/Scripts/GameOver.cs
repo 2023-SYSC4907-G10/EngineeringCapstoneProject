@@ -19,6 +19,6 @@ public class GameOver : MonoBehaviour
     public void Continue()
     {
         GameManager.GetInstance().ChangeRespect(-10);
-        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Attack Failed!");
+        GameManager.GetInstance().SwitchToAfterActionReportScene("DDoS Attack Failed!\n -10 Respect");
     }
 }

@@ -7,18 +7,21 @@ public class FWD_MouseFlame : MonoBehaviour
 
     public List<SpriteRenderer> flames;
     private int _ticksRemaining;
+    private float _timeUntilNextTick;
+    private static readonly float TICK_PERIOD = 0.125f;
 
-    // Start is called before the first frame update
     void Start()
     {
+        _timeUntilNextTick = TICK_PERIOD;
         _ticksRemaining = 9;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Time.frameCount % 30 == 0)
+        _timeUntilNextTick -= Time.deltaTime;
+        if (_timeUntilNextTick <= 0)
         {
+            _timeUntilNextTick = TICK_PERIOD;
             foreach (SpriteRenderer sr in flames)
             {
                 sr.flipX = !sr.flipX;

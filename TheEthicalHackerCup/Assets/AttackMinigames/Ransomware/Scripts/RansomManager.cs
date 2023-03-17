@@ -16,7 +16,12 @@ public class RansomManager : MonoBehaviour
         GameOver += delegate (object sender, GameOverEvent evt)
         {
             GameManager.GetInstance().ChangeRespect(evt.Win ? 10 : -10);
-            GameManager.GetInstance().SwitchToAfterActionReportScene("You " + (evt.Win ? "Successfully encrypted all their files!" : "FAILED! You got caught and removed from the system"));
+            GameManager.GetInstance().SwitchToAfterActionReportScene(
+                "You " +
+                (evt.Win ?
+                    "Successfully encrypted all their files!\n +10 Respect" :
+                    "FAILED! You got caught and removed from the system\n -10 Respect"
+                ));
             // idk put a call to the game manager here or something idc
         };
         FileLocked += delegate (object sender, FileLockedEvent evt)

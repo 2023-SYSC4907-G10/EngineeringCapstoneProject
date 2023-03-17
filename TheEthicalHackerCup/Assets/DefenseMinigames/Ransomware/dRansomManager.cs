@@ -148,7 +148,8 @@ public class dRansomManager : MonoBehaviour
     {
         if (lives <= 0) 
         {
-            GameManager.GetInstance().SwitchToAfterActionReportScene("All your lives were lost. You either let ransomers destroy the all the production data (including backups), thought too many things were viruses or a combination of both.");
+            GameManager.GetInstance().ChangeRespect(-10);
+            GameManager.GetInstance().SwitchToAfterActionReportScene("All your lives were lost. You either let ransomers destroy the all the production data (including backups), thought too many things were viruses or a combination of both.\n -10 Respect");
             return;
         }
     }
@@ -157,7 +158,8 @@ public class dRansomManager : MonoBehaviour
     {
         if (dataIndex+1 == metaData.Count) 
         {
-            GameManager.GetInstance().SwitchToAfterActionReportScene("You successfully scanned the incoming software and kept the production data safe. Good job!");
+            GameManager.GetInstance().ChangeRespect(10);
+            GameManager.GetInstance().SwitchToAfterActionReportScene("You successfully scanned the incoming software and kept the production data safe. Good job!\n +10 Respect");
             FileHelperSingleton.Singleton.nextFile();
             return;
         }
