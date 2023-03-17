@@ -1,20 +1,45 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack1</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack2</Content>
+	</Slide>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack3</Content>
+	</Slide>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack4</Content>
+	</Slide>
+	<Slide Name="What is an insider attack">
+		<Selection>-1</Selection>
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>An attack from outside an organization</Option>
+			<Option>An attack from within an organization</Option>
+			<Option>An attack by politicians</Option>
+			<Option>An attack by rioters</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+	<Slide Name="What are things insiders steal (Select all that apply)">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Option>Documents</Option>
+			<Option>Textbooks</Option>
+			<Option>Computers</Option>
+			<Option>Cameras</Option>
+		</Content>
+	</Slide>
+	<Slide Name="What are signs of an insider (Select all that apply)">
+		<Content Type="Learning.CheckBox">
+			<Correct>1</Correct>
+			<Correct>2</Correct>
+			<Option>Usual login times</Option>
+			<Option>Unusual login times</Option>
+			<Option>Dodgy behavior</Option>
+			<Option>Cheerful attitude</Option>
 		</Content>
 	</Slide>
 </Quiz>
