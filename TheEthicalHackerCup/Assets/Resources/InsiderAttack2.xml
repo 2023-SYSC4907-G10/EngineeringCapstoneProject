@@ -1,20 +1,31 @@
 <Quiz>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
+	<Slide Name="Insider Defense Upgrade Level 2">
+		<Content Type="Learning.ImageContent">InsiderAttack5</Content>
 	</Slide>
-	<Slide Name="SLIDE 2">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Are timestamped logs enough evidence to accuse a insider suspect?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+	<Slide Name="What information do eyewitness accounts give? (Select all that apply)">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Correct>2</Correct>
+			<Option>Provides more accuracy for investigators</Option>
+			<Option>Confirm what was stolen</Option>
+			<Option>Matches timestamp logs with who was involved</Option>
+			<Option>Finds the suspect with 100% accuracy</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Can eyewitness accounts be fully trusted?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
 </Quiz>
