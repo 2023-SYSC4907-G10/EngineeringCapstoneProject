@@ -29,6 +29,7 @@ public class FWD_Timer : MonoBehaviour
         {
             // End the game
             FWD_Manager.GetInstance().EndGame();
+            GameManager.GetInstance().ChangeRespect(10); // TODO Update this to be performance based
             GameManager.GetInstance().SwitchToAfterActionReportScene("Firewall defense minigame finished");
         }
     }

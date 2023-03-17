@@ -15,6 +15,7 @@ public class EndGame : MonoBehaviour
 
     void EndGameClicked()
     {
+        GameManager.GetInstance().ChangeRespect(10); //TODO: Make this performance dependant
         GameManager.GetInstance().SwitchToAfterActionReportScene("Insider Defense Game Over");
     }
 }

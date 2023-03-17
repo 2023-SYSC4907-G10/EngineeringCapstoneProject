@@ -31,12 +31,14 @@ public class Main : MonoBehaviour
         count--;
         if (count == 0)
         {
+            GameManager.GetInstance().ChangeRespect(10);
             proceedToAfterActionReport("Phishing WIN :)");
         }
     }
 
     void outOfTime()
     {
+        GameManager.GetInstance().ChangeRespect(-10);
         proceedToAfterActionReport("Phishing loss :(");
     }
 
