@@ -1,23 +1,26 @@
 <Quiz>
-	<Slide Name="Example">
-		<Content Type="Learning.ImageContent">based</Content>
+	<Slide Name="DDoS Upgrade Level 1">
+		<Content Type="Learning.ImageContent">DDoSLearning/DDoSinfo1</Content>
 	</Slide>
-	<Slide Name="SLIDE 1">
-		<Content Type="Learning.InfoContent">Welcome</Content>
-	</Slide>
-	<Slide Name="SLIDE 2">
+	<Slide Name="What does DDoS Mean?">
 		<Content Type="Learning.CheckBox">
 			<Correct>1</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>Damaging Dissent of Software</Option>
+			<Option>Distributed Denial of Service</Option>
 		</Content>
 	</Slide>
-	<Slide Name="SLIDE 3">
-		<Content Type="Learning.RadioBox">
-			<Selection>1</Selection>
+	<Slide Name="What are Infected devices referred to?">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
-			<Option>Hello</Option>
-			<Option>Bruh</Option>
+			<Option>Bot</Option>
+			<Option>Zombie</Option>
+		</Content>
+	</Slide>
+	<Slide Name="What is a group of bots called?">
+		<Content Type="Learning.CheckBox">
+			<Correct>0</Correct>
+			<Option>Botnet</Option>
+			<Option>Autobots</Option>
 		</Content>
 	</Slide>
 </Quiz>
