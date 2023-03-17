@@ -11,7 +11,7 @@
 		</Content>
 	</Slide>
 	<Slide Name="What information do eyewitness accounts give? (Select all that apply)">
-		<Content Type="Learning.Checkbox">
+		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
 			<Correct>2</Correct>
 			<Option>Provides more accuracy for investigators</Option>
