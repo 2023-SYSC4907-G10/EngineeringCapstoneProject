@@ -1,8 +1,28 @@
 <Quiz>
-	<Slide Name="Defense Upgrade Quiz Level 1">
-		<Content Type="Learning.InfoContent"></Content>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack1</Content>
 	</Slide>
-	<Slide Name="What are things insiders steal from (Select all that apply)">
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack2</Content>
+	</Slide>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack3</Content>
+	</Slide>
+	<Slide Name="Insider Defense Upgrade Level 1">
+		<Content Type="Learning.ImageContent">InsiderAttack4</Content>
+	</Slide>
+	<Slide Name="What is an insider attack">
+		<Selection>-1</Selection>
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>An attack from outside an organization</Option>
+			<Option>An attack from within an organization</Option>
+			<Option>An attack by politicians</Option>
+			<Option>An attack by rioters</Option>
+		</Content>
+	</Slide>
+	<Slide Name="What are things insiders steal (Select all that apply)">
 		<Content Type="Learning.CheckBox">
 			<Correct>0</Correct>
 			<Correct>2</Correct>
@@ -12,14 +32,14 @@
 			<Option>Cameras</Option>
 		</Content>
 	</Slide>
-	<Slide Name="Who can get suspicious of insiders">
-		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
+	<Slide Name="What are signs of an insider (Select all that apply)">
+		<Content Type="Learning.CheckBox">
 			<Correct>1</Correct>
-			<Option>Janitor</Option>
-			<Option>Co-workers</Option>
-			<Option>Stakeholders</Option>
-			<Option>Police</Option>
+			<Correct>2</Correct>
+			<Option>Usual login times</Option>
+			<Option>Unusual login times</Option>
+			<Option>Dodgy behavior</Option>
+			<Option>Cheerful attitude</Option>
 		</Content>
 	</Slide>
 </Quiz>

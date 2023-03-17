@@ -1,25 +1,21 @@
 <Quiz>
-	<Slide Name="Defense Upgrade Quiz Level 3">
-		<Content Type="Learning.InfoContent"></Content>
+	<Slide Name="Insider Defense Upgrade Level 3">
+		<Content Type="Learning.ImageContent">InsiderAttack6</Content>
 	</Slide>
-	<Slide Name="What sort of information should insider investigators look for">
-		<Content Type="Learning.CheckBox">
-			<Correct>2</Correct>
-			<Correct>3</Correct>
-			<Option>People who are shy</Option>
-			<Option>Happy employees</Option>
-			<Option>Irregular access times</Option>
-			<Option>Multiple eyewitness accounts</Option>
+	<Slide Name="Are security cameras the most accurate tool for catching insiders">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
+			<Correct>0</Correct>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
-	<Slide Name="What to do when you think a co-worker is an insider">
-		<Content Type="Learning.Checkbox">
+	<Slide Name="Do cameras give timestamps of events that occured">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>0</Correct>
-			<Correct>1</Correct>
-			<Option>Bring it up to a manager</Option>
-			<Option>Gather more evidence</Option>
-			<Option>Accuse them in front of the office</Option>
-			<Option>Steal their computer</Option>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
 </Quiz>

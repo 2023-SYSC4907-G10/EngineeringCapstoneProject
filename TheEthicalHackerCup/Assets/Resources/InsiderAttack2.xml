@@ -1,25 +1,31 @@
 <Quiz>
-	<Slide Name="Defense Upgrade Quiz Level 2">
-		<Content Type="Learning.InfoContent"></Content>
+	<Slide Name="Insider Defense Upgrade Level 2">
+		<Content Type="Learning.ImageContent">InsiderAttack5</Content>
 	</Slide>
-	<Slide Name="What are ways to find out who an insider is (Select all that apply)">
-		<Content Type="Learning.CheckBox">
+	<Slide Name="Are timestamped logs enough evidence to accuse a insider suspect?">
+		<Content Type="Learning.RadioBox">
+			<Selection>-1</Selection>
 			<Correct>1</Correct>
-			<Correct>3</Correct>
-			<Option>Following them</Option>
-			<Option>Computer logs</Option>
-			<Option>Watching them work</Option>
-			<Option>Cameras</Option>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
-	<Slide Name="What gives rise to insiders">
+	<Slide Name="What information do eyewitness accounts give? (Select all that apply)">
+		<Content Type="Learning.Checkbox">
+			<Correct>0</Correct>
+			<Correct>2</Correct>
+			<Option>Provides more accuracy for investigators</Option>
+			<Option>Confirm what was stolen</Option>
+			<Option>Matches timestamp logs with who was involved</Option>
+			<Option>Finds the suspect with 100% accuracy</Option>
+		</Content>
+	</Slide>
+	<Slide Name="Can eyewitness accounts be fully trusted?">
 		<Content Type="Learning.RadioBox">
-			<Selection>0</Selection>
-			<Correct>3</Correct>
-			<Option>Inclusive workplace</Option>
-			<Option>Good managers</Option>
-			<Option>Friendly co-workers</Option>
-			<Option>Paycuts</Option>
+			<Selection>-1</Selection>
+			<Correct>1</Correct>
+			<Option>True</Option>
+			<Option>False</Option>
 		</Content>
 	</Slide>
 </Quiz>
