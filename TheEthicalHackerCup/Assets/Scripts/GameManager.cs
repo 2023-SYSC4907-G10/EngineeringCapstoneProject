@@ -33,6 +33,8 @@ public class GameManager
 
     private string _afterActionReportText;
     private string _playerEmail;
+    private string _learningMinigameLog;
+    public string LearningMinigameLog { get { return _learningMinigameLog; } }
 
     public string AfterActionReportText { get { return _afterActionReportText; } }
 
@@ -55,15 +57,17 @@ public class GameManager
         _afterActionReportText = "Sample after action report text";
         _nextLearningMinigameSecurityConcept = SecurityConcepts.Firewall; //Default but will not be used before getting rewritten
         _respect = 25;
-        _opponentKnowledge = 100; //TODO: Review starting oppKnowledge. Easier to be non-zero for demo purposes
+        _opponentKnowledge = 20; //TODO: Review starting oppKnowledge. Easier to be non-zero for demo purposes
         _securityConceptProgressDictionary = new Dictionary<SecurityConcepts, SecurityConceptProgress>();
         _nextLearningMinigameTutorialFileName = "";
         _postLearningMinigameReturnScene = "MainScene";
         _playerEmail = "";
         _currentDefenseMinigameOptions = new List<SecurityConcepts>();
         _tutorialSeen = new Dictionary<string, bool>();
+        _tutorialSeen.Add("main", false);
         _tutorialSeen.Add("AttackMenu", false);
         _tutorialSeen.Add("DefenseMenu", false);
+        _learningMinigameLog = "";
 
         // Iterate thru security concepts to instantiate zeros for defense upgrade and attack heat
         foreach (SecurityConcepts concept in Enum.GetValues(typeof(SecurityConcepts)))
@@ -272,12 +276,20 @@ public class GameManager
         {
             UpgradeDefenseUpgradeLevel(_nextLearningMinigameSecurityConcept);
         }
-        SceneManager.LoadScene(this._postLearningMinigameReturnScene);
+        if (this.IsEverythingFullyUpgraded())
+        {
+            SceneManager.LoadScene("Email");
+        }
+        else
+        {
+            SceneManager.LoadScene(this._postLearningMinigameReturnScene);
+        }
     }
 
 
     // Changers
     public void ChangeRespect(int change) { this.SetRespect(this._respect + change); }
     public void ChangeOpponentKnowledge(int change) { this.SetOpponentKnowledge(this._opponentKnowledge + change); }
+    public void AppendToLearningMinigameLog(string message) { _learningMinigameLog += message; }
 }
 

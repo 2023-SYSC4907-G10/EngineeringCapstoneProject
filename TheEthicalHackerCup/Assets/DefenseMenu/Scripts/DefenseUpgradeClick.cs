@@ -14,6 +14,12 @@ public class DefenseUpgradeClick : MonoBehaviour
     [SerializeField] SecurityConcepts sc;
     void Start()
     {
+        var currentUpgradeLevel = GameManager.GetInstance().GetDefenseUpgradeLevel(sc);
+        for (var i = 0; i < currentUpgradeLevel; i++)
+        {
+          progressBar.GetComponent<ProgressBar>().updateProgressBar();
+        }
+
         upgradeButton = this.gameObject.GetComponent<Button>();
         upgradeButton.onClick.AddListener(Upgrade);
     }
@@ -28,8 +34,6 @@ public class DefenseUpgradeClick : MonoBehaviour
     {
         if (upgradeButton.interactable)
         {
-            progressBar.GetComponent<ProgressBar>().updateProgressBar(); //This might not need to be dynamically boosted. Instead, set it when the scene loads
-
             // Launch learning minigame 
             GameManager.GetInstance().StartLearningMinigameUpgradeQuiz(sc);
         }

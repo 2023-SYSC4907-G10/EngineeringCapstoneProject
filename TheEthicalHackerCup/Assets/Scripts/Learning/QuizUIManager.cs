@@ -30,8 +30,6 @@ namespace Learning
         private ImageUI imageUi;
         private VideoUI videoUi;
 
-        //[SerializeField]
-        //private TextAsset file;
         // Start is called before the first frame update
         void Start()
         {
@@ -57,6 +55,9 @@ namespace Learning
 
             nextButton.onClick.AddListener(handleNextSelected);
 
+            string reportText = "Quiz attempt: " + filepath + "\n";
+            GameManager.GetInstance().AppendToLearningMinigameLog(reportText);
+
             quiz.start();
 
         }
@@ -76,7 +77,6 @@ namespace Learning
             if (content is ISelectQuestionState)
             {
                 current = selectUi;
-
             }
             else if (content is InfoContent)
             {
@@ -95,9 +95,17 @@ namespace Learning
 
         private void handleSubmitted(object sender, QuizSubmittedEvent evt)
         {
+            // Updating the end of game report
+            string reportText = "Quiz result: " + GameManager.GetInstance().GetNextLearningMinigameFilename() + " ";
+            reportText += string.Format("{0:F1}", evt.percentScore) + "%" + (evt.pass ? " (Passed)" : " (Failed)") + "\n\n";
+            GameManager.GetInstance().AppendToLearningMinigameLog(reportText);
+
+
             clearContent();
             current = infoUi;
             title.text = "SCORE!!!";
+
+
             var output = "Your score: " + string.Format("{0:F1}", evt.percentScore) + "%\n" +
                 "You " + (evt.pass ? "Passed!!" : " should review the material and try again next time :D\n" +
                 "Click next to continue back to the main game");
@@ -118,7 +126,5 @@ namespace Learning
         {
             this.quiz.next();
         }
-
-
     }
 }

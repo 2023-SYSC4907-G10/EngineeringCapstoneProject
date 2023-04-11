@@ -1,6 +1,27 @@
 using System.Collections.Generic;
 public class TutorialInit
 {
+    public static void MainScene()
+    {
+        List<string> tutorialImages = new List<string> {
+            "Tutorial/Images/IntroSlides/Intro1",
+            "Tutorial/Images/IntroSlides/Intro2",
+            "Tutorial/Images/IntroSlides/Intro13",
+            "Tutorial/Images/IntroSlides/Intro3",
+            "Tutorial/Images/IntroSlides/Intro4",
+            "Tutorial/Images/IntroSlides/Intro5",
+            "Tutorial/Images/IntroSlides/Intro6",
+            "Tutorial/Images/IntroSlides/Intro7",
+            "Tutorial/Images/IntroSlides/Intro8",
+            "Tutorial/Images/IntroSlides/Intro9",
+            "Tutorial/Images/IntroSlides/Intro10",
+            "Tutorial/Images/IntroSlides/Intro11",
+            "Tutorial/Images/IntroSlides/Intro12",
+        };
+        TutorialSingleton.GetInstance().setTextFile("Tutorial/Text/MainScene");
+        TutorialSingleton.GetInstance().setTutorialImages(tutorialImages);
+        TutorialSingleton.GetInstance().setEndTutorialTransitionScene("MainScene");
+    }
     public static void DefenseMenu()
     {
         List<string> tutorialImages = new List<string> { "Tutorial/Images/DefenseMenu1", "Tutorial/Images/DefenseMenu2", "Tutorial/Images/DefenseMenu3" };
@@ -17,8 +38,10 @@ public class TutorialInit
         TutorialSingleton.GetInstance().setEndTutorialTransitionScene("AttackMenu");
     }
 
-    public static void AttackMinigame(SecurityConcepts sc) {
-        switch(sc) {
+    public static void AttackMinigame(SecurityConcepts sc)
+    {
+        switch (sc)
+        {
             case SecurityConcepts.InsiderAttack:
                 InsiderAttack();
                 break;
@@ -37,8 +60,10 @@ public class TutorialInit
         }
     }
 
-    public static void DefenseMinigame(SecurityConcepts? sc) {
-        switch(sc) {
+    public static void DefenseMinigame(SecurityConcepts? sc)
+    {
+        switch (sc)
+        {
             case SecurityConcepts.InsiderAttack:
                 InsiderDefense();
                 break;

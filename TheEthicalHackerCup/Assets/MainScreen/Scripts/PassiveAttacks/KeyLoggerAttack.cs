@@ -28,7 +28,7 @@ public class KeyLoggerAttack : PassiveAttack
 
     public override void onSuccess()
     {
-        GameManager.GetInstance().SetOpponentKnowledge(GameManager.MAX_OPP_KNOWLEDGE);
+        GameManager.GetInstance().SetOpponentKnowledge(GameManager.MAX_OPP_KNOWLEDGE);//TODO Change this to be more balanced
     }
 
 }

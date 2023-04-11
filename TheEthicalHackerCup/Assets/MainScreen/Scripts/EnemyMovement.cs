@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using static KeyLocations;
 public class EnemyMovement : MonoBehaviour
 {
+    const float EAVESDROP_CAPTURE_TIME = 1; 
     public enum State
     {
         PreparingToWalk,
@@ -156,7 +157,7 @@ public class EnemyMovement : MonoBehaviour
                         changeToNormalDisplay();
                         state = State.PreparingToWalk;
                     }
-                    else if (Time.time - timeSinceStartingAttack > 5)
+                    else if (Time.time - timeSinceStartingAttack > EAVESDROP_CAPTURE_TIME )
                     {
                         // Enemy has eavedropped converstation
                         changeToNormalDisplay();
