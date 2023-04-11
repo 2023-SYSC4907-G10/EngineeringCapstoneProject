@@ -12,13 +12,13 @@
 <body>
     <div style="padding: 20px; background-color: #f44336; color: white;">
         <span style="margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;" onclick="this.parentElement.style.display='none';">&times;</span>
+                    color: white;
+                    font-weight: bold;
+                    float: right;
+                    font-size: 22px;
+                    line-height: 20px;
+                    cursor: pointer;
+                    transition: 0.3s;"></span>
         <strong>Caution!</strong> You MUST run this game in full screen.
     </div>
     <div id="unity-container" class="unity-desktop">
@@ -32,7 +32,7 @@
         <div id="unity-warning"> </div>
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button">test</div>
+            <div id="unity-fullscreen-button">Full Screen</div>
             <div id="unity-build-title">TheEthicalHackerCup</div>
         </div>
     </div>
@@ -119,7 +119,6 @@
                 progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
                 loadingBar.style.display = "none";
-                unityInstance.SetFullscreen(1);
                 fullscreenButton.onclick = () => {
                     unityInstance.SetFullscreen(1);
                 };
