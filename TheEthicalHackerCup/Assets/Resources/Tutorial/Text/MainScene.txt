@@ -1,0 +1,13 @@
+Welcome to the Ethical Hacker cup! A fun internal security competition to help us improve our corporate security!
+You are on the left side blue team, and to win the competition, you need to get respect from the judges
+You gain respect from the judges by doing well in attack and defense minigames
+To test the other team's security, go to the attack station to play attack test minigames
+But, in order to play attack test minigames, you need to get enough opponent knowledge from doing passive attacks
+You can inspect the other team's unlocked computers...
+You can eavesdrop on their conversations...
+You can also go dumpster diving to see what kind of info they're throwing out...
+But beware, if you get caught doing a passive attack, you will be sent back to your team....
+Once you have some attack minigame attempts, you can go to the defense station to upgrade your security concepts!
+Watch out! The other team will conduct security tests on you! Make sure that you defend against them to avoid losing respect!
+To win the game, you must fully upgrade all of your security concepts and gain respect from the judges! Good luck!
+And if you want to see this information again, go to the info station

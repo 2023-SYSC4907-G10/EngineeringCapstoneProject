@@ -9,10 +9,10 @@ public class ProgressBar : MonoBehaviour {
 	private Color fillColor = Color.green;
 	
 	[Header("General")]
-	private int numSegments = 10;
+	private int numSegments = 3;
 	[Range(0, 360)]  private float startAngle = 10;
 	[Range(0, 360)]  private float endAngle = 350;
-	 private float notchSize = 5;
+	 private float notchSize = 15;
 	[Range(0, 1f)]  private float fillAmount = 0.0f;
 
 	private Image image;
@@ -57,7 +57,7 @@ public class ProgressBar : MonoBehaviour {
 	
 	public void updateProgressBar() {
 		if (fillAmount <= 1.0f) {
-			fillAmount += 0.09f;
+			fillAmount += 0.31f;
 			this.redrawProgressBar();
 		}
 	}
@@ -65,7 +65,7 @@ public class ProgressBar : MonoBehaviour {
 	public IEnumerator delayedProgressBar(int delay) {
 		while (fillAmount <= 1.0f) {
 			yield return new WaitForSeconds(delay);
-			fillAmount += 0.09f;
+			fillAmount += 0.34f;
 			this.redrawProgressBar();
 			
 		}

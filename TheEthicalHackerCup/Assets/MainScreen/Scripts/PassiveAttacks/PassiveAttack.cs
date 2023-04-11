@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class PassiveAttack : MonoBehaviour
 {
+    const float CAPTURE_TIME_SECONDS = 1;
     public enum State
     {
         Idle,
@@ -79,7 +80,7 @@ public abstract class PassiveAttack : MonoBehaviour
                 }
                 else if (Physics.OverlapSphere(transform.position, 1, playerMask).Length > 0)
                 {
-                    if (Time.time - timeSinceStartingAttack > 5)
+                    if (Time.time - timeSinceStartingAttack > CAPTURE_TIME_SECONDS)
                     {
                         // Passive Attack has been captured
                         changeToIdleDisplay();

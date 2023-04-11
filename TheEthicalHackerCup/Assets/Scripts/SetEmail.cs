@@ -1,13 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetEmail : MonoBehaviour {
+public class SetEmail : MonoBehaviour
+{
     private string input;
-    public void ReadStringInput(string s) {
+    public void ReadStringInput(string s)
+    {
         input = s;
     }
 
-    public void SaveEmail(string s) {
+    public void SaveEmail(string s)
+    {
         GameManager.GetInstance().SetPlayerEmail(input);
+        EmailUtility.SendEmail(
+            "The Ethical Hacker Cup | Game Summary Report",
+            GameManager.GetInstance().LearningMinigameLog
+            );
     }
 }

@@ -17,11 +17,10 @@ public class ContinueButtonHandler : MonoBehaviour
                 FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? 10 : -10
             );
 
+            var afterActionReportString = "Firewall attack completed!\n" + (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? "+" : "-") + "10 Respect";
+
             FirewallAttackGameManager.GetInstance().InitializeGameState();
-            GameManager.GetInstance().SwitchToAfterActionReportScene(
-                "Firewall attack completed!\n" +
-                (FirewallAttackGameManager.GetInstance().CurrentGameState == FirewallAttackStates.Win ? "+" : "-")
-                + "10 Respect");
+            GameManager.GetInstance().SwitchToAfterActionReportScene(afterActionReportString);
         }
     }
 }

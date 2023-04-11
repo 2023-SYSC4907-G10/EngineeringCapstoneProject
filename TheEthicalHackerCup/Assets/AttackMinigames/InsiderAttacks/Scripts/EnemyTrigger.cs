@@ -10,7 +10,7 @@ public class EnemyTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        suspicionRate = 0.05;
+        suspicionRate = 0.15;
     }
 
     // Update is called once per frame

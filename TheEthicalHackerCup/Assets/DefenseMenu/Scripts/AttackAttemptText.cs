@@ -40,11 +40,6 @@ public class AttackAttemptText : MonoBehaviour
         green = new Color(0, 189f / 255f, 63f / 255f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public bool isAttemptComplete()
     {
         // checks if completed attack attempts equal to total attack attempts
